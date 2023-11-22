@@ -102,5 +102,8 @@
         "section": "Improvements"
       }
     ]
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3"
   }
 }
