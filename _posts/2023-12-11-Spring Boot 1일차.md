@@ -2,7 +2,7 @@
 title: Spring Boot 1일차(STS 설치)
 author: eunchaelyu
 date: 2023-12-11 21:30:00 +0900
-categories: [Spring Boot]
+categories: [주특기, Spring Boot]
 tags: [Spring Boot, 개발]
 pin: true
 img_path: '/posts/20231211'
