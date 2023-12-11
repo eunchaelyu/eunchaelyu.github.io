@@ -7,6 +7,9 @@ tags: [프로그래머스, 1일 1커밋, 성장일기]
 pin: true
 img_path: '/posts/20231211'
 ---
+
+## 1일 1커밋(1일차)
+### 프로그래머스 Lv.0 옷가게 할인 받기
   
   ```java
   class Solution {
