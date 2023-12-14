@@ -1,5 +1,5 @@
 ---
-title: Spring Boot 2일차(스프링 부트란?)
+title: Spring Boot 2일차(스프링 부트란)
 author: eunchaelyu
 date: 2023-12-12 08:30:00 +0900
 categories: [주특기, Spring Boot]
