@@ -1,5 +1,5 @@
 ---
-title: Spring Boot 3일차(STS4 설치 및 설정)
+title: Spring Boot 3일차(Spring Initializr 설치 및 인텔리제이 설정)
 author: eunchaelyu
 date: 2023-12-13 22:30:00 +0900
 categories: [주특기, Spring Boot]
