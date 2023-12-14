@@ -13,7 +13,6 @@ img_path: '/posts/20231213'
 |src/main/java|  
 |:------:|
 |컨트롤러, 폼과 DTO, 데이터 베이스 처리를 위한 엔티티, 서비스 파일|
-  
 |src/main/resources| 
 |:-----:|
 |자바 파일을 제외한 HTML, CSS, Javascript, 환경파일 등을 작성|    
