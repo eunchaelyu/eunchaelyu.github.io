@@ -13,15 +13,22 @@ img_path: '/posts/20231213'
 |src/main/java|  
 |:------:|
 |컨트롤러, 폼과 DTO, 데이터 베이스 처리를 위한 엔티티, 서비스 파일|
-    
-|src/main/resources|templates|static|    
-|:-----:|:-----:|:-----:|    
-|자바 파일을 제외한 HTML, CSS, Javascript, 환경파일 등을 작성|src/main/resources 디렉터리는 자바 파일을 제외한 HTML, CSS, Javascript, 환경파일 등을 작성하는 공간|템플릿, SBB의 질문 목록, 질문 상세 등의 HTML 파일 저장|``.css``, ``.js``,``.jpg``, ``.png``) 등을 저장|    
-
-
-|application.properties|src/test/java|build.gradle|
-|:-----:|:-----:|:-----:|
-|SBB 프로젝트의 환경, 데이터베이스 등의 설정|서버를 실행하지 않은 상태에서 src/main/java 디렉터리에 작성한 코드를 테스트|필요한 플러그인과 라이브러리 등을 기술|
-
-
-
+  
+|src/main/resources| 
+|:-----:|
+|자바 파일을 제외한 HTML, CSS, Javascript, 환경파일 등을 작성|    
+|templates|
+|:-----:|
+|템플릿, SBB의 질문 목록, 질문 상세 등의 HTML 파일 저장|
+|static|
+|:-----:|
+|``.css``, ``.js``,``.jpg``, ``.png``) 등을 저장|
+|application.properties|
+|:-----:|
+|SBB 프로젝트의 환경, 데이터베이스 등의 설정|
+|src/test/java|
+|:-----:|
+|서버를 실행하지 않은 상태에서 src/main/java 디렉터리에 작성한 코드를 테스트|
+|build.gradle|
+|:-----:|
+|필요한 플러그인과 라이브러리 등을 기술|
