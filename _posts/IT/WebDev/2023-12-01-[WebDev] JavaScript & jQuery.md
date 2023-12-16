@@ -1,14 +1,14 @@
 ---
-title: 항해99 웹개발 종합반 2주차
+title: "[WebDev] JavaScript & jQuery"
 author: eunchaelyu
 date: 2023-12-01 18:24:00 +09:00
-categories: [항해99, 사전 강의]
-tags: [항해99, 사전강의, 웹개발종합]
+categories: [IT, WebDev]
+tags: [IT, WebDev]
 pin: true
 img_path: '/posts/20231201'
 ---
 
-# [GPT] 웹개발 종합반 2주차
+# JavaScript & jQuery
 
 ##  JavaScript & jQuery(미리 완성된 JavaScript 코드)
 > 코드가 복잡하고 브라우저 간 호환성 문제도 고려해야 해서 jQuery라는 라이브러리가 생김\
@@ -67,7 +67,5 @@ jQuery
 서버-클라이언트 통신
 : 
 
-## 2주차 feedback
-: jQuery 내용 반복학습 필요, 클라이언트 통신 서버 구조화 해서 이해하기
 
 
