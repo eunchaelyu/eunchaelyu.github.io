@@ -1,14 +1,13 @@
 ---
-title: 항해99 웹개발 종합반 3주차
+title: "[WebDev] Python & Flask 서버"  
 author: eunchaelyu
 date: 2023-12-02 16:30 +09:00
-categories: [항해99, 사전 강의]
-tags: [항해99, 사전강의, 웹개발종합]
+categories: [IT, WebDev]
+tags: [IT, WebDev]
 pin: true
 img_path: '/posts/20231202'
 ---
 
-# [GPT] 웹개발 종합반 3주차
 
 ##  Python
 > 프로그래밍 언어
