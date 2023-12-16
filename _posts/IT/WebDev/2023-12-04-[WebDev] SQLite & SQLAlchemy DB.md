@@ -1,14 +1,13 @@
 ---
-title: 항해99 웹개발 종합반 4주차
+title: "[WebDev] SQLite & SQLAlchemy DB"
 author: eunchaelyu
 date: 2023-12-04 17:30:00 +09:00
-categories: [항해99, 사전 강의]
-tags: [항해99, 사전강의, 웹개발종합]
+categories: [IT, WebDev]
+tags: [IT, WebDev]
 pin: true
 img_path: '/posts/20231204'
 ---
 
-# [GPT] 웹개발 종합반 4주차
 
 ### 라우팅 연습
 > 주소에 따라 html 파일이 보여질 수 있도록 처리함.
