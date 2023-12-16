@@ -1,14 +1,13 @@
 ---
-title: 항해99 웹개발 종합반 5주차
+title: "[WebDev] Form & 클라우드 서비스"
 author: eunchaelyu
 date: 2023-12-04 19:30:00 +09:00
-categories: [항해99, 사전 강의]
-tags: [항해99, 사전강의, 웹개발종합]
+categories: [IT, WebDev]
+tags: [IT, WebDev]
 pin: true
 img_path: '/posts/20231204'
 ---
 
-# [GPT] 웹개발 종합반 5주차
 
 ### Form
 > 사용자가 입력한 데이터를 서버로 보낼 수 있다
