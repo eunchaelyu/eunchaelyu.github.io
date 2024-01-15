@@ -23,7 +23,7 @@ img_path: '/posts/20240115'
 
 **시작 전 주의사항: HTTP 배포를 버지니아 북부 region으로 설정하고 생성했는지 다시 확인**        
   ->  인증서 발급 받으려면 반드시 필요        
-  [링크이름](https://repost.aws/ko/knowledge-center/migrate-ssl-cert-us-east){:target="_blank"}
+  [인증서 발급 필수 사항](https://repost.aws/ko/knowledge-center/migrate-ssl-cert-us-east){:target="_blank"}
 
 ## 1. 준비 단계    
   - RDS 구매하고 MYSQL 연결하기(데이터 베이스 이름과 사용자 이름, 비밀번호 기억해야함)    
