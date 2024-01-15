@@ -1,6 +1,6 @@
 ---
 title: "[TroubleShooting] HTTP 배포하기"
-author: eunchaelyu
+author: eunchaelyu 
 date: 2024-1-15 1:49:00 +09:00
 categories: [IT, TroubleShooting]
 tags: [IT, TroubleShooting]
