@@ -1,0 +1,17 @@
+---
+title: "[TroubleShooting] "
+author: eunchaelyu
+date: 2024-1-16 9:49:00 +09:00
+categories: [IT, TroubleShooting]
+tags: [IT, TroubleShooting]
+pin: true
+img_path: '/posts/20240116'
+---
+
+
+#  AWS S3 버킷 생성하기 
+
+  : **Issue**: 
+
+  - 목표 AWS S3 S3를 사용해서 버킷을 생성한다
+  
