@@ -42,7 +42,10 @@ img_path: '/posts/20240115'
   [HTTPS 및 로드밸런스 블로그](https://jindevelopetravel0919.tistory.com/192){:target="_blank"}
   - ACM(amazon certificate manager) 에서 SSL 인증서 발급 및 호스팅 영역에 레코드 등록    
     : 외부 무료 도메인 사이트가 있지만 따로 EC2서버에 nginx나 cerbot과 같은 인증서를 직접 설치하고 설정하는 과정을 생략하기 위해    
-      AWS DNS 유료 서비스를 이용하여 도메인 생성함 -> AWS에서 생성한 도메인이기 때문에 검증 절차가 간단하고 쉬웠다)         
+      AWS DNS 유료 서비스를 이용하여 도메인 생성함 -> AWS에서 생성한 도메인이기 때문에 검증 절차가 간단하고 쉬웠다)
+
+ ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d88d873b-3919-43ef-87d6-1b1703684ce2)    
+  - HTTP 요청이면 이 요청을 HTTPS 요청으로 Redirection, HTTPS 요청이면 Target Group 의 80번 port로 요청을 포워딩        
   - Target group 생성 (대상 그룹)        
   - application load balancer 생성 및 security 정책 설정        
   - route53의 domain A 레코드 변경ACM SSL 인증서 발급(region ``버지니아 북부``)        
