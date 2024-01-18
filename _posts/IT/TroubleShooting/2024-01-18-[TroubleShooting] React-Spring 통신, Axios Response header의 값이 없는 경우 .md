@@ -9,7 +9,7 @@ img_path: '/posts/20240117'
 ---
 
 
-#  JWT토큰 헤더에 담아서 전달하기    
+#  [React-Spring 통신] Axios Response header의 값이 없는 경우   
 
 ## **Issue**           
 :  React-Spring FE-BE 프로젝트에서 로그인/회원가입 API 기능 구현은 완료, 백엔단 배포도 완료된 상태             
