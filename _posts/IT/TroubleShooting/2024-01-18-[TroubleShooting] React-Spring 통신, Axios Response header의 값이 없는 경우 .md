@@ -13,15 +13,15 @@ img_path: '/posts/20240117'
 
 ## **Issue**           
   :  React-Spring FE-BE 프로젝트에서 로그인/회원가입 API 기능 구현은 완료, 백엔단 배포도 완료된 상태             
-:  스프링 백엔단에서 https로 배포한 뒤에 jwt 토큰을 쿠키에 저장해서 보내는 방식을 jwt 토큰을 헤더에 담아서 전달하는 방식으로 바꿨다.            
-:  분명히 POSTMAN으로 테스트를 했을 때는 우리가 넣어준 header "Authorization"필드에 "Bearer " + 토큰값 상태로 잘 보였다.            
-:  ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/61ca050a-0812-478d-933d-ecec01349f9e)    
-:  jwt 디코딩을 했을 때 토큰 값에도 정확한 user 정보가 잘 들어가 있었다(아래 사진 참고)     
-:  [jwt.io 사이트](https://jwt.io/)    
-:  ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/c0ab16bb-a58e-47b2-982b-763f6c90e5a1) 
+  :  스프링 백엔단에서 https로 배포한 뒤에 jwt 토큰을 쿠키에 저장해서 보내는 방식을 jwt 토큰을 헤더에 담아서 전달하는 방식으로 바꿨다.            
+  :  분명히 POSTMAN으로 테스트를 했을 때는 우리가 넣어준 header "Authorization"필드에 "Bearer " + 토큰값 상태로 잘 보였다.            
+  :  ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/61ca050a-0812-478d-933d-ecec01349f9e)    
+  :  jwt 디코딩을 했을 때 토큰 값에도 정확한 user 정보가 잘 들어가 있었다(아래 사진 참고)     
+  :  [jwt.io 사이트](https://jwt.io/)    
+  :  ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/c0ab16bb-a58e-47b2-982b-763f6c90e5a1) 
 
-:  하지만 서버에 로그인 요청을 하면 클라이언트 측 프론트단에서 헤더가 보이지 않는 것이다.     
-:  "Authorization"으로 응답 받지 못하는 문제가 발생했다.    
+  :  하지만 서버에 로그인 요청을 하면 클라이언트 측 프론트단에서 헤더가 보이지 않는 것이다.     
+  :  "Authorization"으로 응답 받지 못하는 문제가 발생했다.    
 
 
 ## 해결 
