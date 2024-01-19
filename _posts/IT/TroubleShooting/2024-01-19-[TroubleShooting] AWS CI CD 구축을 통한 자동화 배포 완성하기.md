@@ -49,8 +49,15 @@ img_path: '/posts/20240119'
   - AWS IAM Identity Center의 사용자 및 그룹 생성(IAM ID 센터 콘솔-> 다중 계정 권한 아래에서 권한 집합 선택)    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3e7382ae-abfe-4951-8f9b-39e1743208d3)
 
-
+  - 사전 정의된 정책 아래 목록에서 IAM 작업 기능 정책 또는 공통 권한 정책 중 하나를 선택한 후 다음을 선택
+  - (나는 AWS에 모든 리소스 엑세스 가능한 걸 선택했다 )
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/57f634d8-0a23-43f8-8d54-cc2ee7fed2ec)
     
+  - 선택사항 검토 후 생성 누르면 다음과 같은 화면이 나온다    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ff4de2bc-f150-4f96-83e5-f8c2a7360c1f)
+
+
+
     
   
 
