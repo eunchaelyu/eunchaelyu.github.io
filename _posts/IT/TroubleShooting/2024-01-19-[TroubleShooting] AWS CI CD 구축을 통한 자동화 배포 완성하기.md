@@ -57,6 +57,29 @@ img_path: '/posts/20240119'
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ff4de2bc-f150-4f96-83e5-f8c2a7360c1f)
 
 
+## Step 3. AWS CLI 설치        
+  : CodePipeline 명령을 호출하려면 AWS CLI를 설치해야한다, AWS CLI는 정기적으로 업데이트 된다는 것 기억하자    
+   
+  - [Windows(64비트)용 AWS CLI MSI 설치 프로그램을 다운로드하고 실행](https://awscli.amazonaws.com/AWSCLIV2.msi)
+  - 별도의 선택해야 하는 사항 없음 바로 install 하면 된다
+    
+  - 명령 프롬프트 창을 검색하여 ``cmd``열고 명령 프롬프트에서 해당 ``aws --version`` 명령을 사용
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/c9907023-0b2c-4f6b-ade2-cd4e78a4fdcd)
+
+  - CodePipeline과 함께 사용할 IAM 사용자의 AWS 액세스 키와 AWS 보안 액세스 키를 지정( defalut output은 json으로 설정 )
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/6edf4069-98d2-4a69-af84-3593222d29a3)
+
+## Step 4. CodePipeline 콘솔 열기    
+[CodePipeline 콘솔 열기](http://console.aws.amazon.com/codesuite/codepipeline/home)
+
+
+## Step 5.  배포 (AWS Elastic Beanstalk)
+- 프로젝트를 저장한 git repository 생성 (Github)은 되어있으므로 생략 
+- Elastic BeanStalk는 콘솔을 사용해서 애플리케이션을 손쉽게 배포하고 관리할 수 있는 컴퓨팅 서비스   
+
+## Step 7: CodePipeline에서 파이프라인 생성    
+https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines?region=us-east-1&pipelines-meta=eyJmIjp7InRleHQiOiIifSwicyI6eyJwcm9wZXJ0eSI6InVwZGF0ZWQiLCJkaXJlY3Rpb24iOi0xfSwibiI6MjAsImkiOjB9
+
 
     
   
@@ -69,6 +92,10 @@ img_path: '/posts/20240119'
 [Step 1: Create an AWS account and administrative user](https://docs.aws.amazon.com/codepipeline/latest/userguide/getting-started-codepipeline.html#create-iam-user)        
 [Step 1-1: AWS 계정 루트 사용자에 대한 가상 MFA 디바이스 활성화(콘솔)](https://docs.aws.amazon.com/IAM/latest/UserGuide/enable-virt-mfa-for-root.html)        
 [Step 1-2: IAM 자격 증명 센터를 활성화](https://docs.aws.amazon.com/singlesignon/latest/userguide/get-set-up-for-idc.html)            
-[Step 2-1: AWS IAM Identity Center의 사용자 및 그룹 생성](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html)        
+[Step 2-1: AWS IAM Identity Center의 사용자 및 그룹 생성](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html)            
+[Step 3: 최신 버전의 AWS CLI 설치 또는 업데이트](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)      
+[Step 4: CodePipeline 콘솔 열기](http://console.aws.amazon.com/codesuite/codepipeline/home)    
+[Step 5: CodePipeline에서 파이프라인 생성](https://docs.aws.amazon.com/ko_kr/codepipeline/latest/userguide/pipelines-create.html)
+
 
 
