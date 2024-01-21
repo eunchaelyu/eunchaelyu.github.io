@@ -12,7 +12,7 @@ img_path: '/posts/20240115'
 # SpringBoot 백엔드 서버를 HTTP로 배포하기    
 
 - 사용환경(Window -> git bash)  
-- AWS EC2 생성과 RDS 구매로 DB를 생성 및 연결 해놓은 상
+- AWS EC2 생성과 RDS 구매로 DB를 생성 및 연결 해놓은 상태     
 
 ## 1. AWS EC2에 접속하기    
   ssh -i [키페어 끌어다 놓기] ubuntu@[IP주소]    
