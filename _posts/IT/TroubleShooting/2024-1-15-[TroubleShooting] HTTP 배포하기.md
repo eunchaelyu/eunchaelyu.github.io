@@ -67,41 +67,45 @@ img_path: '/posts/20240115'
 
 --------------------------------------------------------------------------------------------------------    
 
-## Step 4. AWS EC2에 접속하기    
+## Step 4. AWS EC2에 접속하기 ( WINDOW ) 
 - 접속할 컴퓨터가 22번 포트가 열려있어야 접속 가능하다. AWS EC2의 경우, 이미 22번 포트가 열려있다  
-  ssh -i [키페어 끌어다 놓기] ubuntu@[IP주소]    
-  
-## 배포파일 빌드하기     
-  Intellij에서 우측 Gradle 클릭 & build 더블 클릭     
+- gitbash 실행 > 아래 입력
+-  ``ssh -i [키페어 끌어다 놓기] ubuntu@[IP주소]``
 
-## (ssh로 접속한)Ubuntu에서 OpenJDK 설치하기(반드시 17v)    
+--------------------------------------------------------------------------------------------------------      
+
+## Step 5. EC2 준비하고 배포하기
+- 배포파일 빌드하기 > Intellij에서 우측 Gradle 클릭 & build 더블 클릭     
+
+- (ssh로 접속한)Ubuntu에서 OpenJDK 설치하기(반드시 17v)    
     ``sudo apt-get update``    
     ``sudo apt-get install openjdk-17-jdk``    
     ``java -version``    
 
-## Filezilla 이용해서 배포 파일 업로드하기    
-  ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/dd43644f-4732-4fe0-ba98-86873bdd0abd)        
-  - 호스트: IP 번호, 포트:22, 키파일: 키페어 경로 입력 후 연결      
-  ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/96cc863f-a04c-49ec-962e-7aa1c6b18c4c)    
-  - 좌측: 실행할 ``jar``파일 경로로 들어감(``-plain.jar`` 파일이 아닌 ``.jar``파일 더블 클릭)    
-  - 우측: 서버와 연결 후 ``ubuntu`` 경로로 자동 설정됨.      
+- Filezilla 이용해서 배포 파일 업로드하기    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/dd43644f-4732-4fe0-ba98-86873bdd0abd)
+        
+- 호스트: IP 번호, 포트:22, 키파일: 키페어 경로 입력 후 연결
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/96cc863f-a04c-49ec-962e-7aa1c6b18c4c)    
+- 좌측: 실행할 ``jar``파일 경로로 들어감(``-plain.jar`` 파일이 아닌 ``.jar``파일 더블 클릭)    
+- 우측: 서버와 연결 후 ``ubuntu`` 경로로 자동 설정됨.      
 
-## 스프링 부트 작동시키기
-  - ``java -jar house_backend-0.0.1-SNAPSHOT.jar``
+- 스프링 부트 작동시키기
+- ``java -jar house_backend-0.0.1-SNAPSHOT.jar``
 
-## 웹에 접속하기
-  - 스프링부트가 정상 작동되면 아래의 주소 입력
-  - ``http://[IP주소]``
+- 웹에 접속하기
+- 스프링부트가 정상 작동되면 아래의 주소 입력
+- ``http://[IP주소]``
 
-## 포트 포워딩(뒤에 포트번호 떼고 사용하기 위함)
-  - ``ctrl + c`` 사용해서 스프링 부트 실행 종료     
-  - ``sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080``
+- 포트 포워딩(뒤에 포트번호 떼고 사용하기 위함)
+- ``ctrl + c`` 사용해서 스프링 부트 실행 종료     
+- ``sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080``
 
-## 재시작
-  - ``java -jar house_backend-0.0.1-SNAPSHOT.jar``
-## 접속하기 
-  - ``http://[IP주소]``
-## 원격접속 종료하더라도 서버 계속 돌게 하기
+- 재시작
+- ``java -jar house_backend-0.0.1-SNAPSHOT.jar``
+- 접속하기 
+- ``http://[IP주소]``
+- 원격접속 종료하더라도 서버 계속 돌게 하기
   - ``nohup java -jar house_backend-0.0.1-SNAPSHOT.jar &``
 ## 서버 종료하기
   - 아래 명령어로 미리 pid 값(프로세스 번호)을 본다
