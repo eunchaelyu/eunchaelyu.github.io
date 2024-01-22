@@ -45,7 +45,8 @@ img_path: '/posts/20240115'
     : 따로 EC2서버에 nginx나 cerbot과 같은 인증서를 직접 설치하고 설정하는 과정을 생략하기 위해 직접 인증서 발급함.
 
  ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d88d873b-3919-43ef-87d6-1b1703684ce2)    
-
+  - Target group 생성 (대상 그룹)
+    
 **참고한 블로그랑 다른 점**    
   -SPRING BOOT로 로컬환경에서 8080포트를 사용하고 있으므로 80포트 대상그룹으로 포워딩 해주는 작업을 생략하고 아래와 같이 설정    
  
@@ -55,7 +56,11 @@ img_path: '/posts/20240115'
   - HTTPS 요청이면 기본값만 세팅(EC2 > 로드 밸런서 > neeksLoadBalancer > HTTPS: 443 리스너)
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ea9328f1-b7c1-4450-a2fa-184b675a5a78)
 
-  - Target group 생성 (대상 그룹)        
+     
   - application load balancer 생성 및 security 정책 설정        
   - route53의 domain A 레코드 변경ACM SSL 인증서 발급(region ``버지니아 북부``)        
+
+  - HTTPS 도메인 연결 완료시 화면
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/6228f09d-78ad-4f94-8d32-99ff54871067)
+
 
