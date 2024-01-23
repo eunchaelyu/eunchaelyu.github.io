@@ -76,13 +76,13 @@ public class CloneCodingUnicornApplication implements CommandLineRunner{
     }
 }
 ```
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/eec2338c-794f-40b7-b9ee-7e49eec85b1f)
-콘솔에 찍었을 때 위의 사진과 같이 나온다. 
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/eec2338c-794f-40b7-b9ee-7e49eec85b1f)    
+콘솔에 찍었을 때 위의 사진과 같이 나온다.     
 
 
-## **Issue 2**        
-title을 제외하고 content, image, date, category는 원하는 값으로 올바른 형식에 따라 콘솔에 제대로 찍히지 않는다    
-특이한 점은 image 가 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다
+## **Issue 2**            
+title을 제외하고 content, image, date, category는 원하는 값으로 올바른 형식에 따라 콘솔에 제대로 찍히지 않는다      
+특이한 점은 image 가 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다    
 
 ## **해결 방법(Issue 2)**    
 
