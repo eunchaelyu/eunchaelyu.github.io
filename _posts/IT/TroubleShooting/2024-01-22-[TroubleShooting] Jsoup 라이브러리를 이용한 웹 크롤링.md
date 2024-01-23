@@ -54,18 +54,18 @@ public class CloneCodingUnicornApplication implements CommandLineRunner{
         try {
             Document document = Jsoup.connect(url).get();
             Elements newsArticles = document.select("div.news_area");
-            
+
             for (Element article : newsArticles) {
                 String title = article.select("a.news_tit").text();
                 String link = article.select("a.news_tit").attr("href");
                 String content = article.select("div.articleBody").text();
-                String image = article.select("img").attr("src");
+                String imageUrl = article.select("img").attr("src");
                 String date = article.select("span.info").text();
                 String category = article.select("a.info.press").text();
 
                 System.out.println("Title: " + title);
                 System.out.println("Content: " + content);
-                System.out.println("Image: " + image);
+                System.out.println("ImageUrl: " + imageUrl);
                 System.out.println("Date: " + date);
                 System.out.println("Category: " + category);
                 System.out.println("Link: " + link + "\n");
@@ -82,7 +82,7 @@ public class CloneCodingUnicornApplication implements CommandLineRunner{
 
 ## **Issue 2**            
 title을 제외하고 content, image, date, category는 원하는 값으로 올바른 형식에 따라 콘솔에 제대로 찍히지 않는다      
-특이한 점은 image 가 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다    
+특이한 점은 imageUrl 데이터 형식이 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다    
 
 ## **해결 방법(Issue 2)**    
 
