@@ -120,11 +120,100 @@ content, date, category(=query) 형식에 맞게 출력하려면 코드의 어�
 **결과**    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/13b37db4-65c9-4b16-9ac4-38848ebf5d2b)    
 
+**Application.java**에 있던 파일을 Controller, Service, Application으로 분리한 작업
+```java
+@SpringBootApplication
+public class CloneCodingUnicornApplication implements CommandLineRunner{
+    private PostService postService;
+    public CloneCodingUnicornApplication(PostService postService) {
+        this.postService = postService;
+    }
+    public static void main(String[] args) {
+        SpringApplication.run(CloneCodingUnicornApplication.class, args);
+    }
+    @Override
+    public void run(String... args) throws Exception {
+        postService.scrapeNaverNews("정치");
+        postService.scrapeNaverNews("경제");
+        postService.scrapeNaverNews("세계");
+        postService.scrapeNaverNews("테크");
+        postService.scrapeNaverNews("노동");
+        postService.scrapeNaverNews("환경");
+        postService.scrapeNaverNews("인권");
+        postService.scrapeNaverNews("사회");
+        postService.scrapeNaverNews("문화");
+        postService.scrapeNaverNews("라이프");
+
+    }
+}
+```
+```java
+    @GetMapping("/scrapeNaverNews")
+    public String scrapeNaverNews(@RequestParam String query) throws IOException {
+        postService.scrapeNaverNews(query);
+        return "Scraping in progress. Check console for details.";
+    }
+```
+```java
+@Slf4j
+@Service
+public class PostService {
+    private final PostRepository postRepository;
+
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
+
+    public void scrapeNaverNews(String query) throws IOException {
+        String url = "https://search.naver.com/search.naver?query=" + query + "&where=news";
+        List<Post> scrapedPosts = new ArrayList<>();
+
+        try {
+            Document document = Jsoup.connect(url).get();
+            Elements newsArticles = document.select("div.news_area");
+
+            for (Element article : newsArticles) {
+                String title = article.select("a.news_tit").text();
+                String contents = article.select("div.news_dsc").text();
+                String imageUrl = article.select("div.news_contents > a.dsc_thumb > img.thumb").attr("src");
+                String date = article.select("span.info").text();
+                String categoryText = query;
+                Category category = mapCategory(categoryText);
+
+                Post savedPost = postRepository.save(new Post(title, contents, imageUrl, date, category));
+                scrapedPosts.add(savedPost);
+                List<PostResponseDto> savedPostsResponseDto = new ArrayList<>();
+
+                for (Post scrapedPost : scrapedPosts) {
+                    Post savePost = postRepository.save(scrapedPost);
+                    savedPostsResponseDto.add(new PostResponseDto(savePost));
+
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Category mapCategory(String categoryText) {
+        for (Category category : Category.values()) {
+            if (categoryText.equals(category.name())) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 카테고리 입니다." + categoryText);
+    }
+}
+```
 
 
 ## 🔥**Issue 3**                   
 특이한 점은 imageUrl 데이터 형식이 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다          
-Base64로 인코딩된 이미지 데이터를 리액트-스프링이 주고 받을 수 있을까?    
+1. Base64로 인코딩된 이미지 데이터를 리액트-스프링이 주고 받을 수 있을까?
+2. 네이버 검색창에서 카테고리를 입력했을 때 나오는 뉴스 리스트 중 사진을 url 로 받아올 수는 없을까?
+3. 아래 사진처럼 인코딩된 이미지 데이터가 다 동일한 데이터로 들어오는데 어떻게 해결할 수 있을까?
+4. 카테고리별로 10개씩만 나오는데 paging처리가 어디서 처리돼서 나오는 걸까?
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f85a0e9e-8e41-46d1-a71b-375ec457619a)
 
 ## **해결 방법(Issue 3)**     
     
