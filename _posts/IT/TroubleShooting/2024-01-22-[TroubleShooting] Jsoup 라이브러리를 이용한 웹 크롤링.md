@@ -81,18 +81,18 @@ public class CloneCodingUnicornApplication implements CommandLineRunner{
 
 
 ## **Issue 2**            
-title을 제외하고 content, image, date, category는 원하는 값으로 올바른 형식에 따라 콘솔에 제대로 찍히지 않는다      
-image는 추후 다룬다  
-content, date, category(=query) 형식에 맞게 출력하려면 코드의 어떤 부분을 수정해야 할까?
+title을 제외하고 content, image, date, category는 원하는 값으로 올바른 형식에 따라 콘솔에 제대로 찍히지 않는다          
+image는 추후 다룬다      
+content, date, category(=query) 형식에 맞게 출력하려면 코드의 어떤 부분을 수정해야 할까?    
 
 
-## **해결 방법(Issue 2)**    
-### html 구조를 살핀다    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e763b983-ec57-4f37-b218-4a6af12de8d8)
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d7077cc2-3494-496d-90bb-4a4ae0549fc7)
-- 위의 사진처럼 html 구조를 뜯어 봤을 때 news_area 중심으로 우리가 필요한 데이터 title, content, imageUrl, date가 있는 것을 볼 수 있다
-- 따라서, scrapeNaverNews 메서드 내의 url을 **div.news_area**를 기준으로 추출하는 것으로 한다
-- 그에 맞게 **selector**도 변경해서 아래와 같이 코드를 재작성 한다  
+## **해결 방법(Issue 2)**        
+### html 구조를 살핀다        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e763b983-ec57-4f37-b218-4a6af12de8d8)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d7077cc2-3494-496d-90bb-4a4ae0549fc7)    
+- 위의 사진처럼 html 구조를 뜯어 봤을 때 news_area 중심으로 우리가 필요한 데이터 title, content, imageUrl, date가 있는 것을 볼 수 있다    
+- 따라서, scrapeNaverNews 메서드 내의 url을 **div.news_area**를 기준으로 추출하는 것으로 한다    
+- 그에 맞게 **selector**도 변경해서 아래와 같이 코드를 재작성 한다      
 ```java
         try {
             Document document = Jsoup.connect(url).get();
@@ -113,19 +113,19 @@ content, date, category(=query) 형식에 맞게 출력하려면 코드의 어�
                 System.out.println("Category: " + category);
                 System.out.println("Link: " + link + "\n");
             }
-```
-- category는 현재 query 와 동일하기 때문에 변경한다 
-- class명 앞에는 ``.``을 붙여서 사용한다
+```    
+- category는 현재 query 와 동일하기 때문에 변경한다         
+- class명 앞에는 ``.``을 붙여서 사용한다    
 
-**결과**
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/13b37db4-65c9-4b16-9ac4-38848ebf5d2b)
+**결과**    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/13b37db4-65c9-4b16-9ac4-38848ebf5d2b)    
 
 
 
-## **Issue 3**                 
-특이한 점은 imageUrl 데이터 형식이 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다      
-Base64로 인코딩된 이미지 데이터를 리액트-스프링이 주고 받을 수 있을까?
+## **Issue 3**                   
+특이한 점은 imageUrl 데이터 형식이 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다          
+Base64로 인코딩된 이미지 데이터를 리액트-스프링이 주고 받을 수 있을까?    
 
-## **해결 방법(Issue 3)** 
-
+## **해결 방법(Issue 3)**     
+    
 
