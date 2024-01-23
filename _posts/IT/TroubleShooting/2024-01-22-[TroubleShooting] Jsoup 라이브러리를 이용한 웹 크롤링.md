@@ -93,7 +93,27 @@ content, date, category(=query) 형식에 맞게 출력하려면 코드의 어�
 - 위의 사진처럼 html 구조를 뜯어 봤을 때 news_area 중심으로 우리가 필요한 데이터 title, content, imageUrl, date가 있는 것을 볼 수 있다
 - 따라서, scrapeNaverNews 메서드 내의 url을 **div.news_area**를 기준으로 추출하는 것으로 한다
 - 그에 맞게 **selector**도 변경해서 아래와 같이 코드를 재작성 한다  
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d9ea7c1f-8b31-4714-8030-be35b9d7b831)
+```java
+        try {
+            Document document = Jsoup.connect(url).get();
+            Elements newsArticles = document.select("div.news_area");
+
+            for (Element article : newsArticles) {
+                String title = article.select("a.news_tit").text();
+                String link = article.select("a.news_tit").attr("href");
+                String content = article.select("div.news_dsc").text();
+                String imageUrl = article.select("img").attr("src");
+                String date = article.select("span.info").text();
+                String category = query;
+
+                System.out.println("Title: " + title);
+                System.out.println("Content: " + content);
+                System.out.println("Image: " + imageUrl);
+                System.out.println("Date: " + date);
+                System.out.println("Category: " + category);
+                System.out.println("Link: " + link + "\n");
+            }
+```
 - category는 현재 query 와 동일하기 때문에 변경한다 
 - class명 앞에는 ``.``을 붙여서 사용한다
 
