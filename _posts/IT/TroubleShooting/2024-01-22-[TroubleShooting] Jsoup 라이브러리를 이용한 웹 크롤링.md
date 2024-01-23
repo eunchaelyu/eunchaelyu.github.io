@@ -11,7 +11,7 @@ img_path: '/posts/20240122'
 
 #   Jsoup 라이브러리를 이용한 웹 크롤링    
   
-## **Issue 1**     
+🔥## **Issue 1**     
 뉴닉 이라는 웹사이트를 클론코딩하는 프로젝트를 FE-BE와 진행하면서 로그인/회원가입 구현 스켈레톤 코딩 후     
 메인페이지 CRUD와 웹 크롤링으로 자료를 띄우는 기능을 맡았다.       
 처음에 뉴닉 웹 사이트에서 웹 크롤링을 할 수 있을 줄 알고 코드를 거의 다 작성해가는데 문제가 발생했다.        
@@ -80,7 +80,7 @@ public class CloneCodingUnicornApplication implements CommandLineRunner{
    
 
 
-## **Issue 2**            
+🔥## **Issue 2**            
 title을 제외하고 content, image, date, category는 원하는 값으로 올바른 형식에 따라 콘솔에 제대로 찍히지 않는다          
 image는 추후 다룬다      
 content, date, category(=query) 형식에 맞게 출력하려면 코드의 어떤 부분을 수정해야 할까?    
@@ -122,7 +122,7 @@ content, date, category(=query) 형식에 맞게 출력하려면 코드의 어�
 
 
 
-## **Issue 3**                   
+🔥## **Issue 3**                   
 특이한 점은 imageUrl 데이터 형식이 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다          
 Base64로 인코딩된 이미지 데이터를 리액트-스프링이 주고 받을 수 있을까?    
 
