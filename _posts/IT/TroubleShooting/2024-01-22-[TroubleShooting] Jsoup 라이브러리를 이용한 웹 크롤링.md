@@ -216,5 +216,5 @@ public class PostService {
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f85a0e9e-8e41-46d1-a71b-375ec457619a)
 
 ## **해결 방법(Issue 3)**     
-    
+- 카테고리별 10개씩 나오는 이유는 네이버 뉴스 기사 리스트가 10개씩 페이징 처리가 돼있기 때문이다 (원하는 만큼 내려서 웹 크롤링 해오면 문제없음)
 
