@@ -22,7 +22,7 @@ img_path: '/posts/20240122'
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/000d5fa7-a5a7-44b3-b94e-eec05bdce8e9)
 
 
-## **해결방법**            
+## **해결 방법(Issue 1)**            
 ## 1. Jsoup 라이브러리 설치         
 ### build.gradle        
 ``implementation 'org.jsoup:jsoup:1.14.3'``      
@@ -30,8 +30,8 @@ img_path: '/posts/20240122'
 - CSS Selector 문법을 사용하여 특정 HTML 요소를 선택해서 필요한 정보를 가져올 수 있게 한다
 - Http Request를 사용하는 라이브러리여서 정적 페이지만 파싱할 수 있다
   
-## 2. url 변경   
-목표는 네이버 사이트 검색창으로 url을 변경하고 **키워드** 검색 하듯이 조회하면서 뉴스 title, content, imageUrl, date, category를 불러온다 
+## 2. url 변경해서 콘솔에 찍어본다   
+크롤링이 가능한 네이버 사이트 검색창으로 url을 변경하고 **키워드** 검색 하듯이 조회하면서 뉴스 title, content, imageUrl, date, category를 불러온다 
 ```java
     private void scrapeNaverNews(String query) {
         String url = "https://search.naver.com/search.naver?query=" + query + "&where=news";
@@ -79,7 +79,11 @@ public class CloneCodingUnicornApplication implements CommandLineRunner{
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/eec2338c-794f-40b7-b9ee-7e49eec85b1f)
 콘솔에 찍었을 때 위의 사진과 같이 나온다. 
 
-## **Issue 2**    
+
+## **Issue 2**        
+title을 제외하고 content, image, date, category는 원하는 값으로 올바른 형식에 따라 콘솔에 제대로 찍히지 않는다    
+
+## **해결 방법(Issue 2)**    
 
 
         
