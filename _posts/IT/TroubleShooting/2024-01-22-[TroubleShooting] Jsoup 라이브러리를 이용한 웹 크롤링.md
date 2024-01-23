@@ -30,4 +30,5 @@ img_path: '/posts/20240122'
 ### build.gradle        
 ``implementation 'org.jsoup:jsoup:1.14.3'``      
 - Jsoup은 HTML 문서에서 데이터를 추출하고 조작하기 위한 편리한 API를 제공한다    
-- CSS Selector 문법을 사용하여 특정 HTML 요소를 선택해서 필요한 정보를 가져올 수 있게 한다    
+- CSS Selector 문법을 사용하여 특정 HTML 요소를 선택해서 필요한 정보를 가져올 수 있게 한다
+- Http Request를 사용하는 라이브러리여서 정적 페이지만 파싱할 수 있다  
