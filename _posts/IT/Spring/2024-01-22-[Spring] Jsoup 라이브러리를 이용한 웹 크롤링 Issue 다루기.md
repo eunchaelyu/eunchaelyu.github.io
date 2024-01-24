@@ -1,5 +1,5 @@
 ---
-title: "[Spring] Jsoup 라이브러리를 이용한 웹 크롤링"
+title: "[Spring] Jsoup 라이브러리를 이용한 웹 크롤링 Issue 다루기"
 author: eunchaelyu
 date: 2024-1-16 9:49:00 +09:00
 categories: [IT, Spring]
@@ -117,10 +117,12 @@ content, date, category(=query) 형식에 맞게 출력하려면 코드의 어�
 - category는 현재 query 와 동일하기 때문에 변경한다         
 - class명 앞에는 ``.``을 붙여서 사용한다    
 
-**결과**    
+## **결과**    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/13b37db4-65c9-4b16-9ac4-38848ebf5d2b)    
 
-**Application.java**에 있던 파일을 Controller, Service, Application으로 분리한 작업
+## **Application.java**에 있던 파일을 Controller, Service, Application으로 분리한 작업
+
+### CloneCodingUnicornApplication
 ```java
 @SpringBootApplication
 public class CloneCodingUnicornApplication implements CommandLineRunner{
@@ -147,6 +149,8 @@ public class CloneCodingUnicornApplication implements CommandLineRunner{
     }
 }
 ```
+
+### PostController.java
 ```java
     @GetMapping("/scrapeNaverNews")
     public String scrapeNaverNews(@RequestParam String query) throws IOException {
@@ -154,6 +158,8 @@ public class CloneCodingUnicornApplication implements CommandLineRunner{
         return "Scraping in progress. Check console for details.";
     }
 ```
+
+### PostService.java
 ```java
 @Slf4j
 @Service
@@ -208,16 +214,42 @@ public class PostService {
 
 
 ## 🔥**Issue 3**                   
-1. 네이버 검색창에서 카테고리를 입력했을 때 나오는 뉴스 리스트 중 사진을 url로 받아올 때 
-  imageUrl 데이터 형식이 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다          
-2. 아래 사진처럼 인코딩된 이미지 데이터가 다 동일한 데이터로 들어옴
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f85a0e9e-8e41-46d1-a71b-375ec457619a)
+1. 네이버 검색창에서 카테고리를 입력했을 때 나오는 뉴스 리스트 중 사진을 url로 받아올 때     
+  imageUrl 데이터 형식이 GIF 이미지의 실제 Base64 인코딩 바이너리 데이터로 나온다              
+2. 아래 사진처럼 인코딩된 이미지 데이터가 다 동일한 데이터로 들어옴    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f85a0e9e-8e41-46d1-a71b-375ec457619a)    
 
 ## **해결 방법(Issue 3)**     
-- 네이버 뉴스 검색창에서 검색한 category로 뉴스 리스트로 받게 되면 각 뉴스마다 태그값이 다르기 때문에
-- 태그값이 동일한 한 메인페이지 내에서 웹크롤링 사용 & /robots.txt 주소창에 검색했을 떄 허용되는 사이트 사용해서 해결한다
+- 네이버 뉴스 검색창에서 검색한 category로 뉴스 리스트로 받게 되면 각 뉴스마다 태그 값이 다르기 때문에    
+- 태그값이 동일한 한 메인페이지 내에서 웹크롤링을 진행하고 
+- ``웹사이트 주소/robots.txt``를 주소창에 검색했을 떄 Allow 되는 사이트를 사용한다    
 
 [서울 경제](https://www.sedaily.com/)    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ff7a21c6-3aa9-43d6-b4a8-57ba9ebf4527)
 - 서울 경제 페이지에서 모든 User에 대해 Allow 돼있는 것을 알 수 있다
 - 따라서, 웹 크롤링 url과 태그를 바꿔서 재작성한다
+
+
+```java
+            for(Category newsDetailsLinkPair : todaysNewsLinkList){
+
+                Document newsDetails_doc = Jsoup.connect(newsDetailsLinkPair.getLink()).get();
+
+                String newsTitle = newsDetails_doc.select("#v-left-scroll-in > div.article_head > h1").text();
+                String newsSummary = newsDetails_doc.select("#v-left-scroll-in > div.article_con > div.con_left > div.article_summary").text();
+
+                Elements imageUrl = newsDetails_doc.select("div.article_view img");
+                Elements texts = newsDetails_doc.select("div.article_view");
+                Elements newsInfo = newsDetails_doc.select("div.article_info");
+
+                Element dateSpan = newsInfo.select("span.url_txt").get(1);
+                String date = dateSpan.text().substring(3,13);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+                LocalDate newsDate = LocalDate.parse(date, formatter);
+
+                String firstImageUrl = "";
+                if(imageUrl.first() != null) {
+                    firstImageUrl = imageUrl.first().absUrl("src");  // 첫 번째 이미지 URL을 가져옵니다.
+                }
+```
+
