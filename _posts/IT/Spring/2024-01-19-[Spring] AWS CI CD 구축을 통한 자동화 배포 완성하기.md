@@ -1,9 +1,9 @@
 ---
-title: "[TroubleShooting] AWS CI/CD 구축을 통한 자동화 배포 완성하기"
+title: "[Spring] AWS CI/CD 구축을 통한 자동화 배포 완성하기"
 author: eunchaelyu
 date: 2024-1-19 9:49:00 +09:00
-categories: [IT, TroubleShooting]
-tags: [IT, TroubleShooting]
+categories: [IT, Spring]
+tags: [IT, Spring]
 pin: true
 img_path: '/posts/20240119'
 ---
