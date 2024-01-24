@@ -1,9 +1,9 @@
 ---
-title: "[TroubleShooting] React-Spring 통신, Axios Response header의 값이 없는 경우"
+title: "[Spring] React-Spring 통신, Axios Response header의 값이 없는 경우"
 author: eunchaelyu
 date: 2024-1-17 9:23:00 +09:00
-categories: [IT, TroubleShooting]
-tags: [IT, TroubleShooting]
+categories: [IT, Spring]
+tags: [IT, Spring]
 pin: true
 img_path: '/posts/20240117'
 ---
