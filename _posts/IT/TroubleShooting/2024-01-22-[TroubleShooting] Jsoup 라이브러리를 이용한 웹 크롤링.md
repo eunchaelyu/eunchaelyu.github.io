@@ -217,7 +217,7 @@ public class PostService {
 - 네이버 뉴스 검색창에서 검색한 category로 뉴스 리스트로 받게 되면 각 뉴스마다 태그값이 다르기 때문에
 - 태그값이 동일한 한 메인페이지 내에서 웹크롤링 사용 % /robots.txt 주소창에 검색했을 떄 허용되는 사이트 사용해서 해결한다
 
-[서울경제](https://www.sedaily.com/)
+[서울 경제](https://www.sedaily.com/)    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ff7a21c6-3aa9-43d6-b4a8-57ba9ebf4527)
 - 서울 경제 페이지에서 모든 User에 대해 Allow 돼있는 것을 알 수 있다
 - 따라서, 웹 크롤링 url과 태그를 바꿔서 재작성한다
