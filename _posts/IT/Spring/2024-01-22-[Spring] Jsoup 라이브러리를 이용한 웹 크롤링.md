@@ -1,9 +1,9 @@
 ---
-title: "[TroubleShooting] Jsoup 라이브러리를 이용한 웹 크롤링"
+title: "[Spring] Jsoup 라이브러리를 이용한 웹 크롤링"
 author: eunchaelyu
 date: 2024-1-16 9:49:00 +09:00
-categories: [IT, TroubleShooting]
-tags: [IT, TroubleShooting]
+categories: [IT, Spring]
+tags: [IT, Spring]
 pin: true
 img_path: '/posts/20240122'
 ---
