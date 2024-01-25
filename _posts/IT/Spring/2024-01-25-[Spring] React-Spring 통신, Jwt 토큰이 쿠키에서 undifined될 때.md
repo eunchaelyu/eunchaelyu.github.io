@@ -12,9 +12,11 @@ img_path: '/posts/20240125'
 
 ### Issue
 - Spring에서는 Jwt 토큰 생성과, 쿠키에 저장, 전달까지 완료된 상태
-- React에서 로그인 후 Jwt 토큰이 쿠키에 전달되지 않는 상황 (undefined)
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/158be7f2-d967-4a64-812e-fdc1e1be58b4)
+- React에서 로그인 후 Jwt 토큰이 쿠키에 ``Authorization``이름으로 저장되고 전달되지 않는 상황
+- undefined, name도 Authorization이 아닌 token으로 되어있다
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/158be7f2-d967-4a64-812e-fdc1e1be58b4)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3c0a8707-c2dc-4289-909f-8903a6d9873c)    
 
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3c0a8707-c2dc-4289-909f-8903a6d9873c)
-
+### 해결과정 
 - 서버단에서 JwtUtill.java 파일에서 중복되었던 인코딩 과정을 제거했다.
+- 클라이언트단에서 Jwt Authorization이름으로 token value값을 담아야한다
