@@ -90,12 +90,6 @@ img_path: '/posts/20240119'
 
 
 
-``## Step .  배포 (AWS Elastic Beanstalk)
-- 프로젝트를 저장한 git repository 생성 (Github)은 되어있으므로 생략 
-- Elastic BeanStalk는 콘솔을 사용해서 애플리케이션을 손쉽게 배포하고 관리할 수 있는 컴퓨팅 서비스   ``
-    
-
-
     
   
 
