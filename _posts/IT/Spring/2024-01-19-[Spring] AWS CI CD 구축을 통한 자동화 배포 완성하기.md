@@ -69,16 +69,31 @@ img_path: '/posts/20240119'
   - CodePipeline과 함께 사용할 IAM 사용자의 AWS 액세스 키와 AWS 보안 액세스 키를 지정( defalut output은 json으로 설정 )
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/6edf4069-98d2-4a69-af84-3593222d29a3)
 
-## Step 4. CodePipeline 콘솔 열기    
-[CodePipeline 콘솔 열기](http://console.aws.amazon.com/codesuite/codepipeline/home)
+## Step 4. 파이프라인 생성(콘솔) 
+  - AWS CodePipeline 콘솔이나 AWS CLI를 사용하여 파이프라인을 생성할 수 있다
+  - **여기서 중요한 점은** AWS CLI를 사용할 때는 **GitHub, Jenkins, AWS CodeBuild**와 같은 파트너 작업을 사용할 수 없다는 것이다    
+  - 그렇기 때문에 이러한 파트너 작업을 생성할 수 있는 ``콘솔``을 사용한다 
+
+  - 파이프라인에는 빌드 또는 배포 단계인 하나 이상의 다른 단계가 있는지 확인 후 시작!
+
+  - AWS Management Console에 로그인 > CodePipeline 콘솔 열기 > 파이프라인 생성 클릭
+[CodePipeline 콘솔 열기](http://console.aws.amazon.com/codesuite/codepipeline/home)       
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e7084c2a-4265-485f-af15-92cbdb4c8ae6)
+
+  - 파이프라인 이름 생성 > V2 유형 선택 > 새 서비스 역할 선택
+    ( V2 유형은 Git 태그의 트리거 및 파이프라인 수준 변수와 같은 추가 매개변수 지원이 가능함 )
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/63cbd601-5148-48fc-9e93-dce9fb5eacd9)    
+
+  - 소스 > GitHub(버전 2) >
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/2777e4ec-642a-46ae-8fe6-5228616c8799)
 
 
-## Step 5.  배포 (AWS Elastic Beanstalk)
+
+
+``## Step .  배포 (AWS Elastic Beanstalk)
 - 프로젝트를 저장한 git repository 생성 (Github)은 되어있으므로 생략 
-- Elastic BeanStalk는 콘솔을 사용해서 애플리케이션을 손쉽게 배포하고 관리할 수 있는 컴퓨팅 서비스   
-
-## Step 7: CodePipeline에서 파이프라인 생성    
-https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines?region=us-east-1&pipelines-meta=eyJmIjp7InRleHQiOiIifSwicyI6eyJwcm9wZXJ0eSI6InVwZGF0ZWQiLCJkaXJlY3Rpb24iOi0xfSwibiI6MjAsImkiOjB9
+- Elastic BeanStalk는 콘솔을 사용해서 애플리케이션을 손쉽게 배포하고 관리할 수 있는 컴퓨팅 서비스   ``
+    
 
 
     
@@ -89,13 +104,13 @@ https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines?region
 
 ### 레퍼런스 참고 순서    
 [Getting started with CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/getting-started-codepipeline.html)    
-[Step 1: Create an AWS account and administrative user](https://docs.aws.amazon.com/codepipeline/latest/userguide/getting-started-codepipeline.html#create-iam-user)        
+[Step 1: Create an AWS account and administrative user](https://docs.aws.amazon.com/codepipeline/latest/userguide/getting-started-codepipeline.html#create-iam-user)  
 [Step 1-1: AWS 계정 루트 사용자에 대한 가상 MFA 디바이스 활성화(콘솔)](https://docs.aws.amazon.com/IAM/latest/UserGuide/enable-virt-mfa-for-root.html)        
 [Step 1-2: IAM 자격 증명 센터를 활성화](https://docs.aws.amazon.com/singlesignon/latest/userguide/get-set-up-for-idc.html)            
 [Step 2-1: AWS IAM Identity Center의 사용자 및 그룹 생성](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html)            
 [Step 3: 최신 버전의 AWS CLI 설치 또는 업데이트](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)      
 [Step 4: CodePipeline 콘솔 열기](http://console.aws.amazon.com/codesuite/codepipeline/home)    
-[Step 5: CodePipeline에서 파이프라인 생성](https://docs.aws.amazon.com/ko_kr/codepipeline/latest/userguide/pipelines-create.html)
+[Step 4-1: CodePipeline에서 파이프라인 생성](https://docs.aws.amazon.com/ko_kr/codepipeline/latest/userguide/pipelines-create.html#pipelines-create-console)
 
 
 
