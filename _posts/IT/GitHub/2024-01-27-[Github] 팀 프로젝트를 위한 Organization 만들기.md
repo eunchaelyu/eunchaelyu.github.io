@@ -39,7 +39,7 @@ img_path: '/posts/20240127'
   8. 또한 Member, Owner의 역할을 부여할 수 있고 change role을 통해 권한을 변경할 수도 있다    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/bcd6f20f-f3d8-45d6-ad36-a6a281685ea5)
 
-  9. 프로필에서 Organization을 보이게 할 것이라면 Publicd을 클릭하면 되고 이 부분은 개별적으로 설정할 수 있다     
+  9. 프로필에서 Organization을 보이게 할 것이라면 Public을 클릭하면 되고 이 부분은 개별적으로 설정할 수 있다     
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/2b88b795-6ec7-4657-96d5-0609cc278506) 
 
 : 참고 레퍼런스
