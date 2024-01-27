@@ -42,5 +42,5 @@ img_path: '/posts/20240127'
   9. 프로필에서 Organization을 보이게 할 것이라면 Public을 클릭하면 되고 이 부분은 개별적으로 설정할 수 있다     
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/2b88b795-6ec7-4657-96d5-0609cc278506) 
 
-: 참고 레퍼런스
-https://docs.github.com/en/organizations/organizing-members-into-teams
+  : 참고한 레퍼런스
+[docs.github.com](https://docs.github.com/en/organizations/organizing-members-into-teams)
