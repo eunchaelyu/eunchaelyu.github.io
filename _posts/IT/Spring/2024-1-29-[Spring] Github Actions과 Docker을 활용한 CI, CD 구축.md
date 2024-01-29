@@ -26,6 +26,7 @@ img_path: '/posts/20240129'
   먼저 무료플랜에서 진행이 가능하다는 점 :) 게다가 GitHub 저장소 내에서 직접 설정하고 사용할 수 있고       
   ``.github/workflows``에 다소 간단하게 구현할 수 있다고 생각이 들어 Github Actions 배포 방식을 택하게 되었다    
 
+## [1] Github Actions ``yml`` 파일 설명
 ### 1. 코드 변경시 배포 스크립트 실행
 ```
 # github repository actions 페이지에 나타날 이름
@@ -344,7 +345,7 @@ jobs:
              sudo docker image prune -f
 ```
 
-## Github Actions 적용 순서    
+## [2] Github Actions 적용 순서    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7a73e48f-b50a-4814-b1e4-a253f6a022ba)    
   - Github에 public 레포지토리 만들기 > 해당 레포지토리의 Setting > Secrets and variables > Actions 탭        
 
@@ -357,7 +358,7 @@ jobs:
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b26fa89c-7037-44ed-9e3c-df5127581e49)
   - ``gradle.yml`` 설정하기
 
-**빌드 시 plain jar 생성하지 않도록 설정**    
+  - **빌드 시 plain jar 생성하지 않도록 설정**    
 ```
 jar{
     enabled = false
