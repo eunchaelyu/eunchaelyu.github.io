@@ -64,3 +64,7 @@ img_path: '/posts/20240115'
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/6228f09d-78ad-4f94-8d32-99ff54871067)
 
 
+**리액트랑 https 연결시 참고하면 좋은 블로그**    
+[React 클라이언트 배포 : Vercel편](https://hyeminseo.tistory.com/171)
+
+
