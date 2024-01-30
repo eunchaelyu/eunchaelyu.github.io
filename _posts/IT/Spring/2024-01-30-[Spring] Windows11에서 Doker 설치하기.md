@@ -43,6 +43,10 @@ img_path: '/posts/20240130'
   - Microsoft Store > Ubuntu:22.04 LTS 다운로드    
 ![스크린샷 2024-01-30 165427](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/728219cb-91a2-43ba-ba81-2bb927d6ae9d)
 
+  - 새로 설치된 Linux 배포를 처음 시작 > 콘솔 창이 열림 > 파일이 압축 해제 > PC에 저장될 때까지 1~2분 정도 소요    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3ba70e54-0a7b-44ea-b352-76de5bb132c9)    
+
+
 ## [6] Doker Desktop 설치      
 ![스크린샷 2024-01-30 171437](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/0a8a04bb-1cb9-4d1a-836e-dcfd2f03387f)    
   - 다운받은 'Docker Desktop Installer' 실행 
