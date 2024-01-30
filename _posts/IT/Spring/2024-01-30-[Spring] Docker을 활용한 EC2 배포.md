@@ -66,5 +66,16 @@ docker build --build-arg DEPENDENCY=build/dependency -t eunchaelyu/eroom .
   - 아까 생성한 Repositorydml Tag 부분을 통해 push가 잘 된 것을 확인    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/cc5092d2-91df-45a2-a956-ee6f7ce590fa)
 
+## [8] EC2에 Docker 설치 및 실행    
+    |Ubuntu 환경|명령어|
+    |:---:|:---:|
+    패키지 업데이트 | sudo apt-get update -y
+    기존에 있던 도커 삭제 | sudo apt-get remove docker docker-engine docker.io -y
+    도커 설치 | sudo apt-get install docker.io -y
+    docker 서비스 실행 | sudo service docker start
+    /var/run/docker.sock 파일의 권한을 666으로 변경하여 그룹 내 다른 사용자도 접근 가능하게 변경 | sudo chmod 666 /var/run/docker.sock
+    ubuntu 유저를 docker 그룹에 추가 | sudo usermod -a -G docker ubuntu
 
-
+## [9] Docker image pull 및 애플리케이션 배포    
+    sudo docker pull (도커 허브 ID)/(Repository 이름)
+    sudo docker run -p 8080:8080 (도커 허브 ID)/(Repository 이름)
