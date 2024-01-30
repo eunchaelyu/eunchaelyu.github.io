@@ -66,7 +66,9 @@ docker build --build-arg DEPENDENCY=build/dependency -t eunchaelyu/eroom .
   - 아까 생성한 Repositorydml Tag 부분을 통해 push가 잘 된 것을 확인    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/cc5092d2-91df-45a2-a956-ee6f7ce590fa)
 
-## [8] EC2에 Docker 설치 및 실행    
+## [8] EC2에 Docker 설치 및 실행   
+  - AWS EC2 인스턴스가 있다고 가정하고 진행
+
     |Ubuntu 환경|명령어|
     |:---:|:---:|
     패키지 업데이트 | sudo apt-get update -y
