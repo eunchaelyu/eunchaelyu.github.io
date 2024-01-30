@@ -75,7 +75,8 @@ img_path: '/posts/20240130'
   - Settings > Resources > WSL INTEGRATION 선택 후 > 설정 확인 > Apply & Restart
   - [x] Enable Integration with my default WSL distro
   - [x] Enable Integration with additional distros: "설치한 리눅스 배포판"
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/668866dd-bfe3-4217-9390-4fde4fc0854f)
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/92000993-fdc4-4dc9-98c1-bbec9d52e4e5)
+
 
 ## [8] 설치 확인    
   - 'Windows Terminal' 관리자 권한으로 실행(``wsl -l -v`` 명령어 실행)    
