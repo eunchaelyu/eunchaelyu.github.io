@@ -77,7 +77,7 @@ docker build --build-arg DEPENDENCY=build/dependency -t eunchaelyu/eroom .
     도커 설치 | sudo apt-get install docker.io -y
     docker 서비스 실행 | sudo service docker start
     /var/run/docker.sock 파일의 권한을 666으로 변경하여 그룹 내 다른 사용자도 접근 가능하게 변경 | sudo chmod 666 /var/run/docker.sock
-    ubuntu 유저를 docker 그룹에 추가 | sudo usermod -a -G docker ubuntu
+    eunchaelyu 유저를 docker 그룹에 추가 | sudo usermod -a -G docker eunchaelyu
 
 ## [9] Docker image pull 및 애플리케이션 배포    
     sudo docker pull (도커 허브 ID)/(Repository 이름)
