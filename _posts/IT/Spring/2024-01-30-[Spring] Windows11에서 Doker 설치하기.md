@@ -15,9 +15,9 @@ img_path: '/posts/20240130'
 [Microsoft 공식 홈페이지](https://www.microsoft.com/ko-kr/p/windows-terminal/9n0dx20hk701?rtc=1&activetab=pivot:overviewtab)    
 
 ## [2] WSL2 설치    
-  - 'Windows Terminal' 앱을 관리자 권한으로 실행 (다음 명령어 실행) 
-``dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart``
-![스크린샷 2024-01-30 163847](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a51f45ef-fdc6-49c8-9a70-03a69fcd862c)    
+  - 'Windows Terminal' 앱을 관리자 권한으로 실행 (다음 명령어 실행)     
+``dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart``    
+![스크린샷 2024-01-30 163847](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a51f45ef-fdc6-49c8-9a70-03a69fcd862c)        
 
   - WSL2 요구사항 확인 (다음 명령어 실행)   
 ``winver``    
