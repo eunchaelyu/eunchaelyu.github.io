@@ -81,11 +81,13 @@ docker build --build-arg DEPENDENCY=build/dependency -t eunchaelyu/eroom .
 
 ## [9] Docker image pull 및 애플리케이션 배포    
     sudo docker pull (도커 허브 ID)/(Repository 이름)    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/c0073a5f-cb8c-4a18-89ec-ae19fe40cd97)    
+    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/c0073a5f-cb8c-4a18-89ec-ae19fe40cd97)        
 
-    sudo docker run -p 8080:8080 (도커 허브 ID)/(Repository 이름)          
+    sudo docker run -p 8080:8080 (도커 허브 ID)/(Repository 이름)       
+    
 ### 트러블 슈팅 2(아직 해결하지 못함)      
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ee680f65-9964-4dae-8719-e81428669ea0)
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ee680f65-9964-4dae-8719-e81428669ea0)    
 
 
 
