@@ -51,7 +51,7 @@ img_path: '/posts/20240130'
 
 
 ## [6] Doker Desktop 설치      
-![스크린샷 2024-01-30 171437](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/0a8a04bb-1cb9-4d1a-836e-dcfd2f03387f)    
+[Doker 설치 홈페이지](https://www.docker.com/)     
   - 다운받은 'Docker Desktop Installer' 실행 
 ![스크린샷 2024-01-30 171645](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/4074f3f7-a50f-4f1c-9c2f-29703d756c1c)    
   - Configuration 항목은 모두 체크 
