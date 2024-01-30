@@ -46,8 +46,9 @@ img_path: '/posts/20240130'
   - Microsoft Store > Ubuntu:22.04 LTS 다운로드    
 ![스크린샷 2024-01-30 165427](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/728219cb-91a2-43ba-ba81-2bb927d6ae9d)
 
-  - 새로 설치된 Linux 배포를 처음 시작 > 콘솔 창이 열림 > 파일이 압축 해제 > PC에 저장될 때까지 1~2분 정도 소요    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3ba70e54-0a7b-44ea-b352-76de5bb132c9)    
+  - 새로 설치된 Linux 배포를 처음 시작 > 콘솔 창이 열림 > 파일이 압축 해제
+  - > PC에 저장될 때까지 1~2분 정도 소요 > 새 Linux 배포를 위한 사용자 계정 및 암호 생성    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/4ad2d88b-de7d-4639-8195-2c634875cad8)
 
 
 ## [6] Doker Desktop 설치      
@@ -65,10 +66,20 @@ img_path: '/posts/20240130'
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f0f449dd-6060-40d2-a286-c921d5aad9f2)
 
-## [6] 도커 WSL 설정 확인하기    
+## [7] 도커 WSL 설정 확인하기    
+  - Settings > General 선택 후 > 설정 확인    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/4dae5541-bc44-4835-8b8f-2dad2bd622dc)
 
+  - Settings > Resources > WSL INTEGRATION 선택 후 > 설정 확인 > Apply & Restart
+  - [x] Enable Integration with my default WSL distro
+  - [x] Enable Integration with additional distros: "설치한 리눅스 배포판"
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/668866dd-bfe3-4217-9390-4fde4fc0854f)
 
+## [8] 설치 확인    
+  - 'Windows Terminal' 관리자 권한으로 실행(``wsl -l -v`` 명령어 실행)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/cd6bfa9b-1935-4b04-b981-057dd1f1b251)
 
+  - 'Ubuntu'에서 다음 명령어 실행하여 설치 확인(````)
 
 ## 참고 레퍼런스   
 - MS 공식 페이지의 1~6단계    
