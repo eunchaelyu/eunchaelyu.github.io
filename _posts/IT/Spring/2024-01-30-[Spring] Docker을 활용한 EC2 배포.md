@@ -52,7 +52,8 @@ docker build --build-arg DEPENDENCY=build/dependency -t eunchaelyu/eroom .
 ### 트러블 슈팅 1  
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/72eeebf8-ce76-4c99-a51c-821ad6ea594b)
   - Docker Hub에 인증된 이미지로 명시하여 작성 (Dokerfile 아래와 같이 수정)
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ef140068-b2b8-41e0-a522-26a876d580c7)
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e459a9b3-0b02-4d15-b557-f2ee9b193200)
+
 
   - 수정 후     
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be01f42d-ad33-40bd-833d-0ad2c8db650d)
