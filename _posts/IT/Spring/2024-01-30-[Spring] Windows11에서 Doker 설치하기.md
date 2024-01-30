@@ -53,6 +53,11 @@ img_path: '/posts/20240130'
   - Docker를 실행한 뒤, 약관을 확인 > 동의      
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3f65cf29-e6db-49da-bfa5-c775bddff89c)    
 
+  - ``Update to the latest version of WSL 2 from Microsoft (Recommended - requires administrator password)
+    We run `wsl --update` for you.``
+
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f0f449dd-6060-40d2-a286-c921d5aad9f2)
+
 ## [6] 도커 WSL 설정 확인하기    
 
 
