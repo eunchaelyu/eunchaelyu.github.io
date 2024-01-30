@@ -79,8 +79,16 @@ img_path: '/posts/20240130'
   - 'Windows Terminal' 관리자 권한으로 실행(``wsl -l -v`` 명령어 실행)    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/cd6bfa9b-1935-4b04-b981-057dd1f1b251)
 
-  - 'Ubuntu'에서 다음 명령어 실행하여 설치 확인(````)
+  - 'Ubuntu'에서 다음 명령어 실행하여 설치 확인    
+  ``docker run -d -p 80:80 docker/getting-started``    
+  ``docker ps``    
+  ``docker images``    
+
+
 
 ## 참고 레퍼런스   
-- MS 공식 페이지의 1~6단계    
-[WSL의 수동 설치 단계](https://learn.microsoft.com/ko-kr/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
+  - MS 공식 페이지의 1~6단계        
+[WSL의 수동 설치 단계](https://learn.microsoft.com/ko-kr/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)    
+
+  - WSL 2에서 Docker 원격 컨테이너 시작    
+[WSL 2에서 Docker 원격 컨테이너 시작](https://learn.microsoft.com/ko-kr/windows/wsl/tutorials/wsl-containers)    
