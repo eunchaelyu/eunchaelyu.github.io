@@ -43,12 +43,14 @@ img_path: '/posts/20240130'
 
 
 ## [5] GNU/Linux 앱 설치    
-  - Microsoft Store > Ubuntu:22.04 LTS 다운로드    
-![스크린샷 2024-01-30 165427](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/728219cb-91a2-43ba-ba81-2bb927d6ae9d)
+  - Microsoft Store > Ubuntu LTS 다운로드    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/81def0c0-a542-40f9-8f1a-e55623649fa2)
+
 
   - 새로 설치된 Linux 배포를 처음 시작 > 콘솔 창이 열림 > 파일이 압축 해제
   - > PC에 저장될 때까지 1~2분 정도 소요 > 새 Linux 배포를 위한 사용자 계정 및 암호 생성    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/4ad2d88b-de7d-4639-8195-2c634875cad8)
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/2b741ffc-8cc3-4842-a18e-db4a4a71c1b2)
+
 
 
 ## [6] Doker Desktop 설치      
