@@ -32,6 +32,9 @@ img_path: '/posts/20240130'
   - Linux커널 업데이트 패키지 [최신 다운로드](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/fd73fe8a-4781-4b3c-9397-3c49157884e9)    
 
+  - 패키지를 정기적으로 업데이트하고 업그레이드하는 것이 좋다 
+``sudo apt update && sudo apt upgrade``
+    
 |case|powershell|
 |:---:|:---:|    
 |기본 WSL 버전 설정| wsl --set-default-version 2|    
