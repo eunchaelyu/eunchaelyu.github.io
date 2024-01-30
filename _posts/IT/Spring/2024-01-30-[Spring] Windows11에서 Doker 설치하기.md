@@ -50,6 +50,13 @@ img_path: '/posts/20240130'
   - Configuration 항목은 모두 체크 
 ![스크린샷 2024-01-30 171703](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/173a3fe3-e80f-443a-a73f-aafaead41a45)
 
+  - Docker를 실행한 뒤, 약관을 확인 > 동의      
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3f65cf29-e6db-49da-bfa5-c775bddff89c)    
+
+## [6] 도커 WSL 설정 확인하기    
+
+
+
 
 ## 참고 레퍼런스   
 - MS 공식 페이지의 1~6단계    
