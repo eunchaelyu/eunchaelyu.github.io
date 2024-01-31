@@ -106,11 +106,11 @@ COPY ${JAR_FILE} Eroom-Project-BE.jar
 # 운영 및 개발에서 사용되는 환경 설정을 분리
 ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "/Eroom-Project-BE.jar"]
 ```
-    Dokerfile 위와 같이 수정해서 적음
-    - open jdk java17 버전의 환경 구성
-    - build 되는 시점에 JAR_FILE 경로에 jar 파일 생성
-    - JAR_FILE을 sejongmate.jar에 복사
-    - jar 파일 실행 명령 (여기서 -Dspring.profiles.active=prod 옵션은 application.yml을 개발 환경에서 따로 분리한 것)
+> Dokerfile 위와 같이 수정해서 적음
+> open jdk java17 버전의 환경 구성
+> build 되는 시점에 JAR_FILE 경로에 jar 파일 생성
+> JAR_FILE을 sejongmate.jar에 복사
+> jar 파일 실행 명령 (여기서 -Dspring.profiles.active=prod 옵션은 application.yml을 개발 환경에서 따로 분리한 것)
 
   - 최종 배포 완료 화면        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/87ee1c4e-0aa7-4041-a5e7-c0545c410313)    
