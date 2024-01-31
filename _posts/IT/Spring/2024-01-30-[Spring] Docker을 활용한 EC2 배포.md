@@ -86,8 +86,33 @@ docker build --build-arg DEPENDENCY=build/dependency -t eunchaelyu/eroom .
 
     sudo docker run -p 8080:8080 (도커 허브 ID)/(Repository 이름)       
     
-### 트러블 슈팅 2(아직 해결하지 못함)      
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ee680f65-9964-4dae-8719-e81428669ea0)    
+### 트러블 슈팅 2  
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ee680f65-9964-4dae-8719-e81428669ea0)   
 
+  - 1) 사용자 지정 Dockerfile을 생성하여 Java를 포함하여 필요한 종속성을 갖춘 이미지를 사용해야함            
+  - 2) 애플리케이션을 실행하는 데 필요한 실제 JAR 파일로 바꿔줘야 한다
+       
+```
+# open jdk 17 버전의 환경을 구성
+FROM openjdk:17-alpine
+
+# build가 되는 시점에 JAR_FILE이라는 변수 명에 build/libs/Eroom-Project-BE-0.0.1-SNAPSHOT.jar 선언
+# build/libs - gradle로 빌드했을 때 jar 파일이 생성되는 경로
+ARG JAR_FILE=build/libs/Eroom-Project-BE-0.0.1-SNAPSHOT.jar
+
+# JAR_FILE을 app.jar로 복사
+COPY ${JAR_FILE} Eroom-Project-BE.jar
+
+# 운영 및 개발에서 사용되는 환경 설정을 분리
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "/Eroom-Project-BE.jar"]
+```
+    Dokerfile 위와 같이 수정해서 적음
+    - open jdk java17 버전의 환경 구성
+    - build 되는 시점에 JAR_FILE 경로에 jar 파일 생성
+    - JAR_FILE을 sejongmate.jar에 복사
+    - jar 파일 실행 명령 (여기서 -Dspring.profiles.active=prod 옵션은 application.yml을 개발 환경에서 따로 분리한 것)
+
+  - 최종 배포 화면        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/87ee1c4e-0aa7-4041-a5e7-c0545c410313)    
 
 
