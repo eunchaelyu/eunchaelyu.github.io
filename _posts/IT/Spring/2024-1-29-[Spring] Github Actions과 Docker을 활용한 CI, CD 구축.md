@@ -346,17 +346,24 @@ jobs:
 ```
 
 ## [2] Github Actions 적용 순서    
+### 1) Github에 public 레포지토리 만들기 > 해당 레포지토리의 Setting > Secrets and variables > Actions 탭  
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7a73e48f-b50a-4814-b1e4-a253f6a022ba)    
-  - Github에 public 레포지토리 만들기 > 해당 레포지토리의 Setting > Secrets and variables > Actions 탭        
+      
+### 2) New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be851c40-538e-4095-9e54-ab4fb4c6f708)       
 
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be851c40-538e-4095-9e54-ab4fb4c6f708)      
-  - Access Key와 Secret Key 등록 (IAM 사용자로 로그인해서 발급 > Access Key ID 값과, Secret Access Key 값을 각각 저장)
+> DOCKERHUB_USERNAME : 본인의 Docker Hub Username
+> DOCKERHUB_PASSWORD : 본인의 Docker Hub Password
 
+
+  - 3) Github의 Actions 탭 > ``set up a workflow yourself`` 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f7a0c8c9-8ba5-46ff-beb0-2165e28dc2e7)
-  - Github의 Actions 탭 > ``set up a workflow yourself`` 
-    
+
+  - 4) ``gradle.yml`` 설정하기
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b26fa89c-7037-44ed-9e3c-df5127581e49)
-  - ``gradle.yml`` 설정하기
+
+
+
 
   - **빌드 시 plain jar 생성하지 않도록 설정**    
 ```
