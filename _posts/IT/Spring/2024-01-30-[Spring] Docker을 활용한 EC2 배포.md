@@ -112,7 +112,7 @@ ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "/Eroom-Project-BE.
     - JAR_FILE을 sejongmate.jar에 복사
     - jar 파일 실행 명령 (여기서 -Dspring.profiles.active=prod 옵션은 application.yml을 개발 환경에서 따로 분리한 것)
 
-  - 최종 배포 화면        
+  - 최종 배포 완료 화면        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/87ee1c4e-0aa7-4041-a5e7-c0545c410313)    
 
 
