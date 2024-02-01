@@ -296,7 +296,7 @@ jobs:
         if: contains(github.ref, 'master')
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -f Dockerfile-dev -t ${{ secrets.DOCKER_USERNAME }}/eroom-prod 
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/eroom-prod 
           docker push ${{ secrets.DOCKER_USERNAME }}/eroom-prod
 
       # docker build & push to dev
@@ -304,7 +304,7 @@ jobs:
         if: contains(github.ref, 'dev')
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -f Dockerfile-dev -t ${{ secrets.DOCKER_USERNAME }}/docker-test-dev 
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/docker-test-dev 
           docker push ${{ secrets.DOCKER_USERNAME }}/docker-test-dev
 
       ## deploy to production
@@ -346,10 +346,10 @@ jobs:
 ```
 
 ## [2] Github Actions 적용 순서    
-### 1) Github에 public 레포지토리 만들기 > 해당 레포지토리의 Setting > Secrets and variables > Actions 탭  
+### 1) Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭      
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7a73e48f-b50a-4814-b1e4-a253f6a022ba)    
       
-### 2) New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)
+### 2) New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be851c40-538e-4095-9e54-ab4fb4c6f708)       
 
 > DOCKERHUB_USERNAME : 본인의 Docker Hub Username
