@@ -14,11 +14,11 @@ img_path: '/posts/20240129'
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e78102d7-74f7-41a9-a788-634b0fb16536)
 
 
-## CI (Continuous Integration) 배포 
+### CI (Continuous Integration) 배포 
   새로운 코드 변경 사항이 주기적으로 1)빌드하고 2)기존 파일과 병합시 오류가 없는지 테스트를 완료한 후          
   3) **문제가 발생한 경우** 다시 코드 수정 후 빌드 / **문제가 없는 경우** 배포를 진행한다        
 
-## CD (Continuous Delivery  / Continuous Deployment) 배포      
+### CD (Continuous Delivery  / Continuous Deployment) 배포      
   개발자가 수정한 코드를 저장소뿐 아니라 사용자가 사용할 수 있는 프로덕션 환경까지 항상 신뢰 가능한 수준에서 배포될 수 있도록 관리한다    
 
 ## Github Actions 선정 이유
@@ -26,7 +26,8 @@ img_path: '/posts/20240129'
   먼저 무료플랜에서 진행이 가능하다는 점 :) 게다가 GitHub 저장소 내에서 직접 설정하고 사용할 수 있고       
   ``.github/workflows``에 다소 간단하게 구현할 수 있다고 생각이 들어 Github Actions 배포 방식을 택하게 되었다    
 
-## [1] Github Actions ``yml`` 파일 설명
+## [1] GitHub Actions 워크플로우 기본 설정 리뷰    
+
 ### 1. 코드 변경시 배포 스크립트 실행
 ```
 # github repository actions 페이지에 나타날 이름
@@ -83,7 +84,7 @@ jobs:
   - ``path:``: 캐싱할 디렉토리 경로 | ``key``: 캐시를 식별하기 위한 키 | ``restore-keys``: 이전에 생성된 캐시를 복원하기 위한 키
 
     
-### 4. application.yml 파일 생성    
+### 4. 환경별 YML 파일 생성    
 ```
 # 환경별 yml 파일 생성(1) - application.yml
       - name: make application.yml
@@ -122,7 +123,7 @@ jobs:
 
 
 
-### 5. gradle build
+### 5. Gradle build        
 ```
 # gradle build
       - name: Build with Gradle
@@ -133,7 +134,7 @@ jobs:
   - ``run:``: 이 단계에서 실행할 명령어를 지정
 
 
-### 6. docker build & push
+### 6. Docker build & push        
 ```
 # docker build & push to production
       - name: Docker build & push to prod
@@ -151,11 +152,11 @@ jobs:
           docker build -t ${{ secrets.DOCKER_USERNAME }}/eroom-dev 
           docker push ${{ secrets.DOCKER_USERNAME }}/eroom-dev
 ```
-  - 배포용 서버와 개발용 서버는 설정 파일의 내용이 다르기 때문에 **빌드 파일의 내용과 생성된 도커 이미지도** 다르다.    
-  - docker hub repository > 1) **eroom-prod** 2) **eroom-dev** 로 나뉜다
+  - 배포용 서버와 개발용 서버는 설정 파일의 내용이 다르기 때문에 **빌드 파일의 내용과 생성된 도커 이미지도** 다르다.          
+  - docker hub repository > 1) **eroom-prod** 2) **eroom-dev** 로 나뉜다    
     
 
-### 7. deploy to EC2 (무중단 배포 시 주석처리!!)
+### 7. Deploy to EC2   
 ```
       ## deploy to production
       - name: Deploy to prod
@@ -194,32 +195,12 @@ jobs:
              sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/eroom_dev
              sudo docker image prune -f
 ```
-  - EC2에서 docker pull
+  - EC2에서 docker pull      
 
-### 8. 무중단 배포 시 추가 코드
-```
-// master 브랜치를 무중단 배포 적용할 경우
-docker-pull-and-run:
-   runs-on: [self-hosted, prod]
-   if: ${{ needs.CI-CD.result == 'success' }}
-   needs: [ CI-CD ]
-   steps:
-     - name : 배포 스크립트 실행
-       run: |
-         sh /deploy.sh
 
-// dev 브랜치를 무중단 배포 적용할 경우
-docker-pull-and-run:
-   runs-on: [self-hosted, dev]
-   if: ${{ needs.CI-CD.result == 'success' }}
-   needs: [ CI-CD ]
-   steps:
-     - name : 배포 스크립트 실행
-       run: |
-         sh /deploy.sh
-```
+## [2] GitHub Actions 워크플로우 전체 파일    
+- ``gradle.yml`` 전체 파일        
 
-### ``gradle.yml`` 전체 파일    
 ```
 # github repository actions 페이지에 나타날 이름
 name: CI/CD using github actions & docker
@@ -345,14 +326,14 @@ jobs:
              sudo docker image prune -f
 ```
 
-## [2] Github Actions 적용 순서    
-### 1) Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭      
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7a73e48f-b50a-4814-b1e4-a253f6a022ba)    
+## [3] Github Actions 적용 순서        
+### 1) Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭          
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7a73e48f-b50a-4814-b1e4-a253f6a022ba)      
       
-### 2) New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be851c40-538e-4095-9e54-ab4fb4c6f708)       
+### 2) New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be851c40-538e-4095-9e54-ab4fb4c6f708)           
 
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/178ef786-2563-4806-a194-2c7aca077695)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/178ef786-2563-4806-a194-2c7aca077695)        
 > DOCKERHUB_USERNAME : 본인의 Docker Hub Username        
 > DOCKERHUB_PASSWORD : 본인의 Docker Hub Password        
 > HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 퍼블릭 IPv4 DNS)    
@@ -362,18 +343,15 @@ jobs:
 > PASSWORD: EC2 인스턴스에 SSH로 연결할 때 필요한 패스워드        
 > YML: application.yml 파일을 생성할 때 사용되는 값        
 > YML_DEV: application-dev.yml 파일을 생성할 때 사용되는 값        
-> YML_PROD: application-prod.yml 파일을 생성할 때 사용되는 값        
+> YML_PROD: application-prod.yml 파일을 생성할 때 사용되는 값            
 
-  - 3) Github의 Actions 탭 > ``set up a workflow yourself`` 
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f7a0c8c9-8ba5-46ff-beb0-2165e28dc2e7)
+### 3) Github의 Actions 탭 > ``set up a workflow yourself``     
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f7a0c8c9-8ba5-46ff-beb0-2165e28dc2e7)    
 
-  - 4) ``gradle.yml`` 설정하기
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b26fa89c-7037-44ed-9e3c-df5127581e49)
+### 4) ``gradle.yml`` 설정하기    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b26fa89c-7037-44ed-9e3c-df5127581e49)    
 
-
-
-
-  - **빌드 시 plain jar 생성하지 않도록 설정**    
+### 5) **빌드 시 plain jar 생성하지 않도록 설정**    
 ```
 jar{
     enabled = false
