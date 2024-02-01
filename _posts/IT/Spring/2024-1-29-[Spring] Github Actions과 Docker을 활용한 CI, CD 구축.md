@@ -352,6 +352,7 @@ jobs:
 ### 2) New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be851c40-538e-4095-9e54-ab4fb4c6f708)       
 
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/178ef786-2563-4806-a194-2c7aca077695)    
 > DOCKERHUB_USERNAME : 본인의 Docker Hub Username        
 > DOCKERHUB_PASSWORD : 본인의 Docker Hub Password        
 > HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 퍼블릭 IPv4 DNS)    
