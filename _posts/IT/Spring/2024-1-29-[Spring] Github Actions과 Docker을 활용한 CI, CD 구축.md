@@ -45,9 +45,9 @@ permissions:
   contents: read
 ```
   - master이나 dev 브랜치에 push가 되었을 때 workflow를 실행한다    
-  - 1) master 브랜치 - 배포용 서버 코드
-  - 2) dev 브랜치 - 개발용 서버 코드(merge용)
-  - 3) feature 브랜치 - 기능별 코드
+  - master 브랜치 - 배포용 서버 코드
+  - dev 브랜치 - 개발용 서버 코드(merge용)
+  - feature 브랜치 - 기능별 코드
 
 
 ### 2. JDK 설정    
