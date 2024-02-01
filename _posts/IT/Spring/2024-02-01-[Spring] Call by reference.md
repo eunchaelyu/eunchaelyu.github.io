@@ -57,9 +57,6 @@ public class CallByReference {
 ```
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/bf0ed9ec-4271-4a59-b02d-b39d0eb99da1)
 
-  - getter를 쓰지 않았을 경우 변수의 **메모리 주소**가 반환되는 것을 볼 수 있다    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/dac1c53b-17fc-4a7f-8896-6294b5aa6021)    
-
 
 ### Call by value 방식
   - 값에 의한 호출(Call by value) 방식은 함수 호출 후 변수값이 변경돼도 외부 변수 값은 변경되지 않는다    
