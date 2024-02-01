@@ -14,11 +14,13 @@ img_path: '/posts/20240129'
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e78102d7-74f7-41a9-a788-634b0fb16536)
 
 
-### - CI (Continuous Integration) 배포 
-  새로운 코드 변경 사항이 주기적으로 1)빌드하고 2)기존 파일과 병합시 오류가 없는지 테스트를 완료한 후          
+### 1. CI (Continuous Integration) 배포 
+  새로운 코드 변경 사항이 주기적으로     
+  1)빌드하고     
+  2)기존 파일과 병합시 오류가 없는지 테스트를 완료한 후              
   3) **문제가 발생한 경우** 다시 코드 수정 후 빌드 / **문제가 없는 경우** 배포를 진행한다        
 
-### - CD (Continuous Delivery  / Continuous Deployment) 배포      
+### 2. CD (Continuous Delivery  / Continuous Deployment) 배포      
   개발자가 수정한 코드를 저장소뿐 아니라 사용자가 사용할 수 있는 프로덕션 환경까지 항상 신뢰 가능한 수준에서 배포될 수 있도록 관리한다    
 
 ## [2] Github Actions 선정 이유
@@ -327,10 +329,10 @@ jobs:
 ```
 
 ## [5] Github Actions 적용 순서        
-### 1) Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭          
+### 1. Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭          
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7a73e48f-b50a-4814-b1e4-a253f6a022ba)      
       
-### 2) New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)        
+### 2. New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be851c40-538e-4095-9e54-ab4fb4c6f708)           
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/178ef786-2563-4806-a194-2c7aca077695)        
@@ -345,13 +347,13 @@ jobs:
 > YML_DEV: application-dev.yml 파일을 생성할 때 사용되는 값        
 > YML_PROD: application-prod.yml 파일을 생성할 때 사용되는 값            
 
-### 3) Github의 Actions 탭 > ``set up a workflow yourself``     
+### 3. Github의 Actions 탭 > ``set up a workflow yourself``     
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f7a0c8c9-8ba5-46ff-beb0-2165e28dc2e7)    
 
-### 4) ``gradle.yml`` 설정하기    
+### 4. ``gradle.yml`` 설정하기    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b26fa89c-7037-44ed-9e3c-df5127581e49)    
 
-### 5) **빌드 시 plain jar 생성하지 않도록 설정**    
+### 5. **빌드 시 plain jar 생성하지 않도록 설정**    
 ```
 jar{
     enabled = false
