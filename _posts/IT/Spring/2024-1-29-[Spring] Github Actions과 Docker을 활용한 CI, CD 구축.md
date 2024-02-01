@@ -352,11 +352,16 @@ jobs:
 ### 2) New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be851c40-538e-4095-9e54-ab4fb4c6f708)       
 
-> DOCKERHUB_USERNAME : 본인의 Docker Hub Username
-> DOCKERHUB_PASSWORD : 본인의 Docker Hub Password
-> HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 퍼블릭 IPv4 DNS)
-> PRIVATE_KEY: 개인키
-> USERNAME: EC2 인스턴스 계정 ID(ec2-user)
+> DOCKERHUB_USERNAME : 본인의 Docker Hub Username        
+> DOCKERHUB_PASSWORD : 본인의 Docker Hub Password        
+> HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 퍼블릭 IPv4 DNS)    
+> HOST_PROD: dev 환경의 EC2 인스턴스 ip (EC2 퍼블릭 IPv4 DNS)          
+> PRIVATE_KEY: 개인키        
+> USERNAME: EC2 인스턴스 계정 ID(ec2-user) # ubuntu        
+> PASSWORD: EC2 인스턴스에 SSH로 연결할 때 필요한 패스워드        
+> YML: application.yml 파일을 생성할 때 사용되는 값        
+> YML_DEV: application-dev.yml 파일을 생성할 때 사용되는 값        
+> YML_PROD: application-prod.yml 파일을 생성할 때 사용되는 값        
 
   - 3) Github의 Actions 탭 > ``set up a workflow yourself`` 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f7a0c8c9-8ba5-46ff-beb0-2165e28dc2e7)
