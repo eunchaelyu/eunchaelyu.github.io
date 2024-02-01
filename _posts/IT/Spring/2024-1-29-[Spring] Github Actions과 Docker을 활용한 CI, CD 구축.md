@@ -304,8 +304,8 @@ jobs:
         if: contains(github.ref, 'dev')
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/docker-test-dev 
-          docker push ${{ secrets.DOCKER_USERNAME }}/docker-test-dev
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/eroom_dev 
+          docker push ${{ secrets.DOCKER_USERNAME }}/eroom_dev
 
       ## deploy to production
       - name: Deploy to prod
@@ -354,7 +354,9 @@ jobs:
 
 > DOCKERHUB_USERNAME : 본인의 Docker Hub Username
 > DOCKERHUB_PASSWORD : 본인의 Docker Hub Password
-
+> HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 퍼블릭 IPv4 DNS)
+> PRIVATE_KEY: 개인키
+> USERNAME: EC2 인스턴스 계정 ID(ec2-user)
 
   - 3) Github의 Actions 탭 > ``set up a workflow yourself`` 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f7a0c8c9-8ba5-46ff-beb0-2165e28dc2e7)
