@@ -87,7 +87,43 @@ img_path: '/posts/20240202'
   -  ``netstat -ano | find "3306"`` 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/c99e2021-a686-4c3b-a1a9-2d245c1712f5)
 
-  - PID 6044 프로세스 종료시킨다
-  - ``taskkill /F /PID 6044``
+  - 관리자 권한으로 cmd 실행 후 해당 PID 프로세스를 종료시킨다        
+  - ``taskkill /F /PID 6044``        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/9c46c22c-4b99-4f1a-a1b2-8a6a8c6faaa4)    
 
+  - 다시 돌아가서 "Dockerfile"이 있는 디렉토리로 이동한 후 아래의 명령어를 실행시킨다      
+  - ``docker run --name mysql-container --network my-network -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydatabase -p 3306:3306 -d mysql:latest``
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/9877b8f6-ad36-41ad-8520-91ed9943d5f6)
+
+  - 완료되었다!
+
+### 4. 확인:    
+  - 아래의 명령어 실행 후 각 컨테이너가 해당 네트워크에 속해 있는지 확인     
+  - ``docker network inspect my-network``
+```
+[
+    {
+        "Name": "my-network",
+...
+        "Containers": {
+            "---": {
+                "Name": "mysql-container",
+                "IPv4Address":" ",
+...
+            },
+            "---": {
+                "Name": "spring-container",
+...
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+```
+  -  spring-container와 mysql-container가 모두 my-network 네트워크에 속해 있는 것을 확인할 수 있다    
+
+### 5. Spring Boot 어플리케이션에서 MySQL 컨테이너로의 연결 설정을 확인하고 수정해야 한다        
+  - MySQL 컨테이너의 호스트를 이전에 RDS 엔드포인트가 아닌 컨테이너의 이름 또는 IP 주소로 설정해야 한다    
+  - MySQL 컨테이너의 IP 주소는 위에서 IPv4Address 값에서 확인할 수 있다     
 
