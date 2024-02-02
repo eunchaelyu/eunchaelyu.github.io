@@ -9,8 +9,8 @@ img_path: '/posts/20240202'
 ---
 
 # 오버로딩과 오버라이딩  
-: 오버로딩(Overloading) - 기존에 없던 새로운 메서드를 정의 하는 것(new)
-: 오버라이딩(Overloading) - 상속받은 메서드의 내용을 변경하는 것(change, modifiy)
+ : 오버로딩(Overloading) - 기존에 없던 새로운 메서드를 정의 하는 것(new)
+ : 오버라이딩(Overloading) - 상속받은 메서드의 내용을 변경하는 것(change, modifiy)
   
 ## 1. 오버로딩(Overloading)
   - 사전적 의미는 과적하다, 즉 많이 싣는 것을 뜻한다
