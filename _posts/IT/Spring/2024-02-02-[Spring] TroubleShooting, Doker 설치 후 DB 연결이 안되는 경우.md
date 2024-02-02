@@ -1,7 +1,7 @@
 ---
 title: "[Spring] TroubleShooting, Doker 설치 후 DB 연결이 안되는 경우"
 author: eunchaelyu
-date: 2024-02-02 06:21:00 +09:00
+date: 2024-02-02 21:21:00 +09:00
 categories: [IT, Spring]
 tags: [IT, Spring]
 pin: true
