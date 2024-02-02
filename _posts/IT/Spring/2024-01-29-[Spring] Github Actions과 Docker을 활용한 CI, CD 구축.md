@@ -1,7 +1,7 @@
 ---
 title: "[Spring] Github Actions과 Docker을 활용한 CI/CD 구축"
 author: eunchaelyu
-date: 2024-1-29 07:21:00 +09:00
+date: 2024-01-29 07:21:00 +09:00
 categories: [IT, Spring]
 tags: [IT, Spring]
 pin: true
