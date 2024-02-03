@@ -278,7 +278,7 @@ jobs:
       - name: Docker build & push to prod
         if: contains(github.ref, 'master')
         run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
           docker build -t ${{ secrets.DOCKER_USERNAME }}/eroom-prod 
           docker push ${{ secrets.DOCKER_USERNAME }}/eroom-prod
 
@@ -286,7 +286,7 @@ jobs:
       - name: Docker build & push to dev
         if: contains(github.ref, 'dev')
         run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
           docker build -t ${{ secrets.DOCKER_USERNAME }}/eroom_dev 
           docker push ${{ secrets.DOCKER_USERNAME }}/eroom_dev
 
@@ -335,9 +335,9 @@ jobs:
 ### 2. New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be851c40-538e-4095-9e54-ab4fb4c6f708)           
 
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/178ef786-2563-4806-a194-2c7aca077695)        
-> DOCKERHUB_USERNAME : 본인의 Docker Hub Username        
-> DOCKERHUB_PASSWORD : 본인의 Docker Hub Password        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e460ef8a-920b-453f-a0e3-35e05dcea226)      
+> DOCKER_USERNAME : 본인의 Docker Hub Username        
+> DOCKER_PASSWORD : 본인의 Docker Hub Password        
 > HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 퍼블릭 IPv4 DNS)    
 > HOST_PROD: dev 환경의 EC2 인스턴스 ip (EC2 퍼블릭 IPv4 DNS)          
 > PRIVATE_KEY: 개인키        
@@ -387,6 +387,7 @@ jar{
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/698c78c5-986e-470f-bb0b-e98b051630e6)    
 
 > "Error: Cannot perform an interactive login from a non TTY device" 에러를 구글링 해 본 결과    
+
 > AWS CLI 자격증명이 안되어 있다는 것을 알게 되었다!!    
 > 참고하면 좋을 블로그를 찾았다        
 [AWSGithub-actions로-ECS를-통해-서비스-배포하기](https://japing.tistory.com/entry/AWSGithub-actions%EB%A1%9C-ECS%EB%A5%BC-%ED%86%B5%ED%95%B4-%EC%84%9C%EB%B9%84%EC%8A%A4-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0)    
@@ -398,7 +399,22 @@ jar{
 
 > 다시 GitHub Actions 작업을 실행한다    
 
-**세번째 Trouble Shooting**         
+**세번째 Trouble Shooting**  
+**- Error: Cannot perform an interactive login from a non TTY device** 
+**연이어 이런 오류가 떴다**
+**GitHub 저장소에 "DOCKER_USERNAME" 및 "DOCKER_PASSWORD"를 다시 확인하라는 에러**
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/054be0ee-8abb-45fa-a5e6-d30f008f99d7)        
 
+> 곧바로 Repository secrets에 DOCKER_USERNAME/DOCKER_PASSWORD가 제대로 있는지 확인한 결과          
+> DOCKERHUB_USERNAME/DOCKERHUB_PASSWORD로 """오타"""가 있었다...ㅎ
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/972c4880-3d0b-4921-9e63-6a104b395855)
+ 
+> 침착하게 다시 설정해준다        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/dcbc039f-5207-46cf-ae25-da41161fc01c)
+
+
+**네번째 Trouble Shooting**      
+**도커 명령어를 찾을 수 없다는 에러**    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b02f6a7b-f090-4f3f-9aea-7e07437ef309)    
 
 
