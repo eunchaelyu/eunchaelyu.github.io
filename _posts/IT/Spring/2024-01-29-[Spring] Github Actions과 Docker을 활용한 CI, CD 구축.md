@@ -31,7 +31,7 @@ img_path: '/posts/20240129'
 ## [3] GitHub Actions 워크플로우 기본 설정 리뷰    
 
 ### 1. 코드 변경시 배포 스크립트 실행
-```
+```yml
 # github repository actions 페이지에 나타날 이름
 name: CI/CD using github actions & docker
 
@@ -51,7 +51,7 @@ permissions:
 
 
 ### 2. JDK 설정    
-```
+```yml
 jobs:
   CI-CD:
     runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
   - ``uses: actions/checkout@v3``: 새로운 코드 변경사항을 가져오기 위한 액션
   
 ### 3. gradle caching
-```
+```yml
       # gradle caching - 빌드 시간 향상
       - name: Gradle Caching
         uses: actions/cache@v3
@@ -87,7 +87,7 @@ jobs:
 
     
 ### 4. 환경별 YML 파일 생성    
-```
+```yml
 # 환경별 yml 파일 생성(1) - application.yml
       - name: make application.yml
         if: |
@@ -126,7 +126,7 @@ jobs:
 
 
 ### 5. Gradle build        
-```
+```yml
 # gradle build
       - name: Build with Gradle
         run: ./gradlew build -x test
@@ -137,7 +137,7 @@ jobs:
 
 
 ### 6. Docker build & push        
-```
+```yml
 # docker build & push to production
       - name: Docker build & push to prod
         if: contains(github.ref, 'master')
@@ -159,7 +159,7 @@ jobs:
     
 
 ### 7. Deploy to EC2   
-```
+```yml
       ## deploy to production
       - name: Deploy to prod
         uses: appleboy/ssh-action@master
@@ -200,10 +200,10 @@ jobs:
   - EC2에서 docker pull      
 
 
-## [4] GitHub Actions 워크플로우 전체 파일    
+## [4] 현재까지의 GitHub Actions 워크플로우 전체 파일    
 - ``gradle.yml`` 전체 파일        
 
-```
+```yml
 # github repository actions 페이지에 나타날 이름
 name: CI/CD using github actions & docker
 
@@ -360,6 +360,45 @@ jar{
 }
 ```
 
+
+## [6] Trouble Shooting      
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8cab140e-fd2d-4340-88b5-cc9513b0a16f)
+  - 보기만 해도 마음이 아픈 "X" 표시!!!!!!
+  - 에러를 하나씩 차근차근 뜯어보기로 한다!!        
+
+**첫번째 Trouble Shooting**    
+**- ./gradlew 스크립트에 실행 권한이 없어서 발생하는 에러**
+![스크린샷 2024-02-03 131615](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/30c4d311-7844-4a6c-83f3-eecf74c916cb)
+
+> gradle build 되기 전 권한을 부여하는 스크립트 작성해서 해결한다      
+```yml
+      # gradlew 스크립트에 실행 권한 부여
+      - name: gradlew 스크립트에 실행 권한 부여
+        run: |
+          chmod +x ./gradlew
+
+      # gradle build
+      - name: Build with Gradle
+        run: ./gradlew build -x test
+```
+
+**두번째 Trouble Shooting**      
+**- non-interactive 환경에서 Docker 명령어를 실행하려고 할 때 발생하는 에러**    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/698c78c5-986e-470f-bb0b-e98b051630e6)    
+
+> "Error: Cannot perform an interactive login from a non TTY device" 에러를 구글링 해 본 결과    
+> AWS CLI 자격증명이 안되어 있다는 것을 알게 되었다!!    
+> 참고하면 좋을 블로그를 찾았다        
+[AWSGithub-actions로-ECS를-통해-서비스-배포하기](https://japing.tistory.com/entry/AWSGithub-actions%EB%A1%9C-ECS%EB%A5%BC-%ED%86%B5%ED%95%B4-%EC%84%9C%EB%B9%84%EC%8A%A4-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0)    
+> ``aws --version`` 명령어를 통해 AWS CLI 가 최신버전으로 설치되어 있는지 확인 (2.XX.XX)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/c157c484-edf5-417e-8941-6caa991289fe)        
+
+> ``aws configure`` 명령어를 통해  AWS CLI에 사용될 AWS Access Key ID, AWS Secret Access Key 등을 설정한다        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b3c612a8-127b-48d8-ad4e-4d0e2870c5c3)        
+
+> 다시 GitHub Actions 작업을 실행한다    
+
+**세번째 Trouble Shooting**         
 
 
 
