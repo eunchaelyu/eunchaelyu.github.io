@@ -125,5 +125,34 @@ img_path: '/posts/20240202'
 
 ### 5. Spring Boot 어플리케이션에서 MySQL 컨테이너로의 연결 설정을 확인하고 수정해야 한다        
   - MySQL 컨테이너의 호스트를 이전에 RDS 엔드포인트가 아닌 컨테이너의 이름 또는 IP 주소로 설정해야 한다    
-  - MySQL 컨테이너의 IP 주소는 위에서 IPv4Address 값에서 확인할 수 있다     
+  - MySQL 컨테이너의 IP 주소는 위에서 IPv4Address 값에서 확인할 수 있다
+
+### 6. Spring Boot와 MySQL 서비스가 동일한 docker-compose.yml 파일에 정의되어 있는지 확인        
+  - ``notepad docker-compose.yml`` 명령어를 사용해서 "docker-compose.yml" 파일 생성    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/747d476a-41f7-43f7-ac98-e3db97bf94d1)
+
+
+## [3] "MySQL 컨테이너 로그 확인"   
+  - 아래의 명령어를 입력해서 로그에 문제 없는지 확인한다    
+  - ``docker logs spring-container``    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/088cfcc1-9800-4f77-8a0c-e77da755087c)
+  - MySQL 데이터베이스에 연결을 시도할 때 "통신 링크 실패" 오류 뜸        
+  - 항상 ``docker-compose ps``명령어로 실행중인지 확인! (``cd dokerfile``로 파일이 위치한 경로로 이동!)
+  - 컨테이너가 실행되고 있지 않다면 ``docker-compose up -d``로 열어주기
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7d4f2f9a-902c-4f37-b4a7-b72319eb3a13)
+
+  - 1) Spring Boot 컨테이너 확인    
+  - ``docker logs spring-container``
+      
+  - 2) Mysql 컨테이너 확인
+  - ``docker logs mysql-container``
+
+## [4] "Docker 컨테이너 내부에서 MySQL 데이터베이스 확인"         
+``docker exec -it mysql-container mysql -uadmin -p``    
+``SHOW DATABASES;``    
+``USE eroom;``    
+``SHOW TABLES;``    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f65b4c3d-ced7-4728-8dfb-916563524673)    
+
+
 
