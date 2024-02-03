@@ -101,10 +101,10 @@ FROM openjdk:17-alpine
 ARG JAR_FILE=build/libs/Eroom-Project-BE-0.0.1-SNAPSHOT.jar
 
 # JAR_FILE을 app.jar로 복사
-COPY ${JAR_FILE} Eroom-Project-BE.jar
+COPY ${JAR_FILE} Eroom-Project-BE-0.0.1-SNAPSHOT.jar
 
 # 운영 및 개발에서 사용되는 환경 설정을 분리
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "/Eroom-Project-BE.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "/Eroom-Project-BE-0.0.1-SNAPSHOT.jar"]
 ```
 > Dokerfile 위와 같이 수정해서 적음
 > open jdk java17 버전의 환경 구성
