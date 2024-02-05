@@ -278,7 +278,7 @@ jobs:
       - name: Docker build & push to prod
         if: contains(github.ref, 'master')
         run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ${{ secrets.DOCKER_USERNAME }}/eroom-prod 
           docker push ${{ secrets.DOCKER_USERNAME }}/eroom-prod
 
@@ -286,7 +286,7 @@ jobs:
       - name: Docker build & push to dev
         if: contains(github.ref, 'dev')
         run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ${{ secrets.DOCKER_USERNAME }}/eroom_dev 
           docker push ${{ secrets.DOCKER_USERNAME }}/eroom_dev
 
@@ -415,6 +415,7 @@ jar{
 
 **네번째 Trouble Shooting**      
 **도커 명령어를 찾을 수 없다는 에러**    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b02f6a7b-f090-4f3f-9aea-7e07437ef309)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/947551ec-83d5-4e25-b3b4-67e2d6deb7ed)
 
+    
 
