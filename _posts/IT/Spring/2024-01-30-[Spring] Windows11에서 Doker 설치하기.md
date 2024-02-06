@@ -47,9 +47,17 @@ img_path: '/posts/20240130'
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/81def0c0-a542-40f9-8f1a-e55623649fa2)
 
 
-  - 새로 설치된 Linux 배포를 처음 시작 > 콘솔 창이 열림 > 파일이 압축 해제
-  - > PC에 저장될 때까지 1~2분 정도 소요 > 새 Linux 배포를 위한 사용자 계정 및 암호 생성    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/2b741ffc-8cc3-4842-a18e-db4a4a71c1b2)
+  - 새로 설치된 Linux 배포를 처음 시작 > 콘솔 창이 열림 > 파일이 압축 해제    
+  - > PC에 저장될 때까지 1~2분 정도 소요 > 새 Linux 배포를 위한 사용자 계정 및 암호 생성        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/9c869579-18c7-4613-9ecf-14860a06c124)    
+
+  - Enter new UNIX username: ubuntu(EC2 환경과 동일하게 설정한다)    
+  - New password:    
+  - Retype new password:    
+  - 화면에 보이지 않으므로 인지하면서 입력한다!    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7c101ed4-fe40-4028-b4d1-2c742865e6c3)    
+
+  ``ubuntu@DESKTOP-UFPCV7J:~$``로 접속되는 것 확인    
 
 
 
