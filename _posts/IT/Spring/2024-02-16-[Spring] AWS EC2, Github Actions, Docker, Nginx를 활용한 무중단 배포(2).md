@@ -188,22 +188,22 @@ server {
 }
 ```
 
-### service-env.inc 파일 생성 및 설정
-- service_url을 green으로 set        
-```nano service-env.inc```
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/01878822-0361-460e-92be-1eb260999593)    
+### service-env.inc 파일 생성 및 설정    
+- service_url을 green으로 set            
+```nano service-env.inc```      
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/01878822-0361-460e-92be-1eb260999593)          
 
-- service-env.inc 파일    
-- 초기 서버세팅을 green 서버로 진행하겠다는 뜻    
-```
-set $service_url green;
-```
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/679c67f0-5503-4141-a86d-186afb89e898)       
+- service-env.inc 파일        
+- 초기 서버세팅을 green 서버로 진행하겠다는 뜻        
+```    
+set $service_url green;    
+```    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/679c67f0-5503-4141-a86d-186afb89e898)           
+    
 
-
-**주의 할점**
-- Nginx의 default.conf 파일과 service-env.inc 파일을 생성 및 수정 할 때
-- 반드시 ```docker exec -it nginxserver bash``` 이 명령어로 Nginx 서버에 접속 후 진행해야 된다는 점을 잊지 말자!!
+**주의 할점**    
+- Nginx의 default.conf 파일과 service-env.inc 파일을 생성 및 수정 할 때    
+- 반드시 ```docker exec -it nginxserver bash``` 이 명령어로 Nginx 서버에 접속 후 진행해야 된다는 점을 잊지 말자!!    
 
 
 
