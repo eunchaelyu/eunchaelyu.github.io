@@ -65,7 +65,7 @@ dependencies {
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/de06d9b5-567d-4a43-883a-da97f7b05093)    
 
 - HealthCheckController 파일   
-```java
+```java    
 package com.sparta.eroomprojectbe.domain.member.controller;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -116,7 +116,7 @@ public class HealthCheckController {
 - 기본 설정 (각각 다른 파일에 있는 내용이 아니라 ``---``로 한 파일 내에서 구분 가능)    
 - 로컬 그룹은 로컬호스트의 8080 포트로 잡힌다            
 - 블루, 그린 그룹은 각각 public ip의 8080,8081 포트로 잡힌다              
-```yml
+```yml    
 spring:
   profiles:
     active: local
@@ -131,7 +131,7 @@ server:
 
 
 - local 서버 설정      
-```yml
+```yml    
 spring:
   config:
     activate:
@@ -150,7 +150,7 @@ serverName: local_Server
 
 
 - blue 서버 설정
-```yml
+```yml    
 
 spring:
   config:
@@ -170,7 +170,7 @@ blue가 active 돼있을
 
 
 - green 서버 설정
-```yml
+```yml    
 spring:
   config:
     activate:
@@ -187,7 +187,7 @@ serverName: green_Server
 ```
 
 - common 공통 파일 설정
-```yml
+```yml    
 spring:
   config:
     activate:
@@ -198,7 +198,7 @@ kakao:
 ```
 
 - secret과 관련된 모든 파일
-```yml
+```yml    
 jwt:
   secret:
     key: ---
