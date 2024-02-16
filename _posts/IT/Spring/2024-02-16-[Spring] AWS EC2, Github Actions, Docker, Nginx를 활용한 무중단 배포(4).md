@@ -64,12 +64,12 @@ services:
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/eaf7c92e-3170-407b-a096-3655dad36df9)    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/43287c49-b8ed-46fd-9375-568b316f79f6)    
 
-  DOCKER_USERNAME: 도커 ID    
-  DOCKER_PASSWORD: 도커 계정 패스워드(토큰)    
-  HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 탄력적 IP)    
-  PRIVATE_KEY: key.pem(ec2 생성시 발급받은 키페어)    
-  USERNAME: EC2 인스턴스 계정 ID(ec2-user)    
-  YML: application.yml 파일을 생성할 때 사용되는 값(Base64로 인코딩)    
+-  DOCKER_USERNAME: 도커 ID    
+-  DOCKER_PASSWORD: 도커 계정 패스워드(토큰)    
+-  HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 탄력적 IP)    
+-  PRIVATE_KEY: key.pem(ec2 생성시 발급받은 키페어)    
+-  USERNAME: EC2 인스턴스 계정 ID(ec2-user)    
+-  YML: application.yml 파일을 생성할 때 사용되는 값(Base64로 인코딩)    
 
 
 
