@@ -11,7 +11,8 @@ img_path: '/posts/20240216'
 # 무중단 배포 과정      
     1. AWS EC2 인스턴스 생성 및 접속         
     2. EC2 Ubuntu에 도커 설치(docker, docker-compose)    
-    3.     
+    3. 도커 허브 회원가입 후 토큰 발급 
+    4. 도커 데스크탑 설치    
 
 ## [1] AWS EC2 인스턴스 생성 및 접속- 완료한 상황      
 - AWS에서 인스턴스 생성 완료한 상황 (ubuntu, 프리티어)   
@@ -77,6 +78,39 @@ img_path: '/posts/20240216'
 ```docker-compose -v```    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/1d6b9830-d37a-4b9a-afe5-bf7cbf20a2df)
 
+
+## [3] 도커 허브 회원가입 후 토큰 발급
+- 회원가입- 완료된 상황
+- 도커 허브의 패스워드로 사용될 Access Token 을 발급한다
+- My account > Security
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7be682f6-8868-4bfc-87a2-c690fae8db0e)
+
+- New Access Token > 토큰 이름 설정         
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/75ed5629-0dd5-48bc-a841-fb3f8f38cb9e)    
+
+- 토큰은 유출되지 않게 지정된 폴더에 저장해둬야한다    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8d925f73-6830-4213-8e5f-7907cd36731a)
+
+- 본인은 deploy 폴더에 발급받은 토큰을 저장함     
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8044bb17-5a68-40f3-8dee-0d600359c695)
+
+  
+## [4] 도커 데스크탑 설치        
+- 도커 허브 하단에 Download Docker >         
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/15db1904-c6de-496f-af4e-4e1c299e0a67)    
+
+- Docker Desktop for Windows 설치(환경에 맞게 설치)        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/0cfe72d4-aa53-4b5f-9c94-51c8d9ce635a)            
+
+- 도커 데스크탑 실행 후 로그인     
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3dfae8d1-392d-4486-9e24-248d1f5962c9)    
+
+- 터미널로 돌아와서 도커 로그인      
+```docker login```      
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d9be1578-f7e5-42ce-84d0-1a6523f786b7)
+
+- 패스워드는 터미널창에서 보이지 않음 > 아까 발급받은 토큰 넣음    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/769cab2c-380f-4d16-8915-7b0c312c915a)
 
 
 
