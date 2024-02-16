@@ -51,6 +51,13 @@ services:
 ```
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/72c846e9-a48f-455f-898e-29c6f9870626)
 
+### 3. docker-compose 확인시 명령어    
+- 로그 확인    
+```docker-compose -f docker-compose-blue.yml logs```
+- 실행 확인    
+```docker-compose -f docker-compose-blue.yml ps```    
+
+
 ## [11] 도커파일 작성(Dockerfile)
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e9bfac5d-940d-443a-bb22-3b5a703a057c)    
 ```
