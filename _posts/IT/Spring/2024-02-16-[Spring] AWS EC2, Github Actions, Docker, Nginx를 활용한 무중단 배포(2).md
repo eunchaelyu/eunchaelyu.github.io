@@ -145,10 +145,10 @@ img_path: '/posts/20240216'
 - default.conf 전체 파일      
 ```
 upstream blue {
-		server 44.219.159.74:8080; //퍼블릭 ip 주소
+		server 44.219.159.74:8080;
 }
 upstream green {
-		server 44.219.159.74:8081; //퍼블릭 ip 주소
+		server 44.219.159.74:8081;
 }
 server {
 
@@ -156,29 +156,17 @@ server {
         listen [::]:80;
 	server_name api.eroom-challenge.com;
 
-    	#access_log /var/log/nginx/proxy/access.log;
-
         include /etc/nginx/conf.d/service-env.inc;
 
     	location / {
-        proxy_pass http://$service_url;  # reverse proxy의 기능
+             proxy_pass http://$service_url;  # reverse proxy의 기능
 
-        proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-
-        root /usr/share/nginx/html;
-        index index.html index.htm;
-
-        if ($request_method = 'OPTIONS') {
-            add_header 'Access-Control-Allow-Origin' '*';
-            add_header 'Access-Control-Allow-Methods' 'GET, POST, DELETE, PATCH, PUT, OPTIONS';
-            add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization';
-            add_header 'Access-Control-Max-Age' 86400;
-            return 204;
-        }
-        add_header 'Access-Control-Allow-Origin' '*' always;
-
+             proxy_set_header X-Real-IP $remote_addr;
+	     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+             proxy_set_header Host $http_host;
+ 
+             root /usr/share/nginx/html;
+             index index.html index.htm;
     }
 
     error_page 500 502 503 504 /50x.html;
@@ -186,6 +174,7 @@ server {
 	root     /usr/share/nginx/html;
     }
 }
+
 ```
 
 ### service-env.inc 파일 생성 및 설정    
