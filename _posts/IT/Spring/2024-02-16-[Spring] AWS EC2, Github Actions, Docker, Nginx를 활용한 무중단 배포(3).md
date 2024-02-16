@@ -65,7 +65,7 @@ dependencies {
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/de06d9b5-567d-4a43-883a-da97f7b05093)    
 
 - HealthCheckController 파일   
-```
+```java
 package com.sparta.eroomprojectbe.domain.member.controller;
 
 import org.springframework.beans.factory.annotation.Value;
