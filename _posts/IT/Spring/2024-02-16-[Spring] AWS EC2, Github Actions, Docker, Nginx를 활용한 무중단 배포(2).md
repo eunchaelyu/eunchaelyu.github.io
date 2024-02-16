@@ -90,7 +90,11 @@ img_path: '/posts/20240216'
 ## [6] Nginx 세팅      
 ### Nginx 에 접속
 - 외부에서 접속시 EC2 안에 가상의 공간으로 들어가야 Nginx에 접속할 수 있다        
-```docker exec -it nginxserver bash```  
+```docker exec -it nginxserver bash```
+
+- (Ngnx에서 나올 때 명령어)
+```exit```
+  
   
 - root 계정의 해당 컨테이너 안으로 들어온 것을 의미한다        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/dc662719-69b0-48e9-bb83-0d1c00e85e2f)
