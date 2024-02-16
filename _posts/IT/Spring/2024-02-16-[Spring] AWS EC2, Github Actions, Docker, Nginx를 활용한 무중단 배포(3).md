@@ -196,7 +196,6 @@ kakao:
 jwt:
   secret:
     key: ---
-
 spring:
   data:
     redis:
@@ -227,7 +226,6 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-
 # AWS S3
 cloud:
   aws:
