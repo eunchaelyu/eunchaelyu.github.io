@@ -57,7 +57,7 @@ dependencies {
 
 
 ## [8] HealthCheck 컨트롤러 생성
-- 그린서버나 블루 서버가 실행될 때 잘 돌아가고 있는지 확인 용도로 사용한다    
+- 그린서버나 블루 서버가 실행될 때 잘 돌아가고 있는지 아래와 같이 확인 용도로 사용한다    
 - green 서버 실행시    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d5f0de42-400f-409d-a71d-b6136aeb4e20)    
 
