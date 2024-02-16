@@ -10,8 +10,9 @@ img_path: '/posts/20240216'
 
 # 무중단 배포 구현하기 - (4)     
     10. 도커 컴포즈 파일 설정 -blue, green  
-    11. GitHub ACTIONS 파일 작성 
-
+    11. GitHub ACTIONS 워크플로우 생성 
+    12. GitHub ACTIONS 워크플로우 작성
+    13. GitHub ACTIONS secrets 주입
 
 ## [10] 도커 컴포즈 파일 설정 - blue, green      
 
@@ -48,15 +49,27 @@ services:
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/72c846e9-a48f-455f-898e-29c6f9870626)
 
   
-## [11] GitHub ACTIONS 파일 작성        
+## [11] GitHub ACTIONS 워크플로우 생성       
 - Github의 Actions 탭 > set up a workflow yourself      
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/126dd3e2-1e0c-48a2-a222-a6b399eaad7b)        
 
 - gradle.yml            
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7ef4f4e6-32e7-4afd-b1ad-660058400d37)        
 
+
+## [12] GitHub ACTIONS 워크플로우 작성
+
+
+
+
+
+
+
+
+
+
     
-## [] GitHub ACTIONS secrets 생성    
+## [13] GitHub ACTIONS secrets 주입    
 - Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭       
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8ebe5c94-ccb2-40d2-b641-b023ab25dd89)    
     
