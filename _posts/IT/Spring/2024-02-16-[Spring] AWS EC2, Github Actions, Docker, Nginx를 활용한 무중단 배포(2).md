@@ -146,33 +146,33 @@ img_path: '/posts/20240216'
 - **전체 내용 삭제:** ggDG 한글자씩 입력하면 한번에 삭제가 가능하다    
 
 
-- default.conf 전체 파일      
-```
-upstream blue {
-		server 44.219.159.74:8080;
-}
-upstream green {
-		server 44.219.159.74:8081;
-}
-server {
+- default.conf 전체 파일        
+```yml
+upstream blue {    
+		server 44.219.159.74:8080;  
+}    
+upstream green {    
+		server 44.219.159.74:8081;    
+}    
+server {    
 
-        listen 80;
-        listen [::]:80;
-	server_name api.eroom-challenge.com;
+        listen 80;    
+        listen [::]:80;    
+	server_name api.eroom-challenge.com;  
 
-        include /etc/nginx/conf.d/service-env.inc;
+        include /etc/nginx/conf.d/service-env.inc;    
+  
+    	location / {    
+             proxy_pass http://$service_url;  # reverse proxy의 기능    
 
-    	location / {
-             proxy_pass http://$service_url;  # reverse proxy의 기능
-
-             proxy_set_header X-Real-IP $remote_addr;
-	     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-             proxy_set_header Host $http_host;
- 
-             root /usr/share/nginx/html;
-             index index.html index.htm;
+             proxy_set_header X-Real-IP $remote_addr;    
+	     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;    
+             proxy_set_header Host $http_host;    
+   
+             root /usr/share/nginx/html;    
+             index index.html index.htm;    
     }
-
+    
     error_page 500 502 503 504 /50x.html;
     location = /50x.html {
 	root     /usr/share/nginx/html;
@@ -182,20 +182,24 @@ server {
 ```
 
 ### service-env.inc 파일 생성 및 설정    
-- service_url을 green으로 set            
+- service_url을 green으로 set       
+       
 ```nano service-env.inc```      
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/01878822-0361-460e-92be-1eb260999593)          
 
-- service-env.inc 파일        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/01878822-0361-460e-92be-1eb260999593)              
+
+- service-env.inc 파일            
 - 초기 서버세팅을 green 서버로 진행하겠다는 뜻        
+    
 ```    
 set $service_url green;    
 ```    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/679c67f0-5503-4141-a86d-186afb89e898)           
+
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/679c67f0-5503-4141-a86d-186afb89e898)               
     
 
 **주의 할점**    
-- Nginx의 default.conf 파일과 service-env.inc 파일을 생성 및 수정 할 때    
+- Nginx의 default.conf 파일과 service-env.inc 파일을 생성 및 수정 할 때        
 - 반드시 ```docker exec -it nginxserver bash``` 이 명령어로 Nginx 서버에 접속 후 진행해야 된다는 점을 잊지 말자!!    
 
 
