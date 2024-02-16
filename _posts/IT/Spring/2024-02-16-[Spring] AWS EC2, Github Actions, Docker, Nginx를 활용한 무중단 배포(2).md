@@ -101,31 +101,31 @@ img_path: '/posts/20240216'
  
 ### 주요 편집기 설치(vim, nano)
 - vim은 내용 수정 전 전체 삭제시 용이
-- nano는 변경사항을 줄바꿈, 들여쓰기 그대로~ 붙여넣기가 가능해서 구분해서 사용한다    
+- nano는 변경사항을 줄바꿈, 들여쓰기 그대로~ 붙여넣기가 가능해서 구분해서 사용한다        
 
-- vim 에디터 설치    
-```apt-get update```    
-```apt-get upgrade```    
-```apt-get install vim```    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a28d9a6a-22b2-4151-8eef-8831285854db)
+- vim 에디터 설치        
+```apt-get update```        
+```apt-get upgrade```        
+```apt-get install vim```        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a28d9a6a-22b2-4151-8eef-8831285854db)    
 
-- nano 에디터 설치        
-```apt-get update```    
-```apt-get upgrade```    
-```apt-get install nano```    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d4c9e3aa-f54c-4d6d-b311-11ba43c8b017)
+- nano 에디터 설치            
+```apt-get update```          
+```apt-get upgrade```        
+```apt-get install nano```        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d4c9e3aa-f54c-4d6d-b311-11ba43c8b017)    
 
 
-### Nginx default.conf 파일 생성 및 설정   
-- ls 명령어로 폴더와 파일명을 확인 > etc확인 후 경로 이동    
-```cd etc/```
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/221dfe0a-8624-4163-80d0-c7300803c932)
-
-- cd etc/nginx/ 로 경로 이동
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ac248f66-1263-4d25-bd3f-f7061c878a2e)    
-
-- cd etc/nginx/conf.d/ 경로로 이동    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/647954e1-ee33-4763-a7e0-3487be19bb74)    
+### Nginx default.conf 파일 생성 및 설정       
+- ls 명령어로 폴더와 파일명을 확인 > etc확인 후 경로 이동        
+```cd etc/```    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/221dfe0a-8624-4163-80d0-c7300803c932)    
+    
+- cd etc/nginx/ 로 경로 이동    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ac248f66-1263-4d25-bd3f-f7061c878a2e)        
+    
+- cd etc/nginx/conf.d/ 경로로 이동        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/647954e1-ee33-4763-a7e0-3487be19bb74)        
 
 **Tip: + Tab 키 누르면 하위 폴더가 보여짐**  
 
