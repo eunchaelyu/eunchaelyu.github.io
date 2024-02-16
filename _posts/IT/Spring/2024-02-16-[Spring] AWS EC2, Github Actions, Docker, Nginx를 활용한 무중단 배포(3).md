@@ -64,15 +64,13 @@ dependencies {
 - blue 서버 실행시    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/de06d9b5-567d-4a43-883a-da97f7b05093)    
 
-- HealthCheckController 파일   
-```java    
+- HealthCheckController 파일       
+```java      
 package com.sparta.eroomprojectbe.domain.member.controller;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -81,13 +79,10 @@ public class HealthCheckController {
 
     @Value("${server.env}")
     private String env;
-
     @Value("${server.port}")
     private String serverPort;
-
     @Value("${server.serverAddress}")
     private String serverAddress;
-
     @Value("${serverName}")
     private String serverName;
 
@@ -100,14 +95,13 @@ public class HealthCheckController {
         responseData.put("env", env);
         return ResponseEntity.ok(responseData);
     }
-
     @GetMapping("/env")
     public ResponseEntity<?> getEnv() {
         return ResponseEntity.ok(env);
     }
 }
-```  
-- 시큐리티 설정(본 프로젝트는 WebSecurityConfig)    
+```      
+- 시큐리티 설정(본 프로젝트는 WebSecurityConfig)        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/fe2b77ca-599b-4452-bcea-8e5e53771bcc)    
 
   
@@ -116,7 +110,7 @@ public class HealthCheckController {
 - 기본 설정 (각각 다른 파일에 있는 내용이 아니라 ``---``로 한 파일 내에서 구분 가능)    
 - 로컬 그룹은 로컬호스트의 8080 포트로 잡힌다            
 - 블루, 그린 그룹은 각각 public ip의 8080,8081 포트로 잡힌다              
-```yml    
+```yml        
 spring:
   profiles:
     active: local
