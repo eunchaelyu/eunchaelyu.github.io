@@ -109,7 +109,9 @@ public class HealthCheckController {
 ```    
 
 ### [9] application.yml 세팅 
-- 
+- 기본 설정 (각각 다른 파일에 있는 내용이 아니라 ``---``로 한 파일 내에서 구분 가능)    
+- 로컬 그룹은 로컬호스트의 8080 포트로 잡힌다            
+- 블루, 그린 그룹은 각각 public ip의 8080,8081 포트로 잡힌다              
 ```yml
 spring:
   profiles:
