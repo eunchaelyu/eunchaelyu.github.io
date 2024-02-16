@@ -30,7 +30,9 @@ services:
     - PROFILES=blue
     - ENV=blue
 ```
+
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7408e414-f1cf-47d8-a042-71b5ea8ea765)
+
 
 ### 2. docker-compose-green 파일 설정
 ```docker-compose-green.yml
@@ -46,14 +48,17 @@ services:
     - PROFILES=green
     - ENV=green
 ```
+
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/72c846e9-a48f-455f-898e-29c6f9870626)
 
   
 ## [11] GitHub ACTIONS 워크플로우 생성       
-- Github의 Actions 탭 > set up a workflow yourself      
+- Github의 Actions 탭 > set up a workflow yourself
+
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/126dd3e2-1e0c-48a2-a222-a6b399eaad7b)        
 
-- gradle.yml            
+- gradle.yml
+
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7ef4f4e6-32e7-4afd-b1ad-660058400d37)        
 
 
@@ -70,10 +75,12 @@ services:
 
     
 ## [13] GitHub ACTIONS secrets 주입    
-- Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭       
+- Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭
+  
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8ebe5c94-ccb2-40d2-b641-b023ab25dd89)    
     
-- New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)        
+- New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)
+
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/eaf7c92e-3170-407b-a096-3655dad36df9)    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/43287c49-b8ed-46fd-9375-568b316f79f6)    
 
