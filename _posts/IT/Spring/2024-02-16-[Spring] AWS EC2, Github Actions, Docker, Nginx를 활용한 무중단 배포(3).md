@@ -123,7 +123,7 @@ spring:
 
 server:
   env: blue
-```
+``` 
 
 - local 서버 설정      
 ```yml
@@ -237,5 +237,18 @@ cloud:
     stack:
       auto: false
 ```
+
+## Health 체크 시   
+- HealthCheckController 컨트롤러의 "${server.env}"는 blue 로 설정되게 된다    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ffefa5ad-7751-4919-81e4-684250b58a4e)        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ac7d3894-4351-44f8-9dd4-a275b25ceced)           
+
+- 그렇다면 블루 서버 설정 파일의 8080, public ip 주소, blue_Server 가 각각       
+- 컨트롤러의 "${server.port}",  "${server.serverAddress}", "${serverName}"의 값으로 연결된다    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/1668b1fc-19a4-4557-b231-7695e5422c90)        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f05c42d8-c8a4-4a20-b4c2-597a590003e4)
+
+
+
 
 
