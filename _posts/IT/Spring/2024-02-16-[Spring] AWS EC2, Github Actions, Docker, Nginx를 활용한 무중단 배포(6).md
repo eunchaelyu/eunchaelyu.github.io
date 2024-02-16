@@ -10,7 +10,7 @@ img_path: '/posts/20240216'
 
 # 무중단 배포 구현하기 - (6)     
      15. AWS 설정
-     16. 
+     16. 무중단 배포 확인    
 
     
 ## [15] AWS 설정   
@@ -50,8 +50,34 @@ USER, PASSWORD, 엔드포인트 잘 기억해두고 Intellij에서 연결 및 ym
 
 
 ### 4. 로드밸런서 설정    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/77f59e5c-5946-4906-853d-286736f56788)        
-- 8080,8081,443 포트로 연결된 리스너를 각각 생성한다
-- eroomTargetGroup은 8080포트로 연 리스너와 연결     
-- eroomTargetGroup8081은 8081 포트로 연 리스너와 연결
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/77f59e5c-5946-4906-853d-286736f56788)            
+- 8080,8081,443 포트로 연결된 리스너를 각각 생성한다    
+- eroomTargetGroup은 8080포트로 연 리스너와 연결         
+- eroomTargetGroup8081은 8081 포트로 연 리스너와 연결    
 - 각 대상그룹은 8080,8081 포트를 열어준다    
+
+
+
+## [16] 무중단 배포 확인    
+### 1. build    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/83d4d12a-7126-457b-8350-aa1c0e073046)
+
+### 2. deploy      
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/383d18c9-40d0-479f-b658-5651d89370f9)
+
+
+### 3. blue 서버가 실행되고 있는 경우    
+- health 체크    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/70fc9416-490f-44f9-b86c-643661bab6aa)
+
+-env 체크    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b733339f-40cf-4030-820a-744ddaac474f)
+
+
+### 4. green 서버가 실행되고 있는 경우    
+- health 체크
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/9dc2e727-db1d-402b-b9a7-32b508c7e4fe)
+
+-env 체크  
+
+
