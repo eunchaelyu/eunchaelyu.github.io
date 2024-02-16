@@ -186,7 +186,7 @@ kakao:
   client-secret: ---
 ```
 
-- secret 파일
+- secret과 관련된 모든 파일
 ```yml
 jwt:
   secret:
