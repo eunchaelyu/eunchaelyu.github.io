@@ -24,7 +24,7 @@ jar {
 }
 ```
 
-build.gradle의 dependencies 설정        
+- build.gradle의 dependencies 설정        
 ```
 dependencies {
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
@@ -106,7 +106,11 @@ public class HealthCheckController {
         return ResponseEntity.ok(env);
     }
 }
-```    
+```  
+- 시큐리티 설정(본 프로젝트는 WebSecurityConfig)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/fe2b77ca-599b-4452-bcea-8e5e53771bcc)    
+
+  
 
 ### [9] application.yml 세팅 
 - 기본 설정 (각각 다른 파일에 있는 내용이 아니라 ``---``로 한 파일 내에서 구분 가능)    
@@ -125,6 +129,7 @@ server:
   env: blue
 ``` 
 
+
 - local 서버 설정      
 ```yml
 spring:
@@ -140,6 +145,9 @@ server:
 
 serverName: local_Server
 ```
+- local이 active 돼있을 때
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/932b82bc-6412-41f6-935e-2b9737f41aca)   
+
 
 - blue 서버 설정
 ```yml
@@ -157,6 +165,9 @@ server:
 
 serverName: blue_Server
 ```
+blue가 active 돼있을 
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/6e03a124-4b25-40b7-ae53-28a868671911)    
+
 
 - green 서버 설정
 ```yml
