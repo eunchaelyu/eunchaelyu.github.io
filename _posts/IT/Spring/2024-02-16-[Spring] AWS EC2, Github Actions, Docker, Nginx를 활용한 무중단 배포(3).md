@@ -108,9 +108,132 @@ public class HealthCheckController {
 }
 ```    
 
+### [9] application.yml 세팅 
+- 
+```yml
+spring:
+  profiles:
+    active: local
+    group:
+      local: local, common, secret
+      blue: blue, common, secret
+      green: green, common, secret
 
+server:
+  env: blue
+```
 
+- local 서버 설정      
+```yml
+spring:
+  config:
+    activate:
+      on-profile: local
+kakao:
+  redirect-uri: ---
 
+server:
+  port: 8080
+  serverAddress: localhost
 
+serverName: local_Server
+```
+
+- blue 서버 설정
+```yml
+
+spring:
+  config:
+    activate:
+      on-profile: blue
+kakao:
+  redirect-uri: ---
+
+server:
+  port: 8080
+  serverAddress: 44.219.159.74
+
+serverName: blue_Server
+```
+
+- green 서버 설정
+```yml
+spring:
+  config:
+    activate:
+      on-profile: green
+
+kakao:
+  redirect-uri: ---
+
+server:
+  port: 8081
+  serverAddress: 44.219.159.74
+
+serverName: green_Server
+```
+
+- common 공통 파일 설정
+```yml
+spring:
+  config:
+    activate:
+      on-profile: common
+kakao:
+  client-id: ---
+  client-secret: ---
+```
+
+- secret 파일
+```yml
+jwt:
+  secret:
+    key: ---
+
+spring:
+  data:
+    redis:
+      host: ${REDIS_HOSTNAME}
+      port: ${REDIS_PORT}
+  config:
+    activate:
+      on-profile: secret
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ---
+    url: jdbc:mysql://---:3306/---
+    password: ---
+#    username: ---
+#    url: jdbc:mysql://localhost:3306/---
+#    password: ---
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: 'true'
+        use_sql_comments: 'true'
+        show_sql: 'true'
+    hibernate:
+      ddl-auto: update
+  # Multipart
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# AWS S3
+cloud:
+  aws:
+    s3:
+      bucket: ---
+    credentials:
+      access-key: ---
+      secret-key: ---
+    region:
+      static: us-east-1
+      auto: false
+    stack:
+      auto: false
+```
 
 
