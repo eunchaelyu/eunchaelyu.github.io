@@ -147,7 +147,7 @@ img_path: '/posts/20240216'
 
 
 - default.conf 전체 파일        
-```yml
+```text    
 upstream blue {    
 		server 44.219.159.74:8080;  
 }    
@@ -155,30 +155,23 @@ upstream green {
 		server 44.219.159.74:8081;    
 }    
 server {    
-
         listen 80;    
         listen [::]:80;    
 	server_name api.eroom-challenge.com;  
-
         include /etc/nginx/conf.d/service-env.inc;    
-  
     	location / {    
              proxy_pass http://$service_url;  # reverse proxy의 기능    
-
              proxy_set_header X-Real-IP $remote_addr;    
 	     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;    
              proxy_set_header Host $http_host;    
-   
              root /usr/share/nginx/html;    
              index index.html index.htm;    
     }
-    
     error_page 500 502 503 504 /50x.html;
     location = /50x.html {
 	root     /usr/share/nginx/html;
     }
 }
-
 ```
 
 ### service-env.inc 파일 생성 및 설정    
