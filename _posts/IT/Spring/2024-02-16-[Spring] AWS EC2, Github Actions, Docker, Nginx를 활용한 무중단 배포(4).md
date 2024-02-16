@@ -47,29 +47,29 @@ services:
 ```
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/72c846e9-a48f-455f-898e-29c6f9870626)
 
+  
+## [11] GitHub ACTIONS 파일 작성        
+- Github의 Actions 탭 > set up a workflow yourself      
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/126dd3e2-1e0c-48a2-a222-a6b399eaad7b)        
 
-## [11] GitHub ACTIONS 파일 작성    
-- Github의 Actions 탭 > set up a workflow yourself  
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/126dd3e2-1e0c-48a2-a222-a6b399eaad7b)    
-
-- gradle.yml        
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7ef4f4e6-32e7-4afd-b1ad-660058400d37)    
+- gradle.yml            
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7ef4f4e6-32e7-4afd-b1ad-660058400d37)        
 
     
-## [] GitHub ACTIONS secrets 생성
-- Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭   
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8ebe5c94-ccb2-40d2-b641-b023ab25dd89)
+## [] GitHub ACTIONS secrets 생성    
+- Github에 public 레포지토리 생성 > Setting > Secrets and variables > Actions 탭       
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8ebe5c94-ccb2-40d2-b641-b023ab25dd89)    
+    
+- New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/eaf7c92e-3170-407b-a096-3655dad36df9)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/43287c49-b8ed-46fd-9375-568b316f79f6)    
 
-- New repository secret에 각각 추가 (Settings > Secrets and variables > Actions)    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/eaf7c92e-3170-407b-a096-3655dad36df9)
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/43287c49-b8ed-46fd-9375-568b316f79f6)
-
-DOCKER_USERNAME: 도커 ID
-DOCKER_PASSWORD: 도커 계정 패스워드(토큰)
-HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 탄력적 IP)
-PRIVATE_KEY: key.pem(ec2 생성시 발급받은 키페어)
-USERNAME: EC2 인스턴스 계정 ID(ec2-user)
-YML: application.yml 파일을 생성할 때 사용되는 값(Base64로 인코딩)
+  DOCKER_USERNAME: 도커 ID    
+  DOCKER_PASSWORD: 도커 계정 패스워드(토큰)    
+  HOST_PROD: prod 환경의 EC2 인스턴스 ip (EC2 탄력적 IP)    
+  PRIVATE_KEY: key.pem(ec2 생성시 발급받은 키페어)    
+  USERNAME: EC2 인스턴스 계정 ID(ec2-user)    
+  YML: application.yml 파일을 생성할 때 사용되는 값(Base64로 인코딩)    
 
 
 
