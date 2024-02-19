@@ -133,12 +133,14 @@ server:
   serverAddress: localhost
 
 serverName: local_Server
-```    
+```
+
 - local이 active 돼있을 때
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/932b82bc-6412-41f6-935e-2b9737f41aca)   
 
 
 - blue 서버 설정
+  
 ```     
 spring:
   config:
@@ -150,13 +152,15 @@ server:
   port: 8080
   serverAddress: 44.219.159.74
 serverName: blue_Server
-```  
+```
+
 
 blue가 active 돼있을 때 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/6e03a124-4b25-40b7-ae53-28a868671911)    
 
 
 - green 서버 설정
+  
 ```     
 spring:
   config:
@@ -168,9 +172,11 @@ server:
   port: 8081
   serverAddress: 44.219.159.74
 serverName: green_Server
-```    
+```
 
-- common 공통 파일 설정
+
+- common 공통 파일 설정    
+
 ```      
 spring:
   config:
@@ -179,10 +185,12 @@ spring:
 kakao:
   client-id: ---
   client-secret: ---
-```
+```    
 
-- secret과 관련된 모든 파일    
-```       
+
+- secret과 관련된 모든 파일       
+ 
+```           
 jwt:
   secret:
     key: ---
@@ -229,7 +237,7 @@ cloud:
       auto: false
     stack:
       auto: false
-```    
+```        
 
 ## Health 체크 시   
 - HealthCheckController 컨트롤러의 "${server.env}"는 blue 로 설정되게 된다    
