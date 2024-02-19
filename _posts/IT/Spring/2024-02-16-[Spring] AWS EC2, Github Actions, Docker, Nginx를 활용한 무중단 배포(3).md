@@ -115,7 +115,6 @@ spring:
       local: local, common, secret
       blue: blue, common, secret
       green: green, common, secret
-
 server:
   env: blue
 ```     
@@ -129,7 +128,6 @@ spring:
       on-profile: local
 kakao:
   redirect-uri: ---
-
 server:
   port: 8080
   serverAddress: localhost
@@ -148,11 +146,9 @@ spring:
       on-profile: blue
 kakao:
   redirect-uri: ---
-
 server:
   port: 8080
   serverAddress: 44.219.159.74
-
 serverName: blue_Server
 ```  
 
@@ -166,14 +162,11 @@ spring:
   config:
     activate:
       on-profile: green
-
 kakao:
   redirect-uri: ---
-
 server:
   port: 8081
   serverAddress: 44.219.159.74
-
 serverName: green_Server
 ```    
 
@@ -188,8 +181,8 @@ kakao:
   client-secret: ---
 ```
 
-- secret과 관련된 모든 파일
-```     
+- secret과 관련된 모든 파일    
+```       
 jwt:
   secret:
     key: ---
@@ -236,7 +229,7 @@ cloud:
       auto: false
     stack:
       auto: false
-```
+```    
 
 ## Health 체크 시   
 - HealthCheckController 컨트롤러의 "${server.env}"는 blue 로 설정되게 된다    
