@@ -64,7 +64,7 @@ dependencies {
 - blue 서버 실행시    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/de06d9b5-567d-4a43-883a-da97f7b05093)    
 
-- HealthCheckController 파일       
+- HealthCheckController 파일           
 ```java      
 package com.sparta.eroomprojectbe.domain.member.controller;
 import org.springframework.beans.factory.annotation.Value;
@@ -73,10 +73,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 import java.util.TreeMap;
-
 @RestController
 public class HealthCheckController {
-
     @Value("${server.env}")
     private String env;
     @Value("${server.port}")
@@ -85,7 +83,6 @@ public class HealthCheckController {
     private String serverAddress;
     @Value("${serverName}")
     private String serverName;
-
     @GetMapping("/health")
     public ResponseEntity<?> healthCheck() {
         Map<String, String> responseData = new TreeMap<>();
@@ -110,7 +107,7 @@ public class HealthCheckController {
 - 기본 설정 (각각 다른 파일에 있는 내용이 아니라 ``---``로 한 파일 내에서 구분 가능)    
 - 로컬 그룹은 로컬호스트의 8080 포트로 잡힌다            
 - 블루, 그린 그룹은 각각 public ip의 8080,8081 포트로 잡힌다              
-```yml        
+```           
 spring:
   profiles:
     active: local
@@ -121,11 +118,11 @@ spring:
 
 server:
   env: blue
-``` 
+```     
 
 
 - local 서버 설정      
-```yml    
+```      
 spring:
   config:
     activate:
@@ -138,14 +135,13 @@ server:
   serverAddress: localhost
 
 serverName: local_Server
-```
+```    
 - local이 active 돼있을 때
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/932b82bc-6412-41f6-935e-2b9737f41aca)   
 
 
 - blue 서버 설정
-```yml    
-
+```     
 spring:
   config:
     activate:
@@ -158,13 +154,14 @@ server:
   serverAddress: 44.219.159.74
 
 serverName: blue_Server
-```
+```  
+
 blue가 active 돼있을 때 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/6e03a124-4b25-40b7-ae53-28a868671911)    
 
 
 - green 서버 설정
-```yml    
+```     
 spring:
   config:
     activate:
@@ -178,10 +175,10 @@ server:
   serverAddress: 44.219.159.74
 
 serverName: green_Server
-```
+```    
 
 - common 공통 파일 설정
-```yml    
+```      
 spring:
   config:
     activate:
@@ -192,7 +189,7 @@ kakao:
 ```
 
 - secret과 관련된 모든 파일
-```yml    
+```     
 jwt:
   secret:
     key: ---
