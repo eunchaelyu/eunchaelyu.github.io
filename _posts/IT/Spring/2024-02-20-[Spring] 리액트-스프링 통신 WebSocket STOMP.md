@@ -13,6 +13,8 @@ img_path: '/posts/20240220'
      2. WebSocket VS HTTP  
      3. 기술적 스택 결정  
      4. WebSocket API를 사용하는 방법
+     5. STOMP란?
+     6. 웹소켓 위에 STOMP를 사용하는 이유
 
     
 ## [1] 웹소켓이란?        
@@ -264,9 +266,51 @@ public class WebSocketEventListener {
 
             messagingTemplate.convertAndSend( "/sub/chat/challenge/{challengeId}", chatMessage);
         }
-    }
+    }    
 }
 ```
 
 -  소켓 연결 및 연결 해제 이벤트를 수신하는 코드이다
--  채팅에 참여중인지, 나간상태인지 기록도 가능하다    
+-  채팅에 참여중인지, 나간상태인지 기록도 가능하다
+
+
+### 5. STOMP        
+- STOMP는 Simple Text Oriented Messaging Protocol의 약자이다      
+- 메세지 브로커를 활용하여 간단한 메시지를 쉽게 송신/수신할 수 있는 프로토콜이다        
+  메시지 브로커: 송신 메시지를 SUBSCRIBE 한 수신자들에게 전달하는 도구         
+  publisher(발행) - subscriber(구독) 방식을 사용하여 메시지를 보내는 사람과 받는 사람이 구분한다            
+- STOMP는 아래와 같은 구조로 frame 기반 프로토콜이다    
+COMMAND    
+header1:value1    
+header2:value2    
+Body^@    
+
+
+### 6. 웹소켓 위에 STOMP를 사용하는 이유  
+- 첫번째
+  웹소켓은 양방향으로 메시지를 주고 받을 수 있지만, 프로젝트가 커지면 메시지 형식이나 파싱에 대한 고민이 필요하다
+  정의된 메시지 형식대로 파싱하는 로직 또한 따로 구현해야한다    
+  하지만, STOMP를 사용하면 프레임 단위로 정의해주기 때문에 메시지 형식에 대한 고민과 파싱 로직을 따로 구현할 필요가 없어진다
+  
+- 두번째
+   STOMP를 사용하면, 웹소켓만 사용할 때와 다르게 하나의 연결주소마다 새로운 핸들러 클래스를 따로 구현할 필요없다             
+  @Controller 어노테이션을 사용해서 간편하게 처리할 수 있다    
+
+- 세번째    
+  STOMP를 사용하면 Spring과 같은 프레임워크가 기본적으로 제공하는 내장 메시지 브로커가 아닌     
+  외부 메시지 큐(Kafka, RabbitMQ 등)를 연동하여 사용할 수 있다    
+
+- 네번째    
+  Spring Security를 사용할 수 있기 때문에 주고받는 메시지에 대한 보안설정을 할 수 있다
+
+위의 4가지 이유때문에 웹소켓에 STOMP를 얹어 사용하는 방식을 채택했다    
+
+[STOMP 동작 흐름]
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a55bafa0-30a5-4f19-8a17-9cfb78c1c63c)
+  출처: https://technicalsand.com/spring-server-sent-events/    
+
+1) 수신자는 /topic 경로를 구독하고 있고 발행자는 /app 혹은 /topic으로 메시지를 보내는 모습을 확인할 수 있다        
+2) 발행자가 /topic을 destination 헤더로 넣어 메시지를 메시지 브로커를 통해 보내면 바로 수신자에게 도착하고    
+3) /app 경로로 메시지를 보내면 가공처리를 거쳐 /topic이라는 경로를 담아 메시지 브로커에게 전달하면    
+4) 메시지 브로커는 전달받은 메시지를 /topic을 구독하는 구독자들에게 최종적으로 전달한다            
+
