@@ -278,7 +278,7 @@ public class WebSocketEventListener {
 - STOMP는 Simple Text Oriented Messaging Protocol의 약자이다          
 - 메세지 브로커를 활용하여 간단한 메시지를 쉽게 송신/수신할 수 있는 프로토콜이다            
   메시지 브로커: 송신 메시지를 SUBSCRIBE 한 수신자들에게 전달하는 도구이다             
-  publisher(발행) - subscriber(구독) 방식을 사용하여 메시지를 보내는 사람과 받는 사람을 구분한다                      
+  publisher(발행) - subscriber(구독): 메시지를 보내는 사람과 받는 사람을 구분한다                      
 - STOMP는 아래와 같은 구조로 frame 기반 프로토콜이다          
 
 ```    
