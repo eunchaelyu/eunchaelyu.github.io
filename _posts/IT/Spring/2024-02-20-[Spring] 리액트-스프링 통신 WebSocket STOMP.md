@@ -274,7 +274,7 @@ public class WebSocketEventListener {
 -  채팅에 참여중인지, 나간상태인지 기록도 가능하다
 
 
-### 5. STOMP        
+## [5] STOMP란?        
 - STOMP는 Simple Text Oriented Messaging Protocol의 약자이다      
 - 메세지 브로커를 활용하여 간단한 메시지를 쉽게 송신/수신할 수 있는 프로토콜이다        
   메시지 브로커: 송신 메시지를 SUBSCRIBE 한 수신자들에게 전달하는 도구         
@@ -286,7 +286,7 @@ header2:value2
 Body^@    
 
 
-### 6. 웹소켓 위에 STOMP를 사용하는 이유  
+## [6] 웹소켓 위에 STOMP를 사용하는 이유  
 - 첫번째
   웹소켓은 양방향으로 메시지를 주고 받을 수 있지만, 프로젝트가 커지면 메시지 형식이나 파싱에 대한 고민이 필요하다
   정의된 메시지 형식대로 파싱하는 로직 또한 따로 구현해야한다    
