@@ -53,7 +53,7 @@ img_path: '/posts/20240220'
 
 ## [4]  WebSocket API를 사용하는 방법    
 ### 1. WebSocketConfig    
-```
+```java    
 @Configuration
 @EnableWebSocketMessageBroker
 @EnableWebSocket
@@ -89,7 +89,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 - ``@EnableWebSocketMessageBrokerWebSocket`` 서버를 활성화하는 데 사용된다    
 - ``WebSocketMessageBrokerConfigurer`` 인터페이스를 구현하여 웹소켓 연결을 구성에 필요한 일부 메소드에 대한 구현을 제공한다        
 
-```
+```java    
     @Override
     // Stomp 엔드포인트 등록: 특정 도메인에서만 웹소켓 연결을 허용
     public void registerStompEndpoints(StompEndpointRegistry registry) {
@@ -105,7 +105,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 - ``withSockJS()``끝점 구성과 함께 사용한다. SockJS는 웹소켓을 지원하지 않는 브라우저에 대한 대체 옵션을 활성화 함    
 - 클라이언트와 서버의 연결 상태 확인 주기 : 1초로 설정한다      
 
-```
+```java    
     @Override
     // 
     public void configureMessageBroker(MessageBrokerRegistry registry) {
@@ -118,7 +118,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 - 수신 메시지를 받는 데 사용되는 URL:  ``/queue``는 개별 메시지, ``/sub``는 해당 주제를 구독한 이들의 전체 메시지를 나타낸다
 - 송신 메시지를 전송하는 데 사용되는 URL: 클라이언트 측에서 메세지 전송 시 ``/pub``로 시작하는 메시지는 처리 메서드로 라우팅된다
 
-```
+```java    
     @Override
     public void configureWebSocketTransport(WebSocketTransportRegistration registration) {
         registration.setMessageSizeLimit(64 * 1024); 
@@ -134,7 +134,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 
 ### 2. ChatMessage에서 모델 생성    
-```
+
+```java    
 @Getter
 @Setter
 public class ChatMessage {
@@ -181,7 +182,7 @@ public class ChatMessage {
 
 ### 3. 메세지를 주고받기 위한 ChatController    
 
-```
+```java    
 @Controller
 public class ChatController {
     @MessageMapping("/chat.sendMessage")
@@ -207,7 +208,7 @@ public class ChatController {
 
 ### 4. WebSocket 이벤트 리스너    
 
-```  
+```java    
 @Component
 public class WebSocketEventListener {
     private static final Logger logger = LoggerFactory.getLogger(WebSocketEventListener.class);
