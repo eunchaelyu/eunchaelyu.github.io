@@ -17,15 +17,17 @@ img_path: '/posts/20240216'
 
 ## [7] 스프링부트(Springboot) 프로젝트 설정      
 - 스프링부트 gradle로 프로젝트 생성 및 진행한다          
-- buid.gradle > 아래 코드 추가(build 시 plain 스냅샷 생성 방지 위함)            
+- buid.gradle > 아래 코드 추가(build 시 plain 스냅샷 생성 방지 위함)
+      
 ```
 jar {
 	enabled = false
 }
 ```
 
-- build.gradle의 dependencies 설정        
-```
+- build.gradle의 dependencies 설정   
+     
+```yml        
 dependencies {
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
@@ -53,7 +55,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	implementation 'mysql:mysql-connector-java:8.0.27'
-```
+```    
 
 
 ## [8] HealthCheck 컨트롤러 생성
@@ -64,8 +66,9 @@ dependencies {
 - blue 서버 실행시    
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/de06d9b5-567d-4a43-883a-da97f7b05093)    
 
-- HealthCheckController 파일           
-```java      
+- HealthCheckController 파일  
+         
+```java        
 package com.sparta.eroomprojectbe.domain.member.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -97,7 +100,8 @@ public class HealthCheckController {
         return ResponseEntity.ok(env);
     }
 }
-```      
+```          
+
 - 시큐리티 설정(본 프로젝트는 WebSecurityConfig)        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/fe2b77ca-599b-4452-bcea-8e5e53771bcc)    
 
@@ -106,8 +110,9 @@ public class HealthCheckController {
 ### [9] application.yml 세팅 
 - 기본 설정 (각각 다른 파일에 있는 내용이 아니라 ``---``로 한 파일 내에서 구분 가능)    
 - 로컬 그룹은 로컬호스트의 8080 포트로 잡힌다            
-- 블루, 그린 그룹은 각각 public ip의 8080,8081 포트로 잡힌다              
-```           
+- 블루, 그린 그룹은 각각 public ip의 8080,8081 포트로 잡힌다    
+          
+```yml               
 spring:
   profiles:
     active: local
@@ -117,11 +122,12 @@ spring:
       green: green, common, secret
 server:
   env: blue
-```     
+```         
 
 
-- local 서버 설정      
-```      
+- local 서버 설정
+      
+```yml          
 spring:
   config:
     activate:
@@ -133,7 +139,7 @@ server:
   serverAddress: localhost
 
 serverName: local_Server
-```
+```      
 
 - local이 active 돼있을 때
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/932b82bc-6412-41f6-935e-2b9737f41aca)   
@@ -141,7 +147,7 @@ serverName: local_Server
 
 - blue 서버 설정
   
-```     
+```yml             
 spring:
   config:
     activate:
@@ -152,7 +158,7 @@ server:
   port: 8080
   serverAddress: 44.219.159.74
 serverName: blue_Server
-```
+```    
 
 
 blue가 active 돼있을 때 
@@ -161,7 +167,7 @@ blue가 active 돼있을 때
 
 - green 서버 설정
   
-```     
+```yml           
 spring:
   config:
     activate:
@@ -172,12 +178,12 @@ server:
   port: 8081
   serverAddress: 44.219.159.74
 serverName: green_Server
-```
+```      
 
 
 - common 공통 파일 설정    
 
-```      
+```yml            
 spring:
   config:
     activate:
@@ -185,12 +191,12 @@ spring:
 kakao:
   client-id: ---
   client-secret: ---
-```    
+```        
 
 
 - secret과 관련된 모든 파일       
  
-```           
+```yml                 
 jwt:
   secret:
     key: ---
@@ -237,7 +243,7 @@ cloud:
       auto: false
     stack:
       auto: false
-```        
+```              
 
 ## Health 체크 시   
 - HealthCheckController 컨트롤러의 "${server.env}"는 blue 로 설정되게 된다    
