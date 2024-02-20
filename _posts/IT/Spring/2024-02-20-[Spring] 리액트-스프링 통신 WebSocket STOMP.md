@@ -179,7 +179,7 @@ public class ChatMessage {
 }
 ```
 
-- ChatMessage모델은 클라이언트와 서버 간에 교환될 메시지 페이로드이다
+- ChatMessage모델은 클라이언트와 서버 간에 교환될 메시지 페이로드이다    
 
 
 ### 3. 메세지를 주고받기 위한 ChatController    
@@ -202,10 +202,10 @@ public class ChatController {
     }
 ```
 
-- ``@MessageMapping``: websocket 구성에 따라 대상이 ``/pub``로 시작하는 클라이언트에서 보낸 모든 메시지는 주석이 달린 ``/pub`` 메시지 처리 방법으로 라우팅된다
+- ``@MessageMapping``: websocket 구성에 따라 대상이 ``/pub``로 시작하는 클라이언트에서 보낸 모든 메시지는 주석이 달린 ``/pub`` 메시지 처리 방법으로 라우팅된다    
   예시    
 - ``sendMessage()``:  메서드 ``/pub/chat.sendMessage``로 라우팅되고        
-- ``addUser()``: 메서드 ``/app/chat.addUser``로 라우팅됩니다     
+- ``addUser()``: 메서드 ``/app/chat.addUser``로 라우팅된다       
 
 
 ### 4. WebSocket 이벤트 리스너    
@@ -270,20 +270,24 @@ public class WebSocketEventListener {
 }
 ```
 
--  소켓 연결 및 연결 해제 이벤트를 수신하는 코드이다
--  채팅에 참여중인지, 나간상태인지 기록도 가능하다
+-  소켓 연결 및 연결 해제 이벤트를 수신하는 코드이다    
+-  채팅에 참여중인지, 나간 상태인지 기록도 가능하다    
 
 
 ## [5] STOMP란?        
-- STOMP는 Simple Text Oriented Messaging Protocol의 약자이다      
-- 메세지 브로커를 활용하여 간단한 메시지를 쉽게 송신/수신할 수 있는 프로토콜이다        
-  메시지 브로커: 송신 메시지를 SUBSCRIBE 한 수신자들에게 전달하는 도구         
-  publisher(발행) - subscriber(구독) 방식을 사용하여 메시지를 보내는 사람과 받는 사람이 구분한다            
-- STOMP는 아래와 같은 구조로 frame 기반 프로토콜이다    
+- STOMP는 Simple Text Oriented Messaging Protocol의 약자이다          
+- 메세지 브로커를 활용하여 간단한 메시지를 쉽게 송신/수신할 수 있는 프로토콜이다            
+  메시지 브로커: 송신 메시지를 SUBSCRIBE 한 수신자들에게 전달하는 도구이다             
+  publisher(발행) - subscriber(구독) 방식을 사용하여 메시지를 보내는 사람과 받는 사람을 구분한다                      
+- STOMP는 아래와 같은 구조로 frame 기반 프로토콜이다          
+
+```    
 COMMAND    
 header1:value1    
 header2:value2    
-Body^@    
+Body^@
+```
+   
 
 
 ## [6] 웹소켓 위에 STOMP를 사용하는 이유  
