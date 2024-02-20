@@ -1,11 +1,11 @@
 ---
 title: "[Spring] 리액트-스프링 통신 WebSocket STOMP"
 author: eunchaelyu
-date: 2024-02-16 14:21:00 +09:00
+date: 2024-02-20 14:21:00 +09:00
 categories: [IT, Spring]
 tags: [IT, Spring]
 pin: true
-img_path: '/posts/20240216'
+img_path: '/posts/20240220'
 ---
 
 # 리액트-스프링 통신 WebSocket STOMP   
@@ -22,17 +22,23 @@ img_path: '/posts/20240216'
 
 
 ## [2] WebSocket VS HTTP 
-1) 웹소켓
+1) 웹소켓      
+
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/0c11268e-2a03-44cf-88c7-a289ab890291)    
+
 - 연결을 지향한다     
 - 한 번 연결을 맺은 후 유지한다    
 - 양방향 통신이다     
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/0c11268e-2a03-44cf-88c7-a289ab890291)
+
 
 2) HTTP 통신    
+
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/6e049405-3cd4-436f-88d5-53303ff8b6a5)   
+
 - 비연결성: 연결을 맺고 요청을 하고 응답을 받으면 연결을 끊는다        
 - 무상태성: 서버가 클라이언트의 상태를 가지고 있지 않다            
 - 단방향 통신이다    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/6e049405-3cd4-436f-88d5-53303ff8b6a5)      
+   
 
 
 ## [3] 기술적 스택 결정    
