@@ -1,4 +1,4 @@
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8b8eea7a-9e13-46b9-b7e8-0f09852cf659)---
+---
 title: "[Spring] AWS EC2, Github Actions, Docker, Nginx를 활용한 무중단 배포 시 에러"
 author: eunchaelyu
 date: 2024-02-23 14:21:00 +09:00
