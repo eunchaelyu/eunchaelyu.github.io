@@ -15,12 +15,12 @@ img_path: '/posts/20240223'
     **Trouble Shooting 1.**
     
     - **./gradlew 스크립트에 실행 권한이 없어서 발생하는 에러**
-        
-        https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/30c4d311-7844-4a6c-83f3-eecf74c916cb
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f111d4c3-acfa-4b8d-b9aa-b81ed1a6a9a5)
+
         
     
     > gradle build 되기 전 권한을 부여하는 스크립트 작성해서 해결한다
-    > 
+  
     
     ```bash
     # gradlew 스크립트에 실행 권한 부여 
@@ -35,10 +35,10 @@ img_path: '/posts/20240223'
     
     - **non-interactive 환경에서 Docker 명령어를 실행하려고 할 때 발생하는 에러**
     
-    https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/698c78c5-986e-470f-bb0b-e98b051630e6
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/cebc2f28-a1a6-4ec7-a57b-bee7d38106bc)
+
+  >  “Error: Cannot perform an interactive login from a non TTY device” 에러를 구글링  
     
-    > “Error: Cannot perform an interactive login from a non TTY device” 에러를 구글링
-    > 
     - AWS CLI 자격증명이 안되어 있다는 것을 알게 되었다!!
         
         참고하면 좋을 블로그를 찾았다
