@@ -14,9 +14,7 @@ img_path: '/posts/20240223'
 **Trouble Shooting 1.**
 
 - **./gradlew 스크립트에 실행 권한이 없어서 발생하는 에러**
-    
-    https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/30c4d311-7844-4a6c-83f3-eecf74c916cb
-    
+https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/30c4d311-7844-4a6c-83f3-eecf74c916cb
 
 > gradle build 되기 전 권한을 부여하는 스크립트 작성해서 해결한다
 > 
