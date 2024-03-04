@@ -17,7 +17,7 @@ img_path: '/posts/20240223'
 - **./gradlew 스크립트에 실행 권한이 없어서 발생하는 에러**
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f111d4c3-acfa-4b8d-b9aa-b81ed1a6a9a5)
 
-  > gradle build 되기 전 권한을 부여하는 스크립트 작성해서 해결한다
+- gradle build 되기 전 권한을 부여하는 스크립트 작성해서 해결한다
   
     
     ```bash
@@ -37,15 +37,15 @@ img_path: '/posts/20240223'
     
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/cebc2f28-a1a6-4ec7-a57b-bee7d38106bc)
 
->  “Error: Cannot perform an interactive login from a non TTY device” 에러를 구글링  
+- “Error: Cannot perform an interactive login from a non TTY device” 에러를 구글링  
     
 - AWS CLI 자격증명이 안되어 있다는 것을 알게 되었다!!
         
-참고하면 좋을 블로그를 찾았다
+- 참고하면 좋을 블로그를 찾았다
         
 [AWSGithub-actions로-ECS를-통해-서비스-배포하기](https://japing.tistory.com/entry/AWSGithub-actions%EB%A1%9C-ECS%EB%A5%BC-%ED%86%B5%ED%95%B4-%EC%84%9C%EB%B9%84%EC%8A%A4-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0)
         
-`aws --version` 명령어를 통해 AWS CLI 가 최신버전으로 설치되어 있는지 확인 (2.XX.XX)
+- `aws --version` 명령어를 통해 AWS CLI 가 최신버전으로 설치되어 있는지 확인 (2.XX.XX)
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e93ed596-ae86-456f-9149-7df855d0a816)
 
@@ -181,7 +181,7 @@ docker restart blue
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ed3241b5-a5a1-4c5c-91c4-8ac582d9209f)      
 
     
-두 컨테이너 모두 정상적으로 재실행된 것을 확인할 수 있다      
+- 두 컨테이너 모두 정상적으로 재실행된 것을 확인할 수 있다      
     
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8e7915c7-5301-4c61-93ce-7a6883662223)    
 
@@ -203,9 +203,9 @@ Error response from daemon: cannot stop container: 2fe2354f8578: permission deni
     
 - EC2 중지 후 시작했을 때 도커 컨테이너가 삭제가 안되는 경우가 종종 있다.    
 - 아래의 명령어는 관련 apparmor 를 날려주고 삭제가 된다.    
-이 때, apparmor는 리눅스의 보안 관련 커널이다.    
+- 이 때, apparmor는 리눅스의 보안 관련 커널이다.    
     
-특히 docker 를 snap 으로 설치하면 많은 AppArmor profile 이 쌓이고, 충돌이 날 수 있다.      
+- 특히 docker 를 snap 으로 설치하면 많은 AppArmor profile 이 쌓이고, 충돌이 날 수 있다.      
         
 ```java    
 sudo aa-remove-unknown      
@@ -215,7 +215,7 @@ sudo aa-remove-unknown
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3a67f0de-d714-40aa-893c-7a8e041f3687)      
 
     
-다시 도커 컨테이너 삭제 가능한 것을 확인할 수 있다.      
+- 다시 도커 컨테이너 삭제 가능한 것을 확인할 수 있다.      
     
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/51226009-4619-459d-8ab7-f4329ea4b500)      
 
