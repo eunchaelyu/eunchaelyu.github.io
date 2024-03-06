@@ -10,7 +10,7 @@ img_path: '/posts/20240227'
 
     
 # Redis 직렬화/역직렬화 이슈     
-- 채팅 메시지를 Redis에 저장하는 동안 **`SerializationException`**이 발생
+- 채팅 메시지를 Redis에 저장하는 동안 "SerializationException"이 발생
 - Redis에 Java 8의 LocalDateTime을 저장하려고 할 때 발생하는 문제인데 처리할 수 있는 모듈이 필요하다라는 뜻 !
 
 
@@ -64,7 +64,7 @@ at org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer.
 - 즉,  Java 객체를 JSON으로 변환하고 다시 JSON을 Java 객체로 변환하는 모듈을 추가해야 함.    
 
 ## [1] **해결방법**    
-### 1. build.gradle 파일에 **jackson-datatype-jsr310** 모듈 추가함    
+### 1. build.gradle 파일에 jackson-datatype-jsr310 모듈 추가함    
 JSON과 Java의 시간 관련 데이터 유형 간의 변환을 간단하게 처리할 수 있으므로     
 직렬화하고 역직렬화 하는데에 코드 변경이 적다    
 
@@ -78,7 +78,7 @@ JSON과 Java의 시간 관련 데이터 유형 간의 변환을 간단하게 처
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/da95562e-9464-47b8-b714-07ab8d2ce31c)
 
     
-### 2. **LocalDate**, **LocalTime**, **LocalDateTime**, **ZonedDateTime** 등의 데이터 유형을 JSON으로 직렬화하고 역직렬화 할 수 있도록 지원되므로 **RedisConfig** 클래스의 **redisTemplate** 빈에 **ObjectMapper**를 구성하여 모듈을 등록
+### 2. "LocalDate", "LocalTime", "LocalDateTime", "ZonedDateTime" 등의 데이터 유형을 JSON으로 직렬화하고 역직렬화 할 수 있도록 지원되므로 "RedisConfig" 클래스의 "redisTemplate" 빈에 "ObjectMapper"를 구성하여 모듈을 등록
 
 **기존 코드**
     
@@ -126,7 +126,7 @@ JSON과 Java의 시간 관련 데이터 유형 간의 변환을 간단하게 처
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/4a390a4b-42c0-42da-867d-aa4c2f1f8175)    
 
     
-### 3. time을 사용하는 ChatMessage 엔티티 클래스에서  직렬화 역직렬화 주석을 달아준다    
+### 3. time을 사용하는 ChatMessage 엔티티 클래스에서 직렬화 역직렬화 주석을 달아준다    
     
     ```java
         @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -137,18 +137,18 @@ JSON과 Java의 시간 관련 데이터 유형 간의 변환을 간단하게 처
     
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/4942d48b-160b-4e46-b727-54274eb90c93)
   
-#### 1) **`@JsonSerialize(using = LocalDateTimeSerializer.class)`**    
+#### 1) "@JsonSerialize(using = LocalDateTimeSerializer.class)"    
 해당 변수를 직렬화할 때 사용할 **LocalDateTimeSerializer** 클래스를 지정한다. **LocalDateTime** 객체를 JSON 문자열로 변환할 때 사용된다.    
 
-#### 2) **`@JsonDeserialize(using = LocalDateTimeDeserializer.class)`**        
-해당 변수를 역직렬화할 때 사용할 **LocalDateTimeDeserializer** 클래스를 지정한다.   
-JSON 문자열을 **LocalDateTime** 객체로 변환할 때 사용된다.    
+#### 2) "@JsonDeserialize(using = LocalDateTimeDeserializer.class)"   
+해당 변수를 역직렬화할 때 사용할 "LocalDateTimeDeserializer" 클래스를 지정한다.   
+JSON 문자열을 "LocalDateTime" 객체로 변환할 때 사용된다.    
 
-#### 3) **`@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")`**    
+#### 3) "@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")"    
 해당 변수의 JSON 표현을 "yyyy-MM-dd'T'HH:mm:ss"로 형식화 한다.     
 원하는 형식으로 클라이언트에 전송하기 위함이다.    
 
-## [2] **Redis 에 저장이 잘 되었는지 확인**    
+## [2] Redis 에 저장이 잘 되었는지 확인       
 
 - Redis 클라이언트를 사용하여 Elasticache 클러스터에 연결    
 
