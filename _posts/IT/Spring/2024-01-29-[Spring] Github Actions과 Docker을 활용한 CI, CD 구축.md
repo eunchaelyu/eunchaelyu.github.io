@@ -409,13 +409,10 @@ jar{
 > DOCKERHUB_USERNAME/DOCKERHUB_PASSWORD로 """오타"""가 있었다...ㅎ
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/972c4880-3d0b-4921-9e63-6a104b395855)
  
-> 침착하게 다시 설정해준다        
+> secrets 파일에 설정 완료 !        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/dcbc039f-5207-46cf-ae25-da41161fc01c)
 
 
-**네번째 Trouble Shooting**      
-**도커 명령어를 찾을 수 없다는 에러**    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/947551ec-83d5-4e25-b3b4-67e2d6deb7ed)
 
     
 
