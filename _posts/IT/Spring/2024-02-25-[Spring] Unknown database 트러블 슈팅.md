@@ -47,7 +47,8 @@ DOKER와 RDS의 개념 분리(DB 연결 문제와 상관이 없음)와 로컬에
 
 - cmd 창에 ``mysql -u root -p`` 명령어 입력 > 비밀번호 입력    
 
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8951c3b5-3ab6-453c-b06f-d3b03dd3f68d)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f6bb4761-4d8a-4c73-b727-2fb2f6791028)
+ 
 
 
 ```bash
