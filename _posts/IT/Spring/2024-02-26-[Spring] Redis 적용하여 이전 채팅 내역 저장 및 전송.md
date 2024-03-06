@@ -246,7 +246,8 @@ switch (chatMessage.getType()) {
 
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f22e68c3-a5be-45b4-b580-7c7afbd72b50/844be1db-7d53-44ab-9bbf-d6b6cd06c590/Untitled.png)
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/af570e3e-b639-4aa1-847b-90f987771986)
+
 
 memberId 가 3번인 member가 challengeId가 65번인 방에 접속(웹소켓 연결) 하게 되면 
 
