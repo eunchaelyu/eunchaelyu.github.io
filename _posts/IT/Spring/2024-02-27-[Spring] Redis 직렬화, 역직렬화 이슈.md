@@ -58,13 +58,12 @@ at org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer.
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/689aa77d-4758-49dc-b153-6931c83b6f74)
 
-
-위의 사진 처럼 이전 채팅내역 전송 시 시간 데이터가 제대로 보내지지 않는 것을 확인할 수 있다    
+- 위의 사진 처럼 이전 채팅내역 전송 시 시간 데이터가 제대로 보내지지 않는 것을 확인할 수 있다    
   
 - Redis에 객체를 저장하고 조회할 때는 객체를 직렬화하고 역직렬화해야 한다는 사실을 알게 되었다.    
 - 즉,  Java 객체를 JSON으로 변환하고 다시 JSON을 Java 객체로 변환하는 모듈을 추가해야 함.    
 
-## **해결방법**    
+## [1] **해결방법**    
 ### 1. build.gradle 파일에 **jackson-datatype-jsr310** 모듈 추가함    
 JSON과 Java의 시간 관련 데이터 유형 간의 변환을 간단하게 처리할 수 있으므로     
 직렬화하고 역직렬화 하는데에 코드 변경이 적다    
@@ -138,32 +137,32 @@ JSON과 Java의 시간 관련 데이터 유형 간의 변환을 간단하게 처
     
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/4942d48b-160b-4e46-b727-54274eb90c93)
   
-#### 1. **`@JsonSerialize(using = LocalDateTimeSerializer.class)`**    
+#### 1) **`@JsonSerialize(using = LocalDateTimeSerializer.class)`**    
 해당 변수를 직렬화할 때 사용할 **LocalDateTimeSerializer** 클래스를 지정한다. **LocalDateTime** 객체를 JSON 문자열로 변환할 때 사용된다.    
 
-#### 2. **`@JsonDeserialize(using = LocalDateTimeDeserializer.class)`**        
+#### 2) **`@JsonDeserialize(using = LocalDateTimeDeserializer.class)`**        
 해당 변수를 역직렬화할 때 사용할 **LocalDateTimeDeserializer** 클래스를 지정한다.   
 JSON 문자열을 **LocalDateTime** 객체로 변환할 때 사용된다.    
 
-#### 3. **`@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")`**    
+#### 3) **`@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")`**    
 해당 변수의 JSON 표현을 "yyyy-MM-dd'T'HH:mm:ss"로 형식화 한다.     
 원하는 형식으로 클라이언트에 전송하기 위함이다.    
 
-## **Redis 에 저장이 잘 되었는지 확인**    
+## [2] **Redis 에 저장이 잘 되었는지 확인**    
 
-### **Redis 클라이언트를 사용하여 Elasticache 클러스터에 연결**    
+- Redis 클라이언트를 사용하여 Elasticache 클러스터에 연결    
 
 ```java
 redis-cli -h [클러스터 ID] -p 6379
 ```
 
-### **chat_room:1 키에 저장된 리스트의 모든 요소를 가져오기**
+- chat_room:1 키에 저장된 리스트의 모든 요소를 가져오기    
 
 ```java
 LRANGE chat_room:1 0 -1
 ```
 
-### **1번 채팅방의 모든 채팅내역 리스트 조회!**
+- 1번 채팅방의 모든 채팅내역 리스트 조회!      
 
 ```bash
  1) "{\"messageId\":\"d7a5d044-d1a3-4f2f-b9db-189c01eae554\",\"type\":\"JOIN\",\"message\":null,\"sender\":\"\xeb\x9e\x80\xec\xb1\x84\xeb\x8b\xb9\",\"time\":\"2024-03-04T22:52:30\",\"memberId\":\"3\",\"challengeId\":\"103\",\"profileImageUrl\":\"https://eroomchallengebucket.s3.amazonaws.com/I7rMCvRnbN_\xec\x8a\xa4\xed\x81\xac\xeb\xa6\xb0\xec\x83\xb7 2024-02-24 192339.png\"}"
