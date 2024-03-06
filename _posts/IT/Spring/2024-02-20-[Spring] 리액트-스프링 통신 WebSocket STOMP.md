@@ -52,7 +52,13 @@ img_path: '/posts/20240220'
 - 이러한 HTTP 통신의 경우 실시간 통신에 적합하지 않다고 생각한다          
 - HTTP 통신처럼 연결을 맺고 바로 끊어버리는 게 아닌 실시간으로 데이터를 주고받는 통신이 필요하므로 웹소켓을 선택한다          
 
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/7eed1a74-8827-46ba-9cf6-b456ea742dca)    
 
+- WebSocket을 호출해 Socket을 생성하면 즉시 연결이 시작되고
+- 이러한 연결이 유지되는 동안 브라우저는 Header를 통해 Server에 WebSocket을 지원하는지 물어본다.
+- 이때 서버가 맞다는 응답을 하면, 그때부터 HTTP Protocol 대신 WebSocket Protocol로 통신된다.    
+
+  
 ## [4]  WebSocket API를 사용하는 방법    
 ### 1. WebSocketConfig    
 ```java    
@@ -275,8 +281,9 @@ public class WebSocketEventListener {
 
 
 ## [5] STOMP란?        
-- STOMP는 Simple Text Oriented Messaging Protocol의 약자이다          
-- 메세지 브로커를 활용하여 간단한 메시지를 쉽게 송신/수신할 수 있는 프로토콜이다            
+- STOMP는 Simple Text Oriented Messaging Protocol의 약자이다      
+- 한 마디로 **WebSocket 상에서 동작하며 Client와 Server가 서로 통신하는 데 있어서 메시지의 형식, 유형, 내용 등을 정의해주는 Protocol**이라고 할 수 있다.       
+- 메세지 브로커를 활용하여 간단한 메시지를 쉽게 송신/수신할 수 있는 프로토콜이다              
   메시지 브로커: 송신 메시지를 SUBSCRIBE 한 수신자들에게 전달하는 도구이다             
   publisher(발행) - subscriber(구독): 메시지를 보내는 사람과 받는 사람을 구분한다                      
 - STOMP는 아래와 같은 구조로 frame 기반 프로토콜이다          
@@ -294,7 +301,8 @@ Body^@
 - 첫번째!      
   웹소켓은 양방향으로 메시지를 주고 받을 수 있지만, 프로젝트가 커지면 메시지 형식이나 파싱에 대한 고민이 필요하다        
   정의된 메시지 형식대로 파싱하는 로직 또한 따로 구현해야한다          
-  하지만, STOMP를 사용하면 프레임 단위로 정의해주기 때문에 메시지 형식에 대한 고민과 파싱 로직을 따로 구현할 필요가 없어진다        
+  하지만, STOMP를 사용하면 WebSocket에서 메시지가 어떤 형식으로 사용될지 프레임 단위로 정의해주기 때문에
+  메시지 형식에 대한 고민과 파싱 로직을 따로 구현할 필요가 없어진다        
   
 - 두번째!            
    STOMP를 사용하면, 웹소켓만 사용할 때와 다르게 하나의 연결주소마다 새로운 핸들러 클래스를 따로 구현할 필요없다                   
