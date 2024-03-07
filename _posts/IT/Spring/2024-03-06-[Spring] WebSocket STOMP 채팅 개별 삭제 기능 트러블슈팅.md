@@ -122,7 +122,7 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 
 
 
-## [3] 채팅메세지 개별 삭제기능 전체 코드     
+## [3] 채팅메세지 개별 삭제 기능 전체 코드     
 
 ### 1. ChatController의 deleteChatMessage 메서드        
 
