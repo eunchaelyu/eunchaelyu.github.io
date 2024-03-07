@@ -74,7 +74,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/ws-stomp") // 연결될 Endpoint
                 .setAllowedOriginPatterns("*") // 해당 도메인에서만 웹소켓 연결 허용. 개발 중에는 모두 허용하되 필요에 따라 조정
                 .withSockJS() // websocket 관련 자바스크립트 라이브러리 SockJS 설정
-                .setHeartbeatTime(1000); // 클라이언트 - 서버 연결 상태 확인 주기 : 1초
+                .setHeartbeatTime(10000); // 클라이언트 - 서버 연결 상태 확인 주기 : 10초
     }
 
     @Override
@@ -312,23 +312,23 @@ Body^@
 
 
 ## [6] 웹소켓 위에 STOMP를 사용하는 이유  
-### 1.    
+### 1. 메시지 형식의 고민 해결
 - 웹소켓은 양방향으로 메시지를 주고 받을 수 있지만, 프로젝트가 커지면 메시지 형식이나 파싱에 대한 고민이 필요하다        
 - 정의된 메시지 형식대로 파싱하는 로직 또한 따로 구현해야한다          
-- 하지만, STOMP를 사용하면 WebSocket에서 메시지가 어떤 형식으로 사용될지 프레임 단위로 정의해주기 때문에
-- 메시지 형식에 대한 고민과 파싱 로직을 따로 구현할 필요가 없어진다        
+- 하지만, STOMP를 사용하면 WebSocket에서 메시지가 어떤 형식으로 사용될지 프레임 단위로 정의해주기 때문에 메시지 형식에 대한 고민과 파싱 로직을 따로 구현할 필요가 없어진다            
   
-### 2.           
+### 2. 간편한 핸들러 클래스 관리          
 - STOMP를 사용하면, 웹소켓만 사용할 때와 다르게 하나의 연결주소마다 새로운 핸들러 클래스를 따로 구현할 필요없다                   
 - @Controller 어노테이션을 사용해서 간편하게 처리할 수 있다          
 
-### 3.          
+### 3. 외부 메시지 큐와의 연동 가능          
 - STOMP를 사용하면 Spring과 같은 프레임워크가 기본적으로 제공하는 내장 메시지 브로커가 아닌 외부 메시지 큐(Kafka, RabbitMQ 등)를 연동하여 사용할 수 있다        
 
-### 4.           
+### 4. 메시지 보안 설정 가능           
 - Spring Security를 사용할 수 있기 때문에 주고받는 메시지에 대한 보안설정을 할 수 있다    
     
-- 위의 4가지 이유때문에 웹소켓에 STOMP를 얹어 사용하는 방식을 채택했다        
+
+위의 4가지 이유때문에 웹소켓에 STOMP를 얹어 사용하는 방식을 채택했다        
 
 [STOMP 동작 흐름]
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a55bafa0-30a5-4f19-8a17-9cfb78c1c63c)   
