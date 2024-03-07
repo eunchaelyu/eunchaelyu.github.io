@@ -9,8 +9,8 @@ img_path: '/posts/20240216'
 ---
 
 # 무중단 배포 구현하기 - (5)     
-    13. GitHub ACTIONS 워크플로우 생성 
-    14. GitHub ACTIONS 워크플로우 작성
+> 13. GitHub ACTIONS 워크플로우 생성 
+> 14. GitHub ACTIONS 워크플로우 작성
 
     
 ## [13] GitHub ACTIONS 워크플로우 생성       
