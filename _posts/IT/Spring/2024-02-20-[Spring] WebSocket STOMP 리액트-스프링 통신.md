@@ -1,5 +1,5 @@
 ---
-title: "[Spring] 리액트-스프링 통신 WebSocket STOMP"
+title: "[Spring] WebSocket STOMP 리액트-스프링 통신 "
 author: eunchaelyu
 date: 2024-02-20 14:21:00 +09:00
 categories: [IT, Spring]
