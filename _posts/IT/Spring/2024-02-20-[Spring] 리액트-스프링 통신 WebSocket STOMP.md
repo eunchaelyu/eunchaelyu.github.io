@@ -15,6 +15,7 @@ img_path: '/posts/20240220'
      4. WebSocket API를 사용하는 방법
      5. STOMP란?
      6. 웹소켓 위에 STOMP를 사용하는 이유
+     7. STOMP 동작 흐름
 
     
 ## [1] 웹소켓이란?        
@@ -330,7 +331,8 @@ Body^@
 
 위의 4가지 이유때문에 웹소켓에 STOMP를 얹어 사용하는 방식을 채택했다        
 
-[STOMP 동작 흐름]
+## [7] STOMP 동작 흐름    
+
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a55bafa0-30a5-4f19-8a17-9cfb78c1c63c)   
 
 - 1) 수신자는 /topic 경로를 구독하고 있고 발행자는 /app 혹은 /topic으로 메시지를 보내는 모습을 확인할 수 있다        
