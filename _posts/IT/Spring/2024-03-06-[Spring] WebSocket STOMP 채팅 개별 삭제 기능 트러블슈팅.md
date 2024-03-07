@@ -128,12 +128,6 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 ### 1. ChatController의 deleteChatMessage 메서드            
 
 ```java    
-    /**
-     * 특정 challenge와 연관된 메시지 ID를 사용하여 채팅 메시지를 삭제
-     * @param challengeId 삭제할 챌린지의 ID
-     * @param messageId   삭제할 메시지의 ID
-     * @return 삭제 작업 결과를 포함하는 BaseResponseDto를 담은 ResponseEntity
-     */
     @DeleteMapping("/api/chat/{challengeId}/{messageId}")
     public ResponseEntity<BaseResponseDto<String>> deleteChatMessage(@PathVariable String challengeId,
                                                                      @PathVariable String messageId) {
@@ -150,12 +144,6 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 ### 2. ChatMessageService의 deleteChatMessage 메서드    
 
 ```java    
-    /**
-     * 채팅 메시지를 삭제하는 메서드
-     * @param challengeId 챌린지 식별자
-     * @param messageId 삭제할 메시지 번호
-     * @return 삭제 성공 여부
-     */
     public boolean deleteChatMessage(String challengeId, String messageId) {
         boolean deleteSuccess = chatRoomRepository.deleteMessageById(challengeId, messageId);
 
@@ -176,13 +164,6 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 ### 3. ChatRoomRepository의 deleteMessageById 메서드       
 
 ```java    
-    /**
-     * 특정 챌린지방에서 messageId를 사용하여 메시지를 삭제하는 메서드
-     *
-     * @param messageId   삭제할 메시지의 UUID 식별자
-     * @param challengeId 챌린지 식별자
-     * @return 삭제가 성공하면 true, 실패하면 false 반환
-     */
     public boolean deleteMessageById(String challengeId, String messageId) {
         String key = CHAT_ROOM_PREFIX + challengeId;
         List<Object> messages = listOperations.range(key, 0, -1);
