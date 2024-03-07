@@ -8,7 +8,7 @@ pin: true
 img_path: '/posts/20240306'
 ---
 
-# WWebSocket STOMP 채팅 개별 삭제 트러블슈팅 
+# WebSocket STOMP 채팅 개별 삭제 트러블슈팅 
      1. java.lang.ClassCastException
      2. 삭제한 사용자만 업데이트 되는 현상    
      3. 채팅메세지 개별 삭제기능 전체 코드    
