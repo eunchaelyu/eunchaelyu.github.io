@@ -27,7 +27,7 @@ img_path: '/posts/20240306'
 
 ### 수정 전 코드    
 
-```
+```java
     public boolean deleteMessageById(String challengeId, String messageId) {
         String key = CHAT_ROOM_PREFIX + challengeId;
         List<Object> messages = listOperations.range(key, 0, -1);
@@ -44,7 +44,7 @@ img_path: '/posts/20240306'
 
 ### 수정 후 코드    
 
-```
+```java
 public boolean deleteMessageById(String challengeId, String messageId) {
     String key = CHAT_ROOM_PREFIX + challengeId;
     List<Object> messages = listOperations.range(key, 0, -1);
@@ -67,7 +67,7 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 
 ## [2] 삭제한 사용자만 업데이트 되는 현상        
 
-```
+```java
     public boolean deleteChatMessage(String challengeId, String messageId) {
         boolean deleteSuccess = chatRoomRepository.deleteMessageById(challengeId, messageId);
 
@@ -126,7 +126,7 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 
 ### 1. ChatController의 deleteChatMessage 메서드        
 
-```
+```java
     /**
      * 특정 challenge와 연관된 메시지 ID를 사용하여 채팅 메시지를 삭제
      * @param challengeId 삭제할 챌린지의 ID
@@ -150,7 +150,7 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 
 ### 2. ChatMessageService의 deleteChatMessage 메서드
 
-```
+```java
     /**
      * 채팅 메시지를 삭제하는 메서드
      * @param challengeId 챌린지 식별자
@@ -176,7 +176,7 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 
 ### 3. ChatRoomRepository의 deleteMessageById 메서드 
 
-```
+```java
     /**
      * 특정 챌린지방에서 messageId를 사용하여 메시지를 삭제하는 메서드
      *
