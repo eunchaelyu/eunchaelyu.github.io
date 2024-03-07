@@ -123,61 +123,7 @@ public boolean deleteMessageById(String challengeId, String messageId) {
       
 
 
-## [3] 채팅메세지 개별 삭제 기능 전체 코드     
 
-### 1. ChatController의 deleteChatMessage 메서드            
-
-```java    
-    @DeleteMapping("/api/chat/{challengeId}/{messageId}")
-    public ResponseEntity<BaseResponseDto<String>> deleteChatMessage(@PathVariable String challengeId,
-                                                                     @PathVariable String messageId) {
-        boolean deleteSuccess = chatMessageService.deleteChatMessage(challengeId, messageId);
-        if (deleteSuccess) {
-            return ResponseEntity.ok().body(new BaseResponseDto<>(null, "채팅 메시지가 성공적으로 삭제되었습니다.", HttpStatus.OK));
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new BaseResponseDto<>(null, "채팅 메시지 삭제에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR));
-        }
-    }
-```
-
-### 2. ChatMessageService의 deleteChatMessage 메서드    
-
-```java    
-    public boolean deleteChatMessage(String challengeId, String messageId) {
-        boolean deleteSuccess = chatRoomRepository.deleteMessageById(challengeId, messageId);
-
-        // 삭제 성공 시 삭제된 메시지 정보를 해당 채팅방의 모든 구독자에게 전송
-        if (deleteSuccess) {
-            ChatMessage deletedMessage = new ChatMessage();
-            deletedMessage.setMessageId(messageId);
-            deletedMessage.setType(ChatMessage.MessageType.DELETE);
-
-            // 해당 채팅방의 모든 구독자에게 삭제된 메시지 정보 전송
-            messagingTemplate.convertAndSend(String.format("/sub/chat/challenge/%s", challengeId), deletedMessage);
-        }
-        return deleteSuccess;
-    }
-```    
-
-
-### 3. ChatRoomRepository의 deleteMessageById 메서드       
-
-```java    
-    public boolean deleteMessageById(String challengeId, String messageId) {
-        String key = CHAT_ROOM_PREFIX + challengeId;
-        List<Object> messages = listOperations.range(key, 0, -1);
-        for (Object message : messages) {
-            Map<String, Object> messageMap = (Map<String, Object>) message;
-            if (messageMap.get("messageId").equals(messageId)) {
-                listOperations.remove(key, 1, message);
-                return true;
-            }
-        }
-        return false; // 삭제 실패
-    }
-}
-```    
 
 
 
