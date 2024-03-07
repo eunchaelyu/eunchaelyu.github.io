@@ -9,9 +9,9 @@ img_path: '/posts/20240216'
 ---
 
 # 무중단 배포 구현하기 - (3)     
-    7. 스프링부트(Springboot) 프로젝트 설정      
-    8. HealthCheck 컨트롤러 생성  
-    9. application.yml 세팅    
+> 7. 스프링부트(Springboot) 프로젝트 설정      
+> 8. HealthCheck 컨트롤러 생성  
+> 9. application.yml 세팅    
 
                   
 
