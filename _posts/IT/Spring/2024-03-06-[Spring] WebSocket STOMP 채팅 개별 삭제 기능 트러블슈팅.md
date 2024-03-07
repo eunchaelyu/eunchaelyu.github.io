@@ -112,13 +112,17 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 
 <결과>        
 
-- [실시간 채팅 메세지 작성]                
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f1ebfaa4-9e0d-49f2-beea-a084dbcb6f3c)                
+- [실시간 채팅 메세지 작성]
+         
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f1ebfaa4-9e0d-49f2-beea-a084dbcb6f3c)      
 
-- [삭제 요청]        
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f9b1aa11-acf5-46f4-b225-37eb70a94400)            
+- [삭제 요청]
   
-- [삭제 완료 & 구독자들에게 동일하게 실시간 반영]        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f9b1aa11-acf5-46f4-b225-37eb70a94400)
+       
+  
+- [삭제 완료 & 구독자들에게 동일하게 실시간 반영]
+  
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ddd291c4-09b7-4e69-bca8-a66bb16aeb6f)        
 
 
