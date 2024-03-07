@@ -60,7 +60,8 @@ img_path: '/posts/20240220'
 
   
 ## [4]  WebSocket API를 사용하는 방법    
-### 1. WebSocketConfig    
+### 1. WebSocketConfig      
+
 ```java    
 @Configuration
 @EnableWebSocketMessageBroker
@@ -94,190 +95,203 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 }
 ```
 
-- ``@EnableWebSocketMessageBrokerWebSocket`` 서버를 활성화하는 데 사용된다    
-- ``WebSocketMessageBrokerConfigurer`` 인터페이스를 구현하여 웹소켓 연결을 구성에 필요한 일부 메소드에 대한 구현을 제공한다        
+- @EnableWebSocketMessageBrokerWebSocket: 서버를 활성화하는 데 사용된다        
+- WebSocketMessageBrokerConfigurer: 인터페이스를 구현하여 웹소켓 연결을 구성에 필요한 일부 메소드에 대한 구현을 제공한다            
 
-```java    
-    @Override
-    // Stomp 엔드포인트 등록: 특정 도메인에서만 웹소켓 연결을 허용
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws-stomp") 
-                .setAllowedOriginPatterns("*") 
-                .withSockJS() 
-                .setHeartbeatTime(1000); 
-    }
-```    
+- registry.addEndpoint("/ws-stomp"): 클라이언트 측에서 연결할 때 사용할 엔드포인트 설정                  
+- .setAllowedOriginPatterns("*"): 해당 도메인에서만 웹소켓 연결 허용하되 개발 중에는 모두 허용하고("*") 필요에 따라 조정한다        
 
-- 클라이언트 측에서 연결할 때 사용할 엔드포인트를 ``ws-stomp``로 설정했다
-- 해당 도메인에서만 웹소켓 연결 허용하되 개발 중에는 모두 허용하고("*") 필요에 따라 조정한다    
-- ``withSockJS()``끝점 구성과 함께 사용한다. SockJS는 웹소켓을 지원하지 않는 브라우저에 대한 대체 옵션을 활성화 함    
-- 클라이언트와 서버의 연결 상태 확인 주기 : 1초로 설정한다      
+- withSockJS(): SockJS는 웹소켓을 지원하지 않는 브라우저와 환경에서도 웹소켓을 대체할 수 있다            
 
-```java    
-    @Override
-    // 
-    public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/queue", "/sub"); 
-        registry.setApplicationDestinationPrefixes("/pub"); 
-    }
-```
+- Heartbeat는 네트워크 상에서 연결이 유지되고 있는지를 확인하기 위한 신호이다    
+  SockJS 프로토콜은 서버가 주기적으로 Heartbeat Message 전송하여, 프록시가 커넥션이 끊겼다고 판단하지 않도록 한다    
+  클라이언트와 서버의 연결 상태 확인 주기를 10초로 설정한다          
 
-- 위의 코드는 메시지 브로커를 설정하는 코드이다
-- 수신 메시지를 받는 데 사용되는 URL:  ``/queue``는 개별 메시지, ``/sub``는 해당 주제를 구독한 이들의 전체 메시지를 나타낸다
-- 송신 메시지를 전송하는 데 사용되는 URL: 클라이언트 측에서 메세지 전송 시 ``/pub``로 시작하는 메시지는 처리 메서드로 라우팅된다
-
-```java    
-    @Override
-    public void configureWebSocketTransport(WebSocketTransportRegistration registration) {
-        registration.setMessageSizeLimit(64 * 1024); 
-        registration.setSendTimeLimit(10 * 10000); 
-        registration.setSendBufferSizeLimit(512 * 1024); 
-    }
-```
-
-- 웹소켓 전송 설정 조정하는 코드이다
-- 메시지 최대 크기 default : 64 * 1024
-- 메시지 전송 시간 default : 10 * 10000
-- 버퍼 사이즈 default : 512 * 1024
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/31665668-70cc-44e8-9cb5-5ff944fd9626)    
+- 클라이언트에서도 서버로 10초간격으로 Heartbeat를 보내고 있다        
+  
+- configureMessageBroker: 메시지 브로커를 설정하는 코드     
+- 수신 메시지를 받는 데 사용되는 URL에서  ``/queue``는 개별 메시지, ``/sub``는 해당 주제를 구독한 이들의 전체 메시지를 나타낸다      
+- 송신 메시지를 전송하는 데 사용되는 URL에서 클라이언트 측에서 메세지 전송 시 ``/pub``로 시작하는 메시지는 처리 메서드로 라우팅된다      
 
 
-### 2. ChatMessage에서 모델 생성    
+
+### 2. ChatMessage에서 모델 생성      
 
 ```java    
 @Getter
 @Setter
 public class ChatMessage {
+    private String messageId;
     private MessageType type;
     private String message;
     private String sender;
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime time;
+
+    private String memberId;
+    private String challengeId;
+    private String profileImageUrl;
 
     public enum MessageType {
         CHAT,
         JOIN,
-        LEAVE
+        LEAVE,
+        DELETE
     }
-
     public MessageType getType() {
         return type;
     }
-
     public void setType(MessageType type) {
         this.type = type;
     }
-
-    public String getContent() {
-        return message;
-    }
-
-    public void setContent(String content) {
-        this.message = content;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
     public void setSender(String sender) {
         this.sender = sender;
+    }
+    public LocalDateTime getTime() {
+        return time;
+    }
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 }
 ```
 
 - ChatMessage모델은 클라이언트와 서버 간에 교환될 메시지 페이로드이다    
+- messageId: 메시지의 고유 식별자
+- type: 메시지의 종류를 나타내는 열거형 변수이고 상태에 따라 CHAT, JOIN, LEAVE, DELETE로 지정    
+- message: 메시지의 내용       
+- sender: 메시지를 보낸 사용자의 닉네임     
+- time: 메시지가 보내진 시간
+  이 필드는 LocalDateTime 형식으로 정의      
+  @JsonSerialize, @JsonDeserialize, @JsonFormat 어노테이션을 사용하여 JSON 직렬화 및 역직렬화 시에 날짜와 시간을 어떤 형식으로 표현할지를 지정한다        
+- memberId: 채팅을 보낸 사용자의 고유 식별자     
+- challengeId: 챌린지의 고유 식별자     
+- profileImageUrl: 채팅을 보낸 사용자의 프로필 이미지 URL     
 
 
-### 3. 메세지를 주고받기 위한 ChatController    
+
+### 3. 메세지를 주고받기 위한 ChatController        
 
 ```java    
-@Controller
+@RestController
 public class ChatController {
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/sub/chat/challenge/{challengeId}")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-        chatMessage.setTime(LocalDateTime.now());
-        return chatMessage;
+
+    private final ChatMessageService chatMessageService;
+
+    @Autowired
+    public ChatController(ChatMessageService chatMessageService) {
+        this.chatMessageService = chatMessageService;
     }
 
-    @MessageMapping("/chat.addUser")
-    @SendTo("/sub/chat/challenge/{challengeId}")
-    public ChatMessage addUser(@Payload ChatMessage chatMessage) {
-        chatMessage.setTime(LocalDateTime.now());
-        return chatMessage;
+    /**
+     * 채팅 메시지 보내는 메서드
+     * @param chatMessage type, message, sender, time, memberId, challengeId, profileImageUrl, currentMemberList
+     * @param challengeId 접속한 챌린지 방 id
+     * @param message 사용자가 보내는 메시지 내용
+     */
+    @MessageMapping("/chat.sendMessage/{challengeId}")
+    public void sendMessage(@Payload ChatMessage chatMessage,
+                            @DestinationVariable("challengeId") String challengeId,
+                            Message<?> message) {
+        chatMessageService.saveMessage(challengeId, chatMessage, message);
     }
+}
 ```
 
-- ``@MessageMapping``: websocket 구성에 따라 대상이 ``/pub``로 시작하는 클라이언트에서 보낸 모든 메시지는 주석이 달린 ``/pub`` 메시지 처리 방법으로 라우팅된다    
-  예시    
-- ``sendMessage()``:  메서드 ``/pub/chat.sendMessage``로 라우팅되고        
-- ``addUser()``: 메서드 ``/app/chat.addUser``로 라우팅된다       
+- @MessageMapping: websocket 구성에 따라 대상이 ``/pub``로 시작하는 클라이언트에서 보낸 모든 메시지는 주석이 달린 ``/pub`` 메시지 처리 방법으로 라우팅된다      
+- 클라이언트에서 /pub/chat.sendMessage/{challengeId}로 메시지를 보낼 때 sendMessage 메서드가 호출되도록 매핑한다는 의미이다 (challengeId는 동적인 값)     
+- @Payload ChatMessage chatMessage: 클라이언트에서 보낸 메시지를 나타내는 ChatMessage 객체를 받는다
+- @DestinationVariable("challengeId") String challengeId: 클라이언트에서 보낸 메시지의 목적지를 나타낸다    
+- Message<?> message: 메시지 관련 정보를 담고 있는 스프링의 Message 객체를 받고 메시지의 헤더, 페이로드 등의 정보가 포함되어 있다
 
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/9f2da24c-ef1e-4ee2-887d-7f4022e20d19)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a2475730-10b4-4dc8-a134-59ab7c66ec38)      
 
-### 4. WebSocket 이벤트 리스너    
+- @SendTo 어노테이션은 SpEL(Spring Expression Language)을 지원하지 않아 동적으로 경로를 생성할 수 없다      
+- 따라서, @SendTo 대신 SimpMessageSendingOperations을 사용해 메서드 내에서 조건에 따라 메시지를 전송할 대상 주소를 동적으로 결정할 수 있다          
+- 클라이언트가 전송한 challengeId에 따라 메시지를 적절한 대상에게 동적으로 라우팅할 수 있다      
+
+  
+### 4. WebSocket 이벤트 리스너        
 
 ```java    
+/**
+ * WebSocket 이벤트를 처리하는 리스너 클래스입니다.
+ */
 @Component
 public class WebSocketEventListener {
+
     private static final Logger logger = LoggerFactory.getLogger(WebSocketEventListener.class);
 
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
     @Autowired
-    private ChallengerRepository challengerRepository;
+    private ChatRoomService chatRoomService;
 
     @Autowired
-    private ChallengeRepository challengeRepository;
+    private ChatRoomRepository chatRoomRepository;
 
-    @Autowired
-    private MemberRepository memberRepository;
-
+    /**
+     * 웹 소켓 연결 이벤트를 처리하는 메서드입니다.
+     * @param event 세션 연결 이벤트 객체
+     */
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
         logger.info("Received a new web socket connection");
-        // 이벤트에서 Stomp 헤더 접근
-        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-        // 챌린지 ID 가져오기
-        Long challengeId = (Long) headerAccessor.getSessionAttributes().get("challengeId");
-        // 회원 ID 가져오기
-        Long memberId = (Long) headerAccessor.getSessionAttributes().get("memberId");
-
-        if (challengeId != null && memberId != null) {
-            // 챌린지와 회원 엔터티를 찾음
-            Optional<Challenge> challengeOptional = challengeRepository.findById(challengeId);
-            Optional<Member> memberOptional = memberRepository.findById(memberId);
-
-            // 챌린지와 회원이 존재하는 경우에만 처리
-            if (challengeOptional.isPresent() && memberOptional.isPresent()) {
-                Optional<Challenger> challengerOptional = challengerRepository.findByChallengeAndMember(challengeOptional.get(), memberOptional.get());
-                // 챌린저가 존재하는 경우 닉네임을 세션에 저장
-                challengerOptional.ifPresent(challenger -> headerAccessor.getSessionAttributes().put("nickname", challenger.getMember().getNickname()));
-            }
-        }
     }
 
+    /**
+     * 웹 소켓 연결 종료 이벤트를 처리하는 메서드입니다.
+     * @param event 세션 연결 종료 이벤트 객체
+     */
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
         String nickname = (String) headerAccessor.getSessionAttributes().get("nickname");
-        if(nickname != null) {
+        String challengeId = (String) headerAccessor.getSessionAttributes().get("challengeId");
+        String messageId = UUID.randomUUID().toString();
+
+        if (nickname != null && challengeId != null) {
             logger.info("User Disconnected : " + nickname);
 
+            // 채팅방에서 사용자를 제거하는 로직 호출
+            chatRoomService.userLeftRoom(challengeId, nickname);
+
+            // 사용자가 나갔음을 다른 클라이언트에 알리는 메시지 전송
             ChatMessage chatMessage = new ChatMessage();
             chatMessage.setType(ChatMessage.MessageType.LEAVE);
             chatMessage.setSender(nickname);
-            chatMessage.setTime(LocalDateTime.now());
+            chatMessage.setChallengeId(challengeId);
+            chatMessage.setMessageId(messageId);
 
-            messagingTemplate.convertAndSend( "/sub/chat/challenge/{challengeId}", chatMessage);
+            // Redis에 채팅 메시지 저장
+            chatRoomRepository.saveChatMessage(challengeId, chatMessage);
+
+            messagingTemplate.convertAndSend(String.format("/sub/chat/challenge/%s", challengeId), chatMessage);
         }
-    }    
+    }
 }
 ```
 
 -  소켓 연결 및 연결 해제 이벤트를 수신하는 코드이다    
--  채팅에 참여중인지, 나간 상태인지 기록도 가능하다    
+
+- handleWebSocketConnectListener      
+  웹 소켓 연결 이벤트를 처리한다        
+  클라이언트가 새로운 웹 소켓 연결을 시도할 때마다 호출된다
+
+- handleWebSocketDisconnectListener        
+  웹 소켓 연결 종료 이벤트를 처리한다          
+  클라이언트가 웹 소켓 연결을 종료할 때 호출된다        
+  종료된 세션의 헤더 정보를 가져와서 사용자의 닉네임과 챌린지 ID를 추출한다        
+  사용자가 채팅방에서 나갔음을 기록하고, 다른 클라이언트에 이를 알리는 메시지를 생성한다    
+  생성된 메시지를 Redis에 저장하고, 해당 채팅방의 모든 클라이언트에게 해당 메시지를 전송한다    
+
 
 
 ## [5] STOMP란?        
@@ -298,30 +312,29 @@ Body^@
 
 
 ## [6] 웹소켓 위에 STOMP를 사용하는 이유  
-- 첫번째!      
-  웹소켓은 양방향으로 메시지를 주고 받을 수 있지만, 프로젝트가 커지면 메시지 형식이나 파싱에 대한 고민이 필요하다        
-  정의된 메시지 형식대로 파싱하는 로직 또한 따로 구현해야한다          
-  하지만, STOMP를 사용하면 WebSocket에서 메시지가 어떤 형식으로 사용될지 프레임 단위로 정의해주기 때문에
-  메시지 형식에 대한 고민과 파싱 로직을 따로 구현할 필요가 없어진다        
+### 1.    
+- 웹소켓은 양방향으로 메시지를 주고 받을 수 있지만, 프로젝트가 커지면 메시지 형식이나 파싱에 대한 고민이 필요하다        
+- 정의된 메시지 형식대로 파싱하는 로직 또한 따로 구현해야한다          
+- 하지만, STOMP를 사용하면 WebSocket에서 메시지가 어떤 형식으로 사용될지 프레임 단위로 정의해주기 때문에
+- 메시지 형식에 대한 고민과 파싱 로직을 따로 구현할 필요가 없어진다        
   
-- 두번째!            
-   STOMP를 사용하면, 웹소켓만 사용할 때와 다르게 하나의 연결주소마다 새로운 핸들러 클래스를 따로 구현할 필요없다                   
-  @Controller 어노테이션을 사용해서 간편하게 처리할 수 있다          
+### 2.           
+- STOMP를 사용하면, 웹소켓만 사용할 때와 다르게 하나의 연결주소마다 새로운 핸들러 클래스를 따로 구현할 필요없다                   
+- @Controller 어노테이션을 사용해서 간편하게 처리할 수 있다          
 
-- 세번째!              
-  STOMP를 사용하면 Spring과 같은 프레임워크가 기본적으로 제공하는 내장 메시지 브로커가 아닌 외부 메시지 큐(Kafka, RabbitMQ 등)를 연동하여 사용할 수 있다        
+### 3.          
+- STOMP를 사용하면 Spring과 같은 프레임워크가 기본적으로 제공하는 내장 메시지 브로커가 아닌 외부 메시지 큐(Kafka, RabbitMQ 등)를 연동하여 사용할 수 있다        
 
-- 네번째!                
-  Spring Security를 사용할 수 있기 때문에 주고받는 메시지에 대한 보안설정을 할 수 있다    
+### 4.           
+- Spring Security를 사용할 수 있기 때문에 주고받는 메시지에 대한 보안설정을 할 수 있다    
     
-위의 4가지 이유때문에 웹소켓에 STOMP를 얹어 사용하는 방식을 채택했다        
+- 위의 4가지 이유때문에 웹소켓에 STOMP를 얹어 사용하는 방식을 채택했다        
 
 [STOMP 동작 흐름]
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a55bafa0-30a5-4f19-8a17-9cfb78c1c63c)
-  출처: https://technicalsand.com/spring-server-sent-events/    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a55bafa0-30a5-4f19-8a17-9cfb78c1c63c)   
 
-1) 수신자는 /topic 경로를 구독하고 있고 발행자는 /app 혹은 /topic으로 메시지를 보내는 모습을 확인할 수 있다        
-2) 발행자가 /topic을 destination 헤더로 넣어 메시지를 메시지 브로커를 통해 보내면 바로 수신자에게 도착하고    
-3) /app 경로로 메시지를 보내면 가공처리를 거쳐 /topic이라는 경로를 담아 메시지 브로커에게 전달하면    
-4) 메시지 브로커는 전달받은 메시지를 /topic을 구독하는 구독자들에게 최종적으로 전달한다            
+- 1) 수신자는 /topic 경로를 구독하고 있고 발행자는 /app 혹은 /topic으로 메시지를 보내는 모습을 확인할 수 있다        
+- 2) 발행자가 /topic을 destination 헤더로 넣어 메시지를 메시지 브로커를 통해 보내면 바로 수신자에게 도착하고    
+- 3) /app 경로로 메시지를 보내면 가공처리를 거쳐 /topic이라는 경로를 담아 메시지 브로커에게 전달하면    
+- 4) 메시지 브로커는 전달받은 메시지를 /topic을 구독하는 구독자들에게 최종적으로 전달한다            
 
