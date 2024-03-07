@@ -9,13 +9,13 @@ img_path: '/posts/20240220'
 ---
 
 # 리액트-스프링 통신 WebSocket STOMP   
-     1. 웹소켓이란?
-     2. WebSocket VS HTTP  
-     3. 기술적 스택 결정  
-     4. WebSocket API를 사용하는 방법
-     5. STOMP란?
-     6. 웹소켓 위에 STOMP를 사용하는 이유
-     7. STOMP 동작 흐름
+> 1. 웹소켓이란?
+> 2. WebSocket VS HTTP  
+> 3. 기술적 스택 결정  
+> 4. WebSocket API를 사용하는 방법
+> 5. STOMP란?
+> 6. 웹소켓 위에 STOMP를 사용하는 이유
+> 7. STOMP 동작 흐름
 
     
 ## [1] 웹소켓이란?        
