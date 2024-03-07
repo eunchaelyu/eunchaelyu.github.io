@@ -15,7 +15,7 @@ img_path: '/posts/20240306'
 
     
 ## [1] java.lang.ClassCastException       
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e015156d-b575-4c2d-8718-4584300c7d79)
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/e015156d-b575-4c2d-8718-4584300c7d79)    
 
 - java.lang.ClassCastException은 캐스팅 예외가 발생했다는 에러이다
 - "java.util.LinkedHashMap cannot be cast to class com.sparta.eroomprojectbe.domain.chat.entity.ChatMessage"라는 메시지가 나타나는데 쉽게 말해서 LinkedHashMap는 ChatMessage 객체로 캐스팅 되지 못한다는 것이다
@@ -96,22 +96,22 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 [서버에서 수정해야 할 부분]
 - 먼저 MessageType에 DELETE를 추가한다
 
-![스크린샷 2024-03-07 122000](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/1906e735-39da-423c-abd6-2f62a66fc665)        
+![스크린샷 2024-03-07 122000](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/1906e735-39da-423c-abd6-2f62a66fc665)            
 
 - ChatMessageService의 deleteChatMessage 메서드에서 삭제 성공 시
 - DELETE로 설정한 MessageType과 messageId를 ChatMessage에 저장한다       
 
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/c74a2ddf-4329-4d3e-8fe8-ffab46442941)
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/c74a2ddf-4329-4d3e-8fe8-ffab46442941)    
 
-- 삭제된 메시지 정보를 해당 채팅방의 모든 구독자에게 전송하는 추가 코드를 작성한다    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/cc3773cd-ef0b-4a00-9f18-5421eadb2397)
+- 삭제된 메시지 정보를 해당 채팅방의 모든 구독자에게 전송하는 추가 코드를 작성한다        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/cc3773cd-ef0b-4a00-9f18-5421eadb2397)    
 
-- 특정 채팅 메세지를 삭제할 경우 "/sub/chat/challenge/106"를 구독한 사용자들에게 삭제된 메세지 정보를 보내는 것을 볼 수 있다
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d5381338-64fc-4582-a1cc-a77e949d1f34)
+- 특정 채팅 메세지를 삭제할 경우 "/sub/chat/challenge/106"를 구독한 사용자들에게 삭제된 메세지 정보를 보내는 것을 볼 수 있다    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d5381338-64fc-4582-a1cc-a77e949d1f34)    
 
-
-- [실시간 채팅 메세지 작성]        
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f1ebfaa4-9e0d-49f2-beea-a084dbcb6f3c)        
+<결과>    
+- [실시간 채팅 메세지 작성]            
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f1ebfaa4-9e0d-49f2-beea-a084dbcb6f3c)            
 
 - [삭제 요청]        
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f9b1aa11-acf5-46f4-b225-37eb70a94400)    
