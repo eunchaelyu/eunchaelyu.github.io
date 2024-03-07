@@ -10,10 +10,10 @@ img_path: '/posts/20240301'
 
     
 # Redis 설치 및 연결 확인        
-    1. ElasticCache for Redis 인스턴스 생성하기
-    2. EC2 인스턴스에서 ElasticCache 실행하기
-    3. Spring으로 ElasticCache for Redis 사용하기
-    4. Redis 연결 확인    
+> 1. ElasticCache for Redis 인스턴스 생성하기
+> 2. EC2 인스턴스에서 ElasticCache 실행하기
+> 3. Spring으로 ElasticCache for Redis 사용하기
+> 4. Redis 연결 확인    
 
     
 ## [1] ElasticCache for Redis 인스턴스 생성하기
