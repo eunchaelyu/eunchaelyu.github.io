@@ -9,10 +9,10 @@ img_path: '/posts/20240216'
 ---
 
 # 무중단 배포 구현하기 - (1)     
-> 1. AWS EC2 인스턴스 생성 및 접속         
-> 2. EC2 Ubuntu에 도커 설치(docker, docker-compose)    
-> 3. 도커 허브 회원가입 후 토큰 발급 
-> 4. 도커 데스크탑 설치    
+ > 1. AWS EC2 인스턴스 생성 및 접속         
+ > 2. EC2 Ubuntu에 도커 설치(docker, docker-compose)    
+ > 3. 도커 허브 회원가입 후 토큰 발급 
+ > 4. 도커 데스크탑 설치    
 
 ## [1] AWS EC2 인스턴스 생성 및 접속- 완료한 상황      
 - AWS에서 인스턴스 생성 완료한 상황 (ubuntu, 프리티어)   
