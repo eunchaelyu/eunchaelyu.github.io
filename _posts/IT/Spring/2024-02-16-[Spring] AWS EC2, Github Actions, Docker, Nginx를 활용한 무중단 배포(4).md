@@ -9,11 +9,11 @@ img_path: '/posts/20240216'
 ---
 
 # 무중단 배포 구현하기 - (4)     
-    10. 도커 컴포즈 파일 설정 -blue, green  
-    11. 도커파일 작성(Dockerfile)
-    12. GitHub ACTIONS secrets 주입
-    13. GitHub ACTIONS 워크플로우 생성 
-    14. GitHub ACTIONS 워크플로우 작성
+> 10. 도커 컴포즈 파일 설정 -blue, green  
+> 11. 도커파일 작성(Dockerfile)
+> 12. GitHub ACTIONS secrets 주입
+> 13. GitHub ACTIONS 워크플로우 생성 
+> 14. GitHub ACTIONS 워크플로우 작성
     
 ## [10] 도커 컴포즈 파일 설정 - blue, green      
 
