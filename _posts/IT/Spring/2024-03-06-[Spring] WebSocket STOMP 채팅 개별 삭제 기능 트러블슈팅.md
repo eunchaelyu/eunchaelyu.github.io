@@ -113,19 +113,14 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 <결과>        
 
 - [실시간 채팅 메세지 작성]
-         
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f1ebfaa4-9e0d-49f2-beea-a084dbcb6f3c)      
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a227d59d-d957-4ff9-a219-fd18fa9ae071)    
+ 
+- [삭제 요청]    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b1b3da83-0851-4320-9ff1-6d13c8b77442)
 
-- [삭제 요청]
-  
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f9b1aa11-acf5-46f4-b225-37eb70a94400)
-       
-  
-- [삭제 완료 & 구독자들에게 동일하게 실시간 반영]
-  
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ddd291c4-09b7-4e69-bca8-a66bb16aeb6f)        
-
-
+- [삭제 완료 & 구독자들에게 동일하게 실시간 반영]    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/db9849f4-483b-40f2-85b8-a8da389eeff4)
+      
 
 
 ## [3] 채팅메세지 개별 삭제 기능 전체 코드     
@@ -150,9 +145,7 @@ public boolean deleteMessageById(String challengeId, String messageId) {
                     .body(new BaseResponseDto<>(null, "채팅 메시지 삭제에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR));
         }
     }
-```    
-
-
+```
 
 ### 2. ChatMessageService의 deleteChatMessage 메서드    
 
@@ -180,7 +173,7 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 ```    
 
 
-### 3. ChatRoomRepository의 deleteMessageById 메서드     
+### 3. ChatRoomRepository의 deleteMessageById 메서드       
 
 ```java    
     /**
