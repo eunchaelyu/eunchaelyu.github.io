@@ -9,8 +9,8 @@ img_path: '/posts/20240216'
 ---
 
 # 무중단 배포 구현하기 - (2)     
-> 5. Nginx 설치    
-> 6. Nginx 세팅    
+ > 5. Nginx 설치    
+ > 6. Nginx 세팅    
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/cec52020-2136-498a-81a5-f3d1a0dc8e88)
 - Nginx의 역할: 8080 blue 서버가 정상적으로 작동하고 있다면 green 서버를 켠다    
