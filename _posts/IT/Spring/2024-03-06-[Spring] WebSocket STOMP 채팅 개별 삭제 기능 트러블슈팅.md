@@ -110,19 +110,80 @@ public boolean deleteMessageById(String challengeId, String messageId) {
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d5381338-64fc-4582-a1cc-a77e949d1f34)    
 
 
-<결과>        
-
-- [실시간 채팅 메세지 작성]    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a227d59d-d957-4ff9-a219-fd18fa9ae071)        
- 
-- [삭제 요청]        
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b1b3da83-0851-4320-9ff1-6d13c8b77442)    
-
-- [삭제 완료 & 구독자들에게 동일하게 실시간 반영]        
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/db9849f4-483b-40f2-85b8-a8da389eeff4)    
-      
 
 
+## [3] 채팅메세지 개별 삭제 기능 전체 코드     
+
+### 1. ChatController의 deleteChatMessage 메서드            
+
+```java    
+    /**
+     * 특정 challenge와 연관된 메시지 ID를 사용하여 채팅 메시지를 삭제
+     * @param challengeId 삭제할 챌린지의 ID
+     * @param messageId   삭제할 메시지의 ID
+     * @return 삭제 작업 결과를 포함하는 BaseResponseDto를 담은 ResponseEntity
+     */
+    @DeleteMapping("/api/chat/{challengeId}/{messageId}")
+    public ResponseEntity<BaseResponseDto<String>> deleteChatMessage(@PathVariable String challengeId,
+                                                                     @PathVariable String messageId) {
+        boolean deleteSuccess = chatMessageService.deleteChatMessage(challengeId, messageId);
+        if (deleteSuccess) {
+            return ResponseEntity.ok().body(new BaseResponseDto<>(null, "채팅 메시지가 성공적으로 삭제되었습니다.", HttpStatus.OK));
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new BaseResponseDto<>(null, "채팅 메시지 삭제에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR));
+        }
+    }
+```
+
+### 2. ChatMessageService의 deleteChatMessage 메서드    
+
+```java    
+    /**
+     * 채팅 메시지를 삭제하는 메서드
+     * @param challengeId 챌린지 식별자
+     * @param messageId 삭제할 메시지 번호
+     * @return 삭제 성공 여부
+     */
+    public boolean deleteChatMessage(String challengeId, String messageId) {
+        boolean deleteSuccess = chatRoomRepository.deleteMessageById(challengeId, messageId);
+
+        // 삭제 성공 시 삭제된 메시지 정보를 해당 채팅방의 모든 구독자에게 전송
+        if (deleteSuccess) {
+            ChatMessage deletedMessage = new ChatMessage();
+            deletedMessage.setMessageId(messageId);
+            deletedMessage.setType(ChatMessage.MessageType.DELETE);
+
+            // 해당 채팅방의 모든 구독자에게 삭제된 메시지 정보 전송
+            messagingTemplate.convertAndSend(String.format("/sub/chat/challenge/%s", challengeId), deletedMessage);
+        }
+        return deleteSuccess;
+    }
+```    
+
+
+### 3. ChatRoomRepository의 deleteMessageById 메서드       
+
+```java    
+    /**
+     * 특정 챌린지방에서 messageId를 사용하여 메시지를 삭제하는 메서드
+     * @param messageId   삭제할 메시지의 UUID 식별자
+     * @param challengeId 챌린지 식별자
+     * @return 삭제가 성공하면 true, 실패하면 false 반환
+     */
+    public boolean deleteMessageById(String challengeId, String messageId) {
+        String key = CHAT_ROOM_PREFIX + challengeId;
+        List<Object> messages = listOperations.range(key, 0, -1);
+        for (Object message : messages) {
+            Map<String, Object> messageMap = (Map<String, Object>) message;
+            if (messageMap.get("messageId").equals(messageId)) {
+                listOperations.remove(key, 1, message);
+                return true;
+            }
+        }
+        return false; // 삭제 실패
+    }
+```    
 
 
 
