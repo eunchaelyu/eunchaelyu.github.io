@@ -213,8 +213,12 @@ public class ChatController {
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/a2475730-10b4-4dc8-a134-59ab7c66ec38)      
 
 - @SendTo 어노테이션은 SpEL(Spring Expression Language)을 지원하지 않아 동적으로 경로를 생성할 수 없다      
-- 따라서, @SendTo 대신 SimpMessageSendingOperations을 사용해 메서드 내에서 조건에 따라 메시지를 전송할 대상 주소를 동적으로 결정할 수 있다          
-- 클라이언트가 전송한 challengeId에 따라 메시지를 적절한 대상에게 동적으로 라우팅할 수 있다      
+- 즉, @SendTo 어노테이션은 Spring 프레임워크에서 메시지를 라우팅할 때 사용되지만 정적으로 정의된 값만을 사용한다    
+
+- 채팅방의 경우 클라이언트측에서 보내는 challegeId에 따라 동적으로 대상을 결정해야하므로     
+- @SendTo 대신 SimpMessageSendingOperations을 사용하는 것이 적합하다    
+- SimpMessageSendingOperations는 메서드 내에서 조건에 따라 메시지를 전송할 대상 주소를 동적으로 결정할 수 있기 때문에              
+- 클라이언트가 전송한 challengeId에 따라 메시지를 적절한 대상에게 유연하게 라우팅할 수 있다          
 
   
 ### 4. WebSocket 이벤트 리스너        
