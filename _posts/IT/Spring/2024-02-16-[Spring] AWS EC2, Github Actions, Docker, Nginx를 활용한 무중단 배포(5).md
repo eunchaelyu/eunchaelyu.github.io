@@ -100,7 +100,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/eroom-prod:latest
 ```
 - jar 파일을 스냅샷을 찍어서 이미지로 만든다    
-- ``eroom-prod:latest``라는 레포지토리로 도커 허브에 보낸다(push)
+- eroom-prod:latest라는 레포지토리로 도커 허브에 보낸다(push)
 
 ### STEP 6
 ```yml
@@ -128,8 +128,8 @@ jobs:
             echo "TARGET_UPSTREAM=blue" >> $GITHUB_ENV
           fi
 ```
-- ```needs: build```는 위의 파일이 정상적으로 실행되면 build 하겠다라는 뜻~
-- ```STATUS=$(curl -o /dev/null -w "%{http_code}" "http://${{ secrets.HOST_PROD }}/env") / echo $STATUS```는
+- needs: build는 위의 파일이 정상적으로 실행되면 build 하겠다라는 뜻~
+- STATUS=$(curl -o /dev/null -w "%{http_code}" "http://${{ secrets.HOST_PROD }}/env") / echo $STATUS는
 - 요청되는 코드와 상태를 반환해보기(200ok 인지 아닌지 확인)
 - $STATUS = 200 이 아니라면 CURRENT_UPSTREAM를 green으로 설정
 - CURRENT_UPSTREAM가 green이라면 CURRENT_PORT는 8081, STOPPED_PORT는 8080, TARGET_UPSTREAM은 blue로 설정이 돼서
@@ -137,7 +137,7 @@ jobs:
 - 현재 실행되고 있는 서버, 포트, 멈춰 있는 포트, 앞으로 실행될 서버가 정보에 담기게 됨
 
 - CURRENT_UPSTREAM에 green이 담겨서 env에 전달됨      
-- ```$GITHUB_ENV``` 전역변수에 담으면 아래에서 env. 으로 접근 가능함      
+- $GITHUB_ENV 전역변수에 담으면 아래에서 env. 으로 접근 가능함      
 
 
 ### 현재 상황          
@@ -146,7 +146,7 @@ jobs:
 - 아직 프록시 서버에서 스프링 부트 서버를 배포하지 않았기 때문에 404에러가 뜨는 것    
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/d12b4057-d4b5-4d6f-8170-3b70979f60a8)    
-- ``http://localhost:8080/env``로는 요청이 잘 가는 상태    
+- http://localhost:8080/env로는 요청이 잘 가는 상태    
   
   
 ### STEP 7    
@@ -166,7 +166,7 @@ jobs:
 - env 에 변수값을 담은 후 docker compose를 실행해야 한다
 - github actions에서 EC2로 접속을 해야한다
 - 이 때, SSH로 접속해야하기 때문에 자동으로 secrets에 등록한 PRIVATE_KEY가 담기게 됨    
-- shell 스크립트를 여러줄 실행시킬 때는 ``|`` 즉, or bar를 사용하면 된다    
+- shell 스크립트를 여러줄 실행시킬 때는 | 즉, or bar를 사용하면 된다    
 
 - 스크립트를 실행시킬 때는 관리자 권한으로 sudo 사용해서 실행시켜야 한다    
 - 아까 push 해둔 eroom-prod:latest 이미지를 EC2로부터 PULL 받는다    
@@ -208,7 +208,7 @@ jobs:
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b4de628d-d659-40d2-bb97-6a8dc9443943)    
 
-- 4. 정상적으로 8080 포트로 블루 서버만이 실행되고 있고 무중단배포가 완료된 것을 확인할 수 있다    
+- 4. 정상적으로 8080 포트로 블루 서버만이 실행되고 있고 무중단배포가 완료된 것을 확인할 수 있다        
 
 ### STEP 9    
 ```yml
@@ -223,12 +223,12 @@ jobs:
             sudo docker exec -i nginxserver bash -c 'echo "set \$service_url ${{ env.TARGET_UPSTREAM }};" > /etc/nginx/conf.d/service-env.inc && nginx -s reload'
 ```  
 - 다시 ssh 로 EC2 에 접속하고     
-- ```sudo docker exec -i nginxserver bash```는 nginxserver라는 서버에 접속한다    
+- sudo docker exec -i nginxserver bash는 nginxserver라는 서버에 접속한다    
 - 여기에 -c 를 같이 쓰면 접속한 것처럼 command만 사용할 수 있다    
 
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3552ca8f-174e-4c5f-98e2-f0d5bb5a7fea)    
-```'echo "set \$service_url ${{ env.TARGET_UPSTREAM }};"```    
-- service_url을 현재 ``env.TARGET_UPSTREAM``로 바꾼다        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3552ca8f-174e-4c5f-98e2-f0d5bb5a7fea)        
+- echo "set \$service_url ${{ env.TARGET_UPSTREAM }};"는       
+  service_url을 현재 ``env.TARGET_UPSTREAM``로 바꾼다는 것을 의미한다            
 - (현재 위의 사진처럼 green으로 돼있는 것을 blue로 바꾸는 것, 아직 배포가 안됐기 때문에 status가 200이 아니라 green으로 돼있음)    
 
 
