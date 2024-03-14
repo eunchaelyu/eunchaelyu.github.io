@@ -26,7 +26,8 @@ img_path: '/posts/20240216'
 ## [14] GitHub ACTIONS 워크플로우 작성
 - 단계별로 뜯어서 코드를 이해해보자
 
-### STEP 1            
+### STEP 1 CI/CD 기본 설정           
+
 ```yml
 # github repository actions 페이지에 나타날 이름
 name: CI/CD
@@ -43,7 +44,8 @@ permissions:
 - master에 push하면 actions 활성화가 된다
 - permissions는 읽기에 권한을 준다는 뜻! 
 
-### STEP 2    
+### STEP 2 JDK setting    
+
 ```yml
 jobs:
   build:
@@ -65,7 +67,8 @@ jobs:
 - Github Actions용 Java 프로젝트를 빌드하거나 실행하기 위한 JDK 버전 설정(JDK 17)        
 - uses: actions/checkout@v3: 새로운 코드 변경사항을 가져오기 위한 액션    
          
-### STEP 3   
+### STEP 3 Build with Gradle       
+
 ```yml
       - name: Build with Gradle
         run: |
@@ -91,7 +94,8 @@ jobs:
 ```
 - jar 파일을 ubuntu에서 만들었기 때문에 도커 로그인을 ubuntu에서 한다    
 
-### STEP 5    
+### STEP 5 Build Docker    
+
 ```yml
       - name: Build Docker
         run: docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/eroom-prod .
@@ -99,10 +103,12 @@ jobs:
       - name: Push Docker
         run: docker push ${{ secrets.DOCKER_USERNAME }}/eroom-prod:latest
 ```
+
 - jar 파일을 스냅샷을 찍어서 이미지로 만든다    
 - eroom-prod:latest라는 레포지토리로 도커 허브에 보낸다(push)
 
-### STEP 6
+### STEP 6 deploy    
+
 ```yml
   deploy:
     needs: build
@@ -128,6 +134,7 @@ jobs:
             echo "TARGET_UPSTREAM=blue" >> $GITHUB_ENV
           fi
 ```
+
 - needs: build는 위의 파일이 정상적으로 실행되면 build 하겠다라는 뜻~
 - STATUS=$(curl -o /dev/null -w "%{http_code}" "http://${{ secrets.HOST_PROD }}/env") / echo $STATUS는
 - 요청되는 코드와 상태를 반환해보기(200ok 인지 아닌지 확인)
@@ -149,7 +156,8 @@ jobs:
 - http://localhost:8080/env로는 요청이 잘 가는 상태    
   
   
-### STEP 7    
+### STEP 7 Docker compose 실행    
+
 ```yml
       - name: Docker compose
         uses: appleboy/ssh-action@master
@@ -174,7 +182,8 @@ jobs:
 - Dockerfile에 profiles랑 env 가 green, green으로 바껴서 green서버가 실행됨
 
 
-### STEP 8    
+### STEP 8 Check deploy server URL    
+
 ```yml
       - name: Check deploy server URL
         uses: jtalk/url-health-check-action@v3
@@ -186,6 +195,7 @@ jobs:
       - name: Wait for Load Balancer to Register Targets
         run: sleep 60
 ```
+
 - 10초마다 1번씩 최대 5번 요청하고 응답이 없다면 배포가 실패하게 됨    
 - 이 다음이 blue를 green으로 바꿔주는 작업인데 요청이 없다면 나중에 둘다 실행이 안되기 때문에 먼저 정상적으로 돌아간다는 체크 작업이 필요하다        
 
@@ -210,7 +220,8 @@ jobs:
 
 - 4. 정상적으로 8080 포트로 블루 서버만이 실행되고 있고 무중단배포가 완료된 것을 확인할 수 있다        
 
-### STEP 9    
+### STEP 9 Change nginx upstream    
+
 ```yml
       - name: Change nginx upstream
         uses: appleboy/ssh-action@master
@@ -221,7 +232,8 @@ jobs:
           script_stop: true
           script: |
             sudo docker exec -i nginxserver bash -c 'echo "set \$service_url ${{ env.TARGET_UPSTREAM }};" > /etc/nginx/conf.d/service-env.inc && nginx -s reload'
-```  
+```
+
 - 다시 ssh 로 EC2 에 접속하고     
 - sudo docker exec -i nginxserver bash는 nginxserver라는 서버에 접속한다    
 - 여기에 -c 를 같이 쓰면 접속한 것처럼 command만 사용할 수 있다    
@@ -232,7 +244,8 @@ jobs:
 - (현재 위의 사진처럼 green으로 돼있는 것을 blue로 바꾸는 것, 아직 배포가 안됐기 때문에 status가 200이 아니라 green으로 돼있음)    
 
 
-### STEP 10  
+### STEP 10  Stop current server    
+
 ```yml
       - name: Stop current server
         uses: appleboy/ssh-action@master
@@ -248,15 +261,16 @@ jobs:
       - name: Prune unused Docker images
         run: sudo docker image prune -a
 ```
+
 - 다시 EC2로 SSH 사용해서 접속 후      
 - 컨테이너 green을 중지 시키고 삭제한다        
 - 처음 배포할 때 이 과정에서 기존 실행 서버가 없어서 오류난다(첫 시도에서는 이 과정 에러 무시 해도 됨)
 
     
-### STEP 11      
+### STEP 11 Check Target Health      
 
 ```yml      
-      - name: Describe Target Health
+      - name: Check Target Health
         run: |
           aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:us-east-1:471112860836:targetgroup/eroomTargetGroup/029a9432dd208dc7 | jq -r '.TargetHealthDescriptions[].TargetHealth.State'
 ```      
