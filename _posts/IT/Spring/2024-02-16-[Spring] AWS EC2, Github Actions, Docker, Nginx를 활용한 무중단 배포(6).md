@@ -53,11 +53,14 @@ USER, PASSWORD, 엔드포인트 잘 기억해두고 Intellij에서 연결 및 ym
 
 
 ### 4. 로드밸런서 설정        
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/77f59e5c-5946-4906-853d-286736f56788)                
-- 8080,8081,443 포트로 연결된 리스너를 각각 생성한다        
-- eroomTargetGroup은 8080포트로 연 리스너와 연결             
-- eroomTargetGroup8081은 8081 포트로 연 리스너와 연결        
-- 각 대상그룹은 8080,8081 포트를 열어준다        
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/24ac9a06-30f2-4b69-9202-cded286c5cb4)    
+               
+- 8080,8081,443 포트로 연결된 리스너를 각각 생성한다
+
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/8c73dcac-cd9b-441a-bf3e-637654d9f806)    
+
+- eroomTargetGroup은 8080포트로 연 리스너와 연결            
+- 대상그룹은 8080,8081 포트를 열어준다        
 
 
 
