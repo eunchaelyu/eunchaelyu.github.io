@@ -204,20 +204,20 @@ jobs:
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f07150a4-ecb6-43d3-8085-a6579d127f3f)     
    
 
-- 1. 현재는 8081 포트로 그린 서버가 실행중이다    
+- 현재는 8081 포트로 그린 서버가 실행중이다    
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/250b3c0e-ff15-4dcd-92f0-58026ae9072c)      
 
-- 2. 새로운 버전으로 블루 서버를 실행하면서 sleep을 주는 과정을 확인한다    
+- 새로운 버전으로 블루 서버를 실행하면서 sleep을 주는 과정을 확인한다    
   
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b8ee9d42-cce6-42e1-bc8b-a2a58bcdb2a0)      
 
-- 3. 로드밸런서 대상그룹에 health check가 블루, 그린 서버 모두 완료된 것을 확인할 수 있다                
+- 로드밸런서 대상그룹에 health check가 블루, 그린 서버 모두 완료된 것을 확인할 수 있다                
      이전 버전으로 실행 중이였던 그린 서버도 healthy 상태이기 때문에 중지, 삭제가 가능한 상태이다            
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b4de628d-d659-40d2-bb97-6a8dc9443943)    
 
-- 4. 정상적으로 8080 포트로 블루 서버만이 실행되고 있고 무중단배포가 완료된 것을 확인할 수 있다        
+- 정상적으로 8080 포트로 블루 서버만이 실행되고 있고 무중단배포가 완료된 것을 확인할 수 있다        
 
 ### STEP 9 Change nginx upstream    
 
