@@ -36,10 +36,11 @@ img_path: '/posts/20240216'
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/08209b85-dfb4-40b7-b894-68c0c76ffc76)    
 
 - [x] 리액트 (프론트단) 배포 시    
-1. vercel로 "eroom-challenge.com"랑 "www.eroom-challenge.com" 도메인명으로 두 개 배포        
-2. "www.eroom-challenge.com"로 요청 시 "eroom-challenge.com"로 리다이렉트        
-3. env에 백엔드 url 설정 "https://api.eroom-challenge.com"    
-4. vercel 배포시 key, value 값에 "REACT_APP_SERVER_URL", "https://api.eroom-challenge.com" 각각 secrets로 저장하기    
+-  vercel로 "eroom-challenge.com"랑 "www.eroom-challenge.com" 도메인명으로 두 개 배포        
+-  "www.eroom-challenge.com"로 요청 시 "eroom-challenge.com"로 리다이렉트        
+-  env에 백엔드 url 설정 "https://api.eroom-challenge.com"    
+-  vercel 배포시 key, value 값에 "REACT_APP_SERVER_URL", "https://api.eroom-challenge.com" 각각 secrets로 저장하기
+  
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/0e0bafb7-b8a5-4ca4-baf3-b1d019987c1d)    
 
 - [x] 스프링 (백엔드) 배포 시    
