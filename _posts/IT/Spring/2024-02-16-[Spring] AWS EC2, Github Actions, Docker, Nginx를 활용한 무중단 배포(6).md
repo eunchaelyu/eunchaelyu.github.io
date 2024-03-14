@@ -26,7 +26,8 @@ img_path: '/posts/20240216'
 - 왜냐하면 EC2에서 포트 설정을 안해줬기 때문이다    
 
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/916ba4ca-d530-4f48-b9de-cfb8aeed27c8)    
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/9e9a2cf1-683e-4e2b-92f7-57f88d01aea5)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/ec90949e-15d0-4fd0-8335-53fd2ba7e5ac)    
+  
 
 - 현재 보안그룹 > 해당 인스턴스가 launcha-wizard-2로 잡혀있다( HTTP 80은 열려있다, HTTP 8081, HTTP 8080 열어줘야한다 )    
 
