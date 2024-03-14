@@ -26,7 +26,7 @@ img_path: '/posts/20240216'
 ## [14] GitHub ACTIONS 워크플로우 작성
 - 단계별로 뜯어서 코드를 이해해보자
 
-### STEP 1 CI/CD 기본 설정           
+### 📌 STEP 1 CI/CD 기본 설정           
 
 ```yml
 # github repository actions 페이지에 나타날 이름
@@ -44,7 +44,7 @@ permissions:
 - master에 push하면 actions 활성화가 된다
 - permissions는 읽기에 권한을 준다는 뜻! 
 
-### STEP 2 JDK setting    
+### 📌 STEP 2 JDK setting    
 
 ```yml
 jobs:
@@ -63,11 +63,10 @@ jobs:
 - build가 정상적으로 실행 되면 -> deploy 순차적으로 과정이 진행이 되고              
 - runs-on 이 build, deploy에 각각 있는데 ubuntu-latest(가상 PC)가 실행이 될 것이라는 뜻이다                
 - 가장 보편적이고 가볍기 때문에 이 운영체제(ubuntu)를 서버로 사용한다    
-
 - Github Actions용 Java 프로젝트를 빌드하거나 실행하기 위한 JDK 버전 설정(JDK 17)        
 - uses: actions/checkout@v3: 새로운 코드 변경사항을 가져오기 위한 액션    
          
-### STEP 3 Build with Gradle       
+### 📌 STEP 3 Build with Gradle       
 
 ```yml
       - name: Build with Gradle
@@ -84,7 +83,7 @@ jobs:
 - x test 옵션은 테스트를 실행하지 않도록 설정            
 - jar 파일이 만들어진다    
 
-### STEP 4    
+### 📌 STEP 4    
 ```yml
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -94,7 +93,7 @@ jobs:
 ```
 - jar 파일을 ubuntu에서 만들었기 때문에 도커 로그인을 ubuntu에서 한다        
 
-### STEP 5 Build Docker    
+### 📌 STEP 5 Build Docker    
 
 ```yml
       - name: Build Docker
@@ -107,7 +106,7 @@ jobs:
 - jar 파일을 스냅샷을 찍어서 이미지로 만든다        
 - eroom-prod:latest라는 레포지토리로 도커 허브에 보낸다(push)    
 
-### STEP 6 deploy    
+### 📌 STEP 6 deploy    
 
 ```yml
   deploy:
@@ -135,13 +134,10 @@ jobs:
           fi
 ```
 
-- needs: build는 위의 파일이 정상적으로 실행되면 build 하겠다라는 뜻~    
-- STATUS=$(curl -o /dev/null -w "%{http_code}" "http://${{ secrets.HOST_PROD }}/env") / echo $STATUS는 요청되는 코드와 상태를 반환해보기(200ok 인지 아닌지 확인)       
-- $STATUS = 200 이 아니라면 CURRENT_UPSTREAM를 green으로 설정    
-- CURRENT_UPSTREAM가 green이라면 CURRENT_PORT는 8081, STOPPED_PORT는 8080, TARGET_UPSTREAM은 blue로 설정이 돼서
-- 그 다음에 실행될 서버가 blue라는 것을 의미함
-- 현재 실행되고 있는 서버, 포트, 멈춰 있는 포트, 앞으로 실행될 서버가 정보에 담기게 됨
-
+- needs: build는 위의 파일이 정상적으로 실행되면 build 하겠다라는 뜻    
+- STATUS=$(curl -o /dev/null -w "%{http_code}" "http://${{ secrets.HOST_PROD }}/env") / echo $STATUS는 요청되는 코드와 상태를 반환해보기(200ok 인지 아닌지 확인) STATUS = 200 이 아니라면 CURRENT_UPSTREAM를 green으로 설정    
+- CURRENT_UPSTREAM가 green이라면 CURRENT_PORT는 8081, STOPPED_PORT는 8080, TARGET_UPSTREAM은 blue로 설정이 돼서 그 다음에 실행될 서버가 blue라는 것을 의미함    
+- 현재 실행되고 있는 서버, 포트, 멈춰 있는 포트, 앞으로 실행될 서버가 정보에 담기게 됨    
 - CURRENT_UPSTREAM에 green이 담겨서 env에 전달됨          
 - $GITHUB_ENV 전역변수에 담으면 아래에서 env. 으로 접근 가능함          
 
@@ -155,7 +151,7 @@ jobs:
 - http://localhost:8080/env로는 요청이 잘 가는 상태        
   
   
-### STEP 7 Docker compose 실행    
+### 📌 STEP 7 Docker compose 실행    
 
 ```yml
       - name: Docker compose
@@ -173,15 +169,14 @@ jobs:
 - env 에 변수값을 담은 후 docker compose를 실행해야 한다    
 - github actions에서 EC2로 접속을 해야한다    
 - 이 때, SSH로 접속해야하기 때문에 자동으로 secrets에 등록한 PRIVATE_KEY가 담기게 됨        
-- shell 스크립트를 여러줄 실행시킬 때는 | 즉, or bar를 사용하면 된다        
-
+- shell 스크립트를 여러줄 실행시킬 때는 | 즉, or bar를 사용하면 된다
 - 스크립트를 실행시킬 때는 관리자 권한으로 sudo 사용해서 실행시켜야 한다        
 - 아까 push 해둔 eroom-prod:latest 이미지를 EC2로부터 PULL 받는다        
 - 이전 실행시키고 있는 파일이 BLUE였다면 GREEN이 TARGET_UPSTREAM에 담겼으므로 해당 GREEN 도커 컴포즈 YML 파일이 실행됨        
 - Dockerfile에 profiles랑 env 가 green, green으로 바껴서 green서버가 실행됨    
 
 
-### STEP 8 Check deploy server URL    
+### 📌 STEP 8 Check deploy server URL    
 
 ```yml
       - name: Check deploy server URL
@@ -219,7 +214,7 @@ jobs:
 
 - 정상적으로 8080 포트로 블루 서버만이 실행되고 있고 무중단배포가 완료된 것을 확인할 수 있다        
 
-### STEP 9 Change nginx upstream    
+### 📌 STEP 9 Change nginx upstream    
 
 ```yml
       - name: Change nginx upstream
@@ -242,7 +237,7 @@ jobs:
 - (현재 위의 사진처럼 green으로 돼있는 것을 blue로 바꾸는 것, 아직 배포가 안됐기 때문에 status가 200이 아니라 green으로 돼있음)        
 
 
-### STEP 10  Stop current server    
+### 📌 STEP 10  Stop current server    
 
 ```yml
       - name: Stop current server
@@ -264,7 +259,7 @@ jobs:
 - 처음 배포할 때 이 과정에서 기존 실행 서버가 없어서 오류난다(첫 시도에서는 이 과정 에러 무시 해도 됨)      
 
     
-### STEP 11 Check Target Health      
+### 📌 STEP 11 Check Target Health      
 
 ```yml      
       - name: Check Target Health
