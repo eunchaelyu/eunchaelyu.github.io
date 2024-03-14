@@ -95,11 +95,12 @@ jobs:
 ```yml
       - name: Build Docker
         run: docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/eroom-prod .
+
       - name: Push Docker
         run: docker push ${{ secrets.DOCKER_USERNAME }}/eroom-prod:latest
 ```
 - jar 파일을 스냅샷을 찍어서 이미지로 만든다    
--> eroom-prod:latest라는 레포지토리로 도커 허브에 보낸다(push)
+- ``eroom-prod:latest``라는 레포지토리로 도커 허브에 보낸다(push)
 
 ### STEP 6
 ```yml
@@ -181,9 +182,33 @@ jobs:
           url: http://${{ secrets.HOST_PROD }}:${{env.STOPPED_PORT}}/env
           max-attempts: 5
           retry-delay: 10s
+
+      - name: Wait for Load Balancer to Register Targets
+        run: sleep 60
 ```
 - 10초마다 1번씩 최대 5번 요청하고 응답이 없다면 배포가 실패하게 됨    
 - 이 다음이 blue를 green으로 바꿔주는 작업인데 요청이 없다면 나중에 둘다 실행이 안되기 때문에 먼저 정상적으로 돌아간다는 체크 작업이 필요하다        
+
+- 블루서버나 그린서버로 전환했다면 AWS 로드밸런서에 적용되기까지 적절한 Sleep(대기 시간)을 줘야한다    
+- 이 sleep을 주지 않은 경우 배포 후에 502/200 에러가 번갈아 뜨는 문제가 발생한다
+
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/f07150a4-ecb6-43d3-8085-a6579d127f3f)     
+   
+
+- 1. 현재는 8081 포트로 그린 서버가 실행중이다    
+
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/250b3c0e-ff15-4dcd-92f0-58026ae9072c)      
+
+- 2. 새로운 버전으로 블루 서버를 실행하면서 sleep을 주는 과정을 확인한다    
+  
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b8ee9d42-cce6-42e1-bc8b-a2a58bcdb2a0)      
+
+- 3. 로드밸런서 대상그룹에 health check가 블루, 그린 서버 모두 완료된 것을 확인할 수 있다                
+     이전 버전으로 실행 중이였던 그린 서버도 healthy 상태이기 때문에 중지, 삭제가 가능한 상태이다            
+
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/b4de628d-d659-40d2-bb97-6a8dc9443943)    
+
+- 4. 정상적으로 8080 포트로 블루 서버만이 실행되고 있고 무중단배포가 완료된 것을 확인할 수 있다    
 
 ### STEP 9    
 ```yml
@@ -223,11 +248,20 @@ jobs:
       - name: Prune unused Docker images
         run: sudo docker image prune -a
 ```
-- 다시 EC2로 SSH 사용해서 접속 후  
-- 컨테이너 green을 중지 시키고 삭제한다    
+- 다시 EC2로 SSH 사용해서 접속 후      
+- 컨테이너 green을 중지 시키고 삭제한다        
 - 처음 배포할 때 이 과정에서 기존 실행 서버가 없어서 오류난다(첫 시도에서는 이 과정 에러 무시 해도 됨)
 
     
+### STEP 11      
 
+```yml      
+      - name: Describe Target Health
+        run: |
+          aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:us-east-1:471112860836:targetgroup/eroomTargetGroup/029a9432dd208dc7 | jq -r '.TargetHealthDescriptions[].TargetHealth.State'
+```      
 
+- AWS 자격 증명을 설정하고, 실제로 대상 그룹의 상태를 확인하는 단계이다
+
+      
 
