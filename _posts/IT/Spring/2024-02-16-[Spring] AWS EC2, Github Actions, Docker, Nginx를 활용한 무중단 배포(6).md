@@ -63,10 +63,11 @@ USER, PASSWORD, 엔드포인트 잘 기억해두고 Intellij에서 연결 및 ym
 
 ## [16] 무중단 배포 확인    
 ### 1. build        
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/83d4d12a-7126-457b-8350-aa1c0e073046)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/59ccb3d5-c1c9-41ea-b5fd-4ad82a84f066)    
 
 ### 2. deploy          
-![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/383d18c9-40d0-479f-b658-5651d89370f9)    
+![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/3aa5df43-1f22-4d90-abf2-3122240dc9bd)    
+ 
 
 
 ### 3. blue 서버가 실행되고 있는 경우        
