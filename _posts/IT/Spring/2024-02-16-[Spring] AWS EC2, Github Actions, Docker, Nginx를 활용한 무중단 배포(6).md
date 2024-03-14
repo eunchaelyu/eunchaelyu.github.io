@@ -44,8 +44,9 @@ img_path: '/posts/20240216'
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/0e0bafb7-b8a5-4ca4-baf3-b1d019987c1d)    
 
 - [x] 스프링 (백엔드) 배포 시    
-1. api.eroom-challenge.com로 배포하기    
-2. 인증서 "*.eroom-challenge.com" 추가 발급 및 연결 필요    
+- api.eroom-challenge.com로 배포하기    
+- 인증서 "*.eroom-challenge.com" 추가 발급 및 연결 필요
+  
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/be606a79-4267-407b-9246-5e781cfd1819)        
 
 
