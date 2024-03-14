@@ -142,7 +142,7 @@ jobs:
 - $GITHUB_ENV 전역변수에 담으면 아래에서 env. 으로 접근 가능함          
 
 
-### 현재 상황          
+#### 현재 상황          
 ![image](https://github.com/eunchaelyu/eunchaelyu.github.io/assets/119996957/44004582-4bf9-4e05-bd5d-301902c1a4fc)        
 - Nginx 서버로 접속은 되지만 env 요청은 처리가 안된 상태        
 - 아직 프록시 서버에서 스프링 부트 서버를 배포하지 않았기 때문에 404에러가 뜨는 것        
