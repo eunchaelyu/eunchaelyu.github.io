@@ -83,7 +83,8 @@ jobs:
 - x test 옵션은 테스트를 실행하지 않도록 설정            
 - jar 파일이 만들어진다    
 
-### 📌 STEP 4    
+### 📌 STEP 4  Login to DockerHub    
+
 ```yml
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -91,6 +92,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 ```
+
 - jar 파일을 ubuntu에서 만들었기 때문에 도커 로그인을 ubuntu에서 한다        
 
 ### 📌 STEP 5 Build Docker    
